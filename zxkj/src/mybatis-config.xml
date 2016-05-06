@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC   
+    "-//mybatis.org//DTD Config 3.0//EN"   
+    "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<typeAlias alias="user" type="com.zxkj.model.User"/>
+		<typeAlias alias="applyMoneyVO" type="com.zxkj.model.ApplyMoneyVO" />
+		<typeAlias alias="payFlowRecord" type="com.zxkj.model.PayFlowRecordVO"/>		
+		<typeAlias alias="ApplyMoneyVO" type="com.zxkj.model.ApplyMoneyVO"/>
+		<typeAlias alias="ExpenseInfoVO" type="com.zxkj.model.ExpenseInfoVO"/>
+		<typeAlias alias="applyAuditPassVO" type="com.zxkj.model.ApplyAuditPassVO"/>
+		<typeAlias alias="applyMoneyHistoryVO" type="com.zxkj.model.ApplyMoneyHistoryVO"/>
+		<typeAlias alias="updateApplyVO" type="com.zxkj.model.UpdateApplyVO"/>
+		<typeAlias alias="thisApplyMoneyDetailVO" type="com.zxkj.model.ThisApplyMoneyDetailVO"/>
+		<typeAlias alias="historyIncomeVO" type="com.zxkj.model.HistoryIncomeVO"/>
+		<typeAlias alias="historyDrawMoneyVO" type="com.zxkj.model.HistoryDrawMoneyVO"/>
+		<typeAlias alias="payFlowRecordVO" type="com.zxkj.model.PayFlowRecordVO"/>
+		<typeAlias alias="FinanceDetailVO" type="com.icss.lighttowerpay.model.FinanceDetailVO"/>
+	</typeAliases>
+	<mappers>
+		<mapper resource="com/zxkj/dao/audit/AuditApplyMapper.xml" />		
+		<mapper resource="com/zxkj/dao/impl/PayHistoryMapper.xml" />		
+		<mapper resource="com/zxkj/dao/impl/ApplyMoneyMapper.xml" />
+		<mapper resource="com/zxkj/dao/impl/ExpenseInfoMapper.xml" />
+		<mapper resource="com/zxkj/dao/impl/FinanceDetailsMapper.xml" />		
+		<mapper resource="com/zxkj/dao/impl/UserMapper.xml" />		
+	</mappers>
+</configuration> 
