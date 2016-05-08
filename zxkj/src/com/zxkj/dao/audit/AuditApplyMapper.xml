@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxkj.dao.audit.AuditApplyMoneyMapper">
+
+    <!-- 本次提现明细 -->
+	<select id="queryThisApplyMoneyDetail" resultType="thisApplyMoneyDetailVO" parameterType="java.util.HashMap">
+		SELECT
+			amy.applyFlow_no applyFlowNo,
+			amy.user_id userId,
+			amy.apply_money thisDrawMoney,
+			ei.surplus_money surplusMoney,
+			amy.beginApply_date applyDate,
+			amy.endApply_date endApplyDate,
+			amy.account account,
+			amy.real_name realName,
+			ei.total_money historyIncomeMoney
+		FROM
+			tbl_apply_money amy,
+			tbl_expense_info ei
+		WHERE
+			amy.user_id = ei.user_id
+		<if test='userID != null  and userID != ""'>
+		    AND amy.applyFlow_no = #{applyFlowNo}
+		</if>
+		<if test='userID != null  and userID != ""'>
+		    AND amy.user_id = #{userID}
+		</if>
+	</select>
+	
+	<!-- 历史提现总额 -->
+	<select id="queryHistoryDrawMoney" resultType="double" parameterType="Integer">
+		SELECT
+			IFNULL(SUM(pf.pay_money),0.00) as historyDrawMoney,
+			am.applyFlow_no applyFlowNo
+		FROM
+			tbl_apply_money am,
+			tbl_pay_flowrecord pf
+		WHERE
+			am.applyFlow_no = pf.businessFlow_no
+		AND pf.pay_status = 1
+		AND am.user_id = pf.user_id
+		<if test='userID != null  and userID != ""'>
+		    AND am.user_id = #{userID}
+		</if>
+	</select>
+	
+	<!-- 历史提现记录 -->
+	<select id="queryHistoryDrawMoneyDetail" resultType="historyDrawMoneyVO" parameterType="Integer">
+		SELECT
+			am.beginApply_date applyDate,
+			am.apply_money drawMoney,
+		    am.user_id,
+			pf.afterpay_money afterDrawMoney,
+			pf.beforepay_money beforeDrawMoney,
+			pf.pay_time payDate,
+			pf.pay_status payState
+		FROM
+			tbl_apply_money am,
+			tbl_pay_flowrecord pf
+		WHERE
+		    pf.user_id = am.user_id
+		    AND pf.businessFlow_no = am.applyFlow_no
+		AND (pf.pay_status = 1 or pf.pay_status = 3) 
+		<if test='userID != null  and userID != ""'>
+		    AND am.user_id = #{userID}
+		</if>
+		ORDER BY pf.pay_time
+	</select>
+	
+	<!-- 历史收益明细 -->
+	<select id="queryHistoryIncomeMoneyDetail" resultType="historyIncomeVO" parameterType="Integer">
+		SELECT
+			fd.id codeID,
+			fd.finance_timestamp generateDate,
+			fd.moneyfrom_description prjName,
+		
+		IF (
+			fd.moneyfrom_type = 1,
+			fd.testcase_money,
+			0.00
+		) testcaseMoney,
+		
+		IF (
+			fd.moneyfrom_type = 1,
+			fd.bug_money,
+			0.00
+		) bugMoney,
+		IF (
+			fd.moneyfrom_type = 1,
+			fd.bonus_money,
+			0.00
+		) bonusIncome,
+		IF (
+			fd.moneyfrom_type = 1,
+			fd.forfeit_money,
+			0.00
+		) fjMoney,
+		IF (
+			fd.moneyfrom_type = 2,
+			fd.bonus_money,
+			0.00
+		) redBagMoney,
+		
+		IF (
+			fd.moneyfrom_type = 3,
+			fd.bonus_money,
+			0.00
+		) ydjMoney,
+		
+		IF (
+			fd.moneyfrom_type = 4,
+			fd.bonus_money,
+			0.00
+		) zdMoney
+		FROM
+			tbl_finance_details fd
+		    WHERE		
+		<if test='userID != null  and userID != ""'>
+		    fd.user_id = #{userID}
+		</if>
+	</select>
+	
+	
+	<select id="queryTotalApplyMoneyCount" resultType="int" parameterType="java.util.HashMap">
+		SELECT count(1) AS recNum
+		FROM
+			tbl_apply_money am,
+			tbl_paygate pg,
+			tbl_expense_info ei
+		WHERE
+		    am.paygate_type = pg.paygate_type
+			AND am.user_id = ei.user_id
+			AND am.apply_status = 0
+		<if test='applyUser != null  and applyUser != ""'>
+			AND am.real_name like "%" #{applyUser} "%"
+		</if>
+		<if test="applyStartDate != null and applyStartDate !=''">
+				AND am.beginApply_date >= date_format(#{applyStartDate},'%Y%m%d')
+		</if>
+		<if test="applyEndDate != null and applyEndDate !=''">
+			<![CDATA[ AND am.beginApply_date < date_format(#{applyEndDate},'%Y%m%d') +1 ]]>
+		</if>
+		
+		
+	</select>
+	
+	<!-- 提现申请数据 -->
+	<select id="getApplyMoneyRecord" resultType="applyMoneyVO" parameterType="java.util.HashMap">
+		SELECT
+			pg.paygate_name paygateName,
+			am.paygate_type paygateType,
+			am.applyFlow_no applyFlowNo,
+			am.user_id userId,
+			am.apply_money applyMoney,
+			ei.surplus_money surplusMoney,
+			DATE_FORMAT(am.beginApply_date,'%Y-%m-%d %H:%i:%s') beginApplyDate,
+			am.endApply_date endApplyDate,
+			am.apply_status applyStatus,
+			am.account account,
+			am.real_name realName
+		FROM
+			tbl_apply_money am,
+			tbl_paygate pg,
+			tbl_expense_info ei
+		WHERE
+			am.paygate_type = pg.paygate_type
+			AND am.user_id = ei.user_id
+			AND am.apply_status = 0
+		<if test='applyUser != null  and applyUser != ""'>
+			AND am.real_name like "%" #{applyUser} "%"
+		</if>
+		<if test="applyStartDate != null and applyStartDate !=''">
+		<!--  AND am.beginApply_date >= date_format(#{applyStartDate},'%Y%m%d') -->
+			AND (am.beginApply_date >= #{applyStartDate})
+		</if>
+		<if test="applyEndDate != null and applyEndDate !=''">
+		<!-- 	<![CDATA[ AND am.beginApply_date <= date_format(#{applyEndDate},'%Y%m%d') +1 ]]>-->
+		   AND (DATE_ADD(#{applyEndDate},INTERVAL 1 DAY) > am.beginApply_date)
+		</if>
+		LIMIT #{start},#{rows}
+	</select>
+	
+	<select id="queryTotalAuditPassCount" resultType="int">
+		SELECT count(1) 
+		FROM
+			tbl_apply_money am,
+			tbl_apply_money_history ah
+		WHERE
+			am.applyFlow_no = ah.applyFlow_no
+		    AND (audit_status =3 OR audit_status = 4)
+	</select>
+	
+	<!-- 查询用户剩余金额 ，剩余金额=余额+冻结金额     -->
+	<select id="queryUserSurplusMoney" resultType="double" parameterType="Integer">
+		SELECT
+			IFNULL(surplus_money + freeze_money,0.00) as surplusMoney
+		FROM
+			tbl_expense_info
+		WHERE
+			user_id = #{userID}
+	</select>
+	
+	<select id="queryTotalAuditPassCountByContidion" resultType="int" parameterType="java.util.HashMap">
+		SELECT count(1) 
+		FROM
+			tbl_apply_money am,
+			tbl_apply_money_history ah
+		WHERE
+			am.applyFlow_no = ah.applyFlow_no
+		<if test='auditStatus != null  and auditStatus != ""'>
+			AND ah.audit_status = #{auditStatus}
+		</if>
+		<if test='applyAccount != null  and applyAccount != ""'>
+			AND am.account = #{applyAccount}
+		</if>
+		<if test='applyDate != null  and applyDate != ""'>
+			AND am.beginApply_date >= #{applyDate}
+		</if>
+	</select>
+	
+	<select id="queryAuditPassData" resultType="applyAuditPassVO" parameterType="java.util.HashMap">
+		SELECT
+			am.applyFlow_no applyFlowNO,
+			am.user_id userID,
+			am.account account,
+			am.real_name realName,
+			am.apply_money applyMoney,
+			am.beginApply_date beginApplyDate,
+			am.endApply_date endApplyDate,
+			ah.audit_Date auditDate,
+			ah.audit_remark auditRemark,
+			ah.audit_user auditUser,
+			ah.role_type roleType,
+			ah.audit_status auditStatus,
+			am.paygate_type paygateType,
+			ah.audit_step auditStep
+		FROM
+			tbl_apply_money am,
+			tbl_apply_money_history ah
+		WHERE
+			am.applyFlow_no = ah.applyFlow_no
+		AND (audit_status =3 OR audit_status = 4)
+		LIMIT #{start},#{rows}
+	</select>
+	
+	
+	<select id="queryAuditPassDataByCondition" resultType="applyAuditPassVO" parameterType="java.util.HashMap">
+		SELECT
+			am.applyFlow_no applyFlowNO,
+			am.user_id userID,
+			am.account account,
+			am.real_name realName,
+			am.apply_money applyMoney,
+			am.beginApply_date beginApplyDate,
+			am.endApply_date endApplyDate,
+			ah.audit_Date auditDate,
+			ah.audit_remark auditRemark,
+			ah.audit_user auditUser,
+			ah.role_type roleType,
+			ah.audit_status auditStatus,
+			am.paygate_type paygateType,
+			ah.audit_step auditStep
+		FROM
+			tbl_apply_money am,
+			tbl_apply_money_history ah
+		WHERE
+			am.applyFlow_no = ah.applyFlow_no
+		<if test='auditStatus != null  and auditStatus != ""'>
+			AND ah.audit_status = #{auditStatus}
+		</if>
+		<if test='applyAccount != null  and applyAccount != ""'>
+			AND am.account = #{applyAccount}
+		</if>
+		<if test='applyDate != null  and applyDate != ""'>
+			AND am.beginApply_date >= #{applyDate}
+		</if>
+		LIMIT #{start},#{rows}
+	</select>
+	
+	<!-- 向提现申请轨迹表中加入数据 -->
+	<insert id="insertDataTOHistory" parameterType="java.util.List">
+		<selectKey keyProperty="id" order="AFTER"
+			resultType="Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO tbl_apply_money_history
+        (
+			applyFlow_no,
+			audit_date,
+			audit_status,
+			audit_remark,
+			audit_user,
+			role_type,
+			audit_step
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.applyFlowNo},
+				#{item.auditDate},
+				#{item.auditStatus},
+				#{item.auditRemark},
+				#{item.auditUser},
+				#{item.roleType},
+				#{item.auditStep}
+			)
+		</foreach>
+	</insert>
+	
+	
+	<!-- 向提支付流水表中加入数据 -->
+	<insert id="insertDataTOPay" parameterType="java.util.List">
+		<selectKey keyProperty="id" order="AFTER"
+			resultType="Integer">
+			SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO tbl_pay_flowrecord
+        (
+        	user_id,
+			businessFlow_no,
+			pay_status,
+			beforepay_money
+		)
+		VALUES
+		<foreach collection="list" item="item" index="index" separator=",">
+			(
+				#{item.userId},
+				#{item.businessFlowNo},
+				#{item.payStatus},
+				#{item.beforePayMoney}
+			)
+		</foreach>
+	</insert>
+	
+	<!-- 审核数据后更新提现申请表中的数据 -->
+	<update id="updateAuditApplyMoney_old" parameterType="updateApplyVO">
+		UPDATE tbl_apply_money
+		<set>
+			<if test="applyStatus != null and applyStatus != 0">
+				apply_status = #{applyStatus},
+			</if>
+			<if test='auditDate != null and auditDate != ""'>
+				endApply_date = #{auditDate},
+			</if>
+	   </set>
+	   <if test="businessFlowNos !=null and businessFlowNos.size!= 0">
+		   WHERE applyFlow_no IN 
+		   <foreach collection="businessFlowNos" item="item" index = "index" open="("
+				separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+	</update>
+	
+	<!-- 审核数据后更新提现申请表中的数据 -->
+	<update id="updateAuditApplyMoney" parameterType="updateApplyVO">
+		UPDATE tbl_apply_money
+		<set>
+			<if test="applyStatus != null and applyStatus != 0">
+				apply_status = #{applyStatus},
+			</if>
+			<if test='auditDate != null and auditDate != ""'>
+				endApply_date = #{auditDate},
+			</if>
+	   </set>
+	   WHERE applyFlow_no = #{businessFlowNo}
+	</update>
+	
+	<!-- 审核驳回后需要将冻结的金额还原到余额中取 -->
+	<update id="updateExpenseInfoFail" parameterType="java.lang.String">
+		update tbl_expense_info set        
+		       surplus_money = surplus_money + freeze_money ,
+		       freeze_money = 0
+		where user_id = #{userID}
+	</update>
+	
+	<!-- 判断库中是否存在某条指定业务流水号的信息  -->
+	<select id="queryInfoByBusinessFlowNoAndUserId" parameterType="Map" resultType="ApplyMoneyHistoryVO">
+		SELECT
+			audit_date as auditDate,
+			audit_status as auditStatus,
+			audit_remark as auditRemark,
+			audit_user as auditUser,
+			role_type as roleType,
+			audit_step as auditStep
+		FROM
+			tbl_apply_money tam 
+			LEFT JOIN tbl_apply_money_history tamh ON(tam.applyFlow_no = tamh.applyFlow_no)
+		WHERE
+			tam.applyFlow_no=#{applyFlowNo}
+			AND
+			tam.user_id=#{userId}
+	</select>
+</mapper>
