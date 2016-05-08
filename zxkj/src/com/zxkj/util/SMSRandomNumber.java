@@ -1,7 +1,7 @@
 package com.zxkj.util;
 /**
  * 生成随机数类
- * @author mengqingfeng
+ * @author
  *
  */
 public class SMSRandomNumber {

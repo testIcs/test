@@ -14,7 +14,7 @@
 			var key = '123!@#Qaz';
 			var password = encryptByDES(pass, key); 
 			$.ajax( {    
-				url:'/LightTowerPay/pay/user/login',// 跳转到 action        
+				url:'/zxkj/zxkj/user/login',// 跳转到 action        
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -25,7 +25,7 @@
 				headers:[{"Access-Control-Allow-Origin":"localhost,127.0.0.1"}],
 				success:function(data) {    
 					if("0" == data.status){    
-						 window.location.href='jsp/audit/applyMoneyAudit.jsp';
+						 window.location.href='jsp/home.jsp';
 					}else{    
 						$('#check').html("<font color='red'><b>用户名或密码错误</b></font>");    
 					}

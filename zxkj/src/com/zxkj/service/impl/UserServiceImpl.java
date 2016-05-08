@@ -1,6 +1,5 @@
 package com.zxkj.service.impl;
 
-import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,18 +11,16 @@ import com.zxkj.common.Constants;
 import com.zxkj.dao.UserMapper;
 import com.zxkj.model.User;
 import com.zxkj.service.UserService;
-import com.zxkj.util.DBUtil;
-import com.zxkj.util.MD5Util;
 
 
 @Scope("prototype")
 @Service("userService")
 /**
  * {@inheritDoc}
- * @author mengqingfeng
+ * @author
  */
 public class UserServiceImpl implements UserService {
-	private static final Logger LOG = LoggerFactory.getLogger(DBUtil.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 	@Autowired(required = true)
 	private UserMapper userMapper;
 
@@ -33,19 +30,11 @@ public class UserServiceImpl implements UserService {
 	 */
 	public int login(User user) {
 		LOG.info(">>>>>>>>>>>>login");
-		List<User> list = userMapper.login(user);
-		if(list.size()==1){
-			User tempUser = list.get(0);
-			boolean flag = MD5Util.validatePassword(tempUser.getPassword(),user.getPassword());
-			if (flag) {
-				user = tempUser;
-				return Constants.STATUS_OK;
-			} else {
-				return Constants.DATA_INCORRECT;
-			}			
+		if(user.getUserName().equals("zxkj") && user.getPassword().equals("zxkj")){
+			return Constants.STATUS_OK;
 		}else{
 			return Constants.DATA_INCORRECT;
-		}		
+		}	
 	}
 
 }

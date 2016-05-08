@@ -17,16 +17,15 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxkj.model.User;
 import com.zxkj.service.UserService;
-import com.zxkj.util.DBUtil;
 import com.zxkj.util.DesEncrypt;
 import com.zxkj.util.EncryptKey;
 
 
 @Scope("prototype")
 @Controller
-@RequestMapping("/pay/user")
+@RequestMapping("/zxkj/user")
 public class UserController {
-	private static final Logger LOG = LoggerFactory.getLogger(DBUtil.class);
+	private static final Logger LOG = LoggerFactory.getLogger(UserController.class);
 	/**
 	 * 加密key
 	 */
@@ -51,7 +50,6 @@ public class UserController {
 		DesEncrypt encrypt = new DesEncrypt(KEY_STR);
 		user.setPassword(encrypt.decrypt(pwd));
 		int status = userService.login(user);
-		user.setPassword("");
 		returnMap.put("status", status);
 		returnMap.put("user", user);
 		request.getSession().setAttribute("user", user);
