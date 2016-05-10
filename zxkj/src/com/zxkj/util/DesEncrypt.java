@@ -134,7 +134,7 @@ public class DesEncrypt {
 	public static void main(String args[]) {
 		DesEncrypt des = new DesEncrypt(EncryptKey.getKey());
 		// MnBks6I7g7A za//gYyTqg==
-		String pwd = "17524633";
+		String pwd = "root";
 		// DES加密
 		String enPwd = des.encrypt(pwd);
 		System.out.println("密文:" + enPwd);

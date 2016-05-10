@@ -11,5 +11,5 @@ public interface UserMapper {
 	 * @param user 登陆的用户信息
 	 * @return 返回登陆状态
 	 */
-	public List<User> login(User user);
+	public User login(User user);
 }

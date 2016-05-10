@@ -44,7 +44,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.POST)
 	public @ResponseBody Object login(HttpServletRequest request,User user) throws IOException {
-		LOG.info(">>>>>>>>>>>>login");
+		LOG.info(">>>>>>>>>>>>loginControl");
 		Map<String, Object> returnMap = new HashMap<String, Object>();
 		String pwd = user.getPassword();
 		DesEncrypt encrypt = new DesEncrypt(KEY_STR);

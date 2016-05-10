@@ -4,14 +4,14 @@
 
 <mapper namespace="com.zxkj.dao.UserMapper">
 
+	
 	<select id="login" parameterType="user" resultType="user">
 		select id userId,
 			user_name userName,
-			user_pwd password,
-			role_type roleType,
-			real_name realName,
-			phone_number phone 
-		from tbl_audit_account 
+			card_no realName,
+			email email,
+			phone_no phone 
+		from tbl_user_baseinfo 
 		where user_name = #{userName}
 	</select>
 	
