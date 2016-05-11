@@ -67,7 +67,7 @@ public class SmsHandle {
 	public String registrationActivation(){
 		String[] inputParameterNames = { "in0", "in1", "in2", "in3", "in4",
 				"in5", "in6", "in7", "in8", "in9", "in10" };
-		Object[] inputParameterValues = { SmsHandle.ACCOUNT, SmsHandle.PASSWORD,"北京中软国际信息技术有限公司", "中软国际", "中关村", "联系电话", "联系人", "email", "传真", "邮编", "联系手机"};
+		Object[] inputParameterValues = { SmsHandle.ACCOUNT, SmsHandle.PASSWORD,"北京中软国际信息技术有限公司", "智行科技", "中关村", "联系电话", "联系人", "email", "传真", "邮编", "联系手机"};
 		String[] inputXmlTypes = { "string", "string", "string", "string",
 				"string", "string", "string", "string", "string", "string","string" };
 		return getCommonHandleAxisClient("register",inputParameterNames, inputParameterValues, inputXmlTypes).toString();
@@ -212,7 +212,7 @@ public class SmsHandle {
 
 	public static void main(String[] args) throws Exception {
 		SmsHandle smsHandle = new SmsHandle();
-		smsHandle.smsSend("18706767238", "邮件测试");
+		smsHandle.smsSend("13152173881", "试算邮件测试");
 	}
 
 }
