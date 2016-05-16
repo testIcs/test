@@ -1,0 +1,209 @@
+/**
+ * 查看消息
+ */
+
+window.MessageManage = (function($, module) {
+	var url = "";
+	var errorMsg = "";
+	var testcaseIdList;
+
+	
+	//绑定开始日期和结束日期
+	function bindStartDatepicker() {
+		CommonDateTimePickerBind.bindDateTimePicker("search_exec_starttime");
+	}
+
+	// 动态绑定类型下拉框
+	function bindTypeNameSelect() {
+		url = _baseUrl + "/commonData/findMessageType.action";
+		errorMsg = "get message_type is error!";
+		CommonAjaxHandle.bindSelectOptionDataDefault(url, "message_type", null, null, errorMsg);
+	}
+	
+	// 加载用例列表Grid
+	function loadTestCaseGrid() {
+		$("#message_jqgrid_data").jqGrid({
+					url : _baseUrl + "/message/doShouMessageManageList.action",
+					mtype : "post",
+					datatype : "json",
+					height : "auto",
+					forceFit : true,
+					width : 1188,
+			        colNames : ["ID","姓名", "标题", "内容", "类型", "状态", "时间"],
+			        colModel : [ {
+						name : "messageId",
+						index : "messageId",
+						width : 100,
+						align : "center",
+						sortable : false,
+						hidden : true
+					},{
+			        	name : "realName",
+			        	index : "realName",
+			        	width : 150,
+			        	align : "center",
+			        	sortable : false
+					},{
+			        	name : "messageTitle",
+			        	index : "messageTitle",
+			        	width : 150,
+			        	align : "center",
+			        	sortable : false
+					},{
+			        	name : "messageContent",
+			        	index : "messageContent",
+			        	width : 150,
+			        	align : "center",
+			        	sortable : false
+			        }, {
+			            name : "messageType",
+			            index : "messageType",
+			            width : 100,
+			            align : "center",
+			            sortable : false,
+			            formatter : function(cellvalue, options, rowObject){
+			            	return cellvalue == 0 ? "站内" :
+			            		cellvalue == 1 ? "短信" :
+			            		cellvalue == 2 ? "微信" :
+			            		cellvalue == 3 ? "邮件" : 
+			            		cellvalue == 4 ? "返回" : "未通过";
+			            }
+			        }, {
+			            name : "messageResult",
+			            index : "messageResult",
+			            width : 100,
+			            align : "center",
+			            sortable : false,
+			            formatter : function(cellvalue, options, rowObject){
+			            	return cellvalue == 0 ? "发送成功" :
+			            		cellvalue == 1 ? "发送未成功" :
+			            		cellvalue == 2 ? "微信" :
+			            		cellvalue == 3 ? "邮件" : 
+			            		cellvalue == 4 ? "返回" : "无状态";
+			            }
+			        }, {
+			            name : "messageTime",
+			            index : "messageTime",
+			            width : 100,
+			            align : "center",
+			            sortable : false,
+						formatter: 'date',
+			            formatoptions: {
+			            	srcformat: 'Y-m-d', 
+			            	newformat: 'Y-m-d'
+			            }	
+			        }],
+					multiselect : true,
+					rowNum : 15,
+					rowList : [15, 30, 45],
+					pager : '#testcase_jqgrid_pager',
+					recordpos : 'right',
+					viewrecords : true,
+					pgbuttons : true,
+					pginput : true,
+					gridComplete : function() {
+					},
+					onSelectAll : function(rowid, status) {
+					},
+					prmNames : {
+						search : "pageInfo.search",
+						page : "pageInfo.page",
+						rows : "pageInfo.rows",
+						sidx : "pageInfo.sidx",
+						sord : "pageInfo.sord",
+						nd : "pageInfo.nd"
+					},
+					jsonReader : {
+						root : "datas",
+						page : "pageInfo.page",
+						records : "pageInfo.record",
+						total : "pageInfo.totalPage",
+						sidx : "pageInfo.sidx",
+						sord : "pageInfo.sord",
+						userdata : "",
+						repeatitems : false
+					}
+				});
+	}
+
+	
+	//查看单条记录
+	function testcaseDetail(testcaseId){
+		PageCommon.loadPageByUrl("/testcaseOperate/showDetailTestcase.action?testcaseId="+strEnc(testcaseId.toString(),"1","2","3"), 1);
+	}
+	
+
+	// 消息搜索
+	function searchMessage() {
+		/**
+		 * 将form表单搜索的数据和分页的数据封装到一起传入后台
+		 */
+		var postData = $("#message_jqgrid_data").jqGrid("getGridParam", "postData");
+		$.each($("#search_message").serializeArray(), function(i, n){
+			var name = n.name;
+			var value = n.value;
+			if(value == undefined){
+				postData[name] = "";
+			}else{
+				postData[name] = value;
+			}
+		});
+		
+		$("#message_jqgrid_data").jqGrid('setGridParam', {
+			datatype : 'json',
+			postData : postData, // 发送数据
+			page : 1
+		}).trigger("reloadGrid");
+		CommonHandleButton.deactiveButton("batch_delete");
+	}
+	
+	// 清空搜索
+	function clearSearchTestCase() {
+//		history.go(0);
+		location.reload();
+	}
+
+	
+	// 用例管理初始化
+	function init() {
+		//同步主菜单样式
+		//PageCommon.synchronousMainMenuStyle("MENU_TC");
+		
+		CommonHandleButton.deactiveButton("batch_delete");
+		bindTypeNameSelect();
+		bindStartDatepicker();
+		loadTestCaseGrid();
+	}
+
+
+	module.init = init;
+	module.clearSearchTestCase = clearSearchTestCase;
+	module.testcaseDetail = testcaseDetail;
+	module.searchMessage = searchMessage;
+	return module;
+})($, window.MessageManage || {});
+
+/**
+ * 页面初始化
+ */
+$(function() {
+	// 初始化
+	MessageManage.init();
+	
+	// 搜索事件
+	$("#message_btn").on("click",function(){
+		MessageManage.searchMessage();
+	});
+
+	// 清空查询条件
+	$("#clear_testcase_btn").on("click", function() {
+		MessageManage.clearSearchTestCase();
+	});
+
+	//开始日期
+	$("#search_exec_starttime").on("keydown", function() {
+		return false;
+	});
+
+
+});
