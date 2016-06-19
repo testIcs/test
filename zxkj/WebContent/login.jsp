@@ -7,12 +7,6 @@
 <title>欢迎进入支付系统</title>
 <link rel="stylesheet" type="text/css" href="./css/indexstyle.css" />
 <link rel="stylesheet" type="text/css" href="./css/jquery.alerts.css">
-<script type="text/javascript" src="3th/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="3th/jquery.alerts.js"></script>
-<script type="text/javascript" src="3th/tripledes.js"></script>
-<script type="text/javascript" src="3th/model_esb.js"></script>
-<script type="text/javascript" src="3th/md5.js"></script>
-<script type="text/javascript" src="script/login.js"></script>
 </head>
 <body>
 	<div class="login">
@@ -40,4 +34,12 @@
 		</div>
 	</div>
 </body>
+<script type="text/javascript" src="3th/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="3th/jquery.alerts.js"></script>
+<script type="text/javascript" src="3th/tripledes.js"></script>
+<script type="text/javascript" src="3th/model_esb.js"></script>
+<script type="text/javascript" src="3th/md5.js"></script>
+<script type="text/javascript" src="script/util_manage/des_util.js"></script>
+<script type="text/javascript" src="script/const_manage/common_const.js"></script>
+<script type="text/javascript" src="script/login.js"></script>
 </html>

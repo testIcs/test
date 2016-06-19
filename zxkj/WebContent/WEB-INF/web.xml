@@ -32,7 +32,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>zxkj</servlet-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>CharacterEncodingFilter</filter-name>
@@ -44,7 +44,7 @@
   </filter>
   <filter-mapping>
     <filter-name>CharacterEncodingFilter</filter-name>
-    <url-pattern>/</url-pattern>
+    <url-pattern>*.do</url-pattern>
   </filter-mapping>
   <welcome-file-list>
     <welcome-file>login.jsp</welcome-file>

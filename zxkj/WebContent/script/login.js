@@ -14,7 +14,7 @@
 		}
 	
 		$.ajax( {    
-			url:'/zxkj/zxkj/user/login',// 跳转到 action        
+			url:'/zxkj/user/login.do',// 跳转到 action        
 			type:'post',    
 			cache:false,  			
 			dataType:'json', 
