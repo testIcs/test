@@ -5,8 +5,10 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="user" type="com.zxkj.model.User"/>
+		<typeAlias alias="Map" type="java.util.Map"/>
 	</typeAliases>
 	<mappers>	
-		<mapper resource="com/zxkj/dao/impl/UserMapper.xml" />		
+		<mapper resource="com/zxkj/dao/impl/UserMapper.xml" />	
+		<mapper resource="com/zxkj/dao/impl/DicMapper.xml" />		
 	</mappers>
 </configuration> 

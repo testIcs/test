@@ -32,4 +32,13 @@ public class ApplyController {
 	public String toRateconfirm(ModelMap modelMap){
 		return "apply_manage/rate_confirm";
 	}
+	
+	/**
+	 * @param modelMap 返回到页面的信息
+	 * @return String 贷款利率确认页面名称
+	 */
+	@RequestMapping(value = "/toWarrantPage.do", method = RequestMethod.GET)
+	public String toWarrantPage(ModelMap modelMap){
+		return "apply_manage/warrant";
+	}
 }

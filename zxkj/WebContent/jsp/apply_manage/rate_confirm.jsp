@@ -21,20 +21,20 @@
                 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td class="td-left">金融产品</td>
-                        <td><select name=""></select></td>
+                        <td><select id="fp_rc"></select></td>
                       </tr>
                       <tr>
                         <td class="td-left">贷款利率</td>
-                        <td><select name=""></select></td>
+                        <td><select id="lr_rc"></select></td>
                       </tr>
                       <tr>
                         <td class="td-left">贷款期限</td>
-                        <td><select name=""></select></td>
+                        <td><select id="lt_rc"></select></td>
                       </tr>
                     </table>
                 </div>
             	<div class="table-button" style="text-align:center; padding-top:50px;">
-                	<a href="warrant.html"><input type="button" value="确 定" /></a>
+                	<a href="/zxkj/apply/toWarrantPage.do"><input type="button" value="确 定" /></a>
                 	<a href="/zxkj/apply/toApplyRegisterPage.do"><input type="button" value="返 回" /></a>
                 </div>
             </div>
@@ -46,4 +46,7 @@
     </div>    
 </div>
 </body>
+<script type="text/javascript" src="../3th/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../script/util_manage/select_util.js"></script>
+<script type="text/javascript" src="../script/apply_manage/rate_confirm.js"></script>
 </html>
