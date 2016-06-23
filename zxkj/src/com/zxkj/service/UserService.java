@@ -6,7 +6,6 @@ package com.zxkj.service;
 import com.zxkj.model.User;
 
 /**
- * @author mengqingfeng
  * 用户操作SERVICE
  */
 public interface UserService {
