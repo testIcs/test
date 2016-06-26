@@ -41,4 +41,14 @@ public class ApplyController {
 	public String toWarrantPage(ModelMap modelMap){
 		return "apply_manage/warrant";
 	}
+	
+	/**
+	 * 跳转到上传贷款申请页面
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/toUploadLoanApplication.do", method = RequestMethod.GET)
+	public String toLoanApplication(ModelMap modelMap){
+		return "apply_manage/toUploadLoanApplication";
+	}
 }
