@@ -10,6 +10,27 @@
 .idcard-block {
   height: 675px;
 }
+.idcard-area{
+	position: relative;
+	height: 460px;
+}
+.idcard-area .blind {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+  width: 100%;
+  height: 100%;
+  background: #fff;
+  z-index: 1;
+}
+
+.idcard-area .blind.anim {
+  transition: opacity 1500ms ease-out;
+  -o-transition: opacity 1500ms ease-out;
+  -moz-transition: opacity 1500ms ease-out;
+  -webkit-transition: opacity 1500ms ease-out;
+}
 </style>
 </head>
 <body>
@@ -64,8 +85,9 @@
 			<div class="idcard-block">
            	  	<div class="right-title">请您将贷款申请放置在资料扫描区</div>
                 <div class="idcard-area">
+                	<div class="blind"></div>
                 	<video id="video" width="600" height="460" autoplay></video>
-                	<canvas id="canvas" width="600" height="460" style="display:none"></canvas> 
+                	<canvas id="canvas" width="600" height="450" style="display:none;margin: 5px 0 0 0;"></canvas> 
                 </div>
             </div>
             <div class="submit">
@@ -122,8 +144,12 @@ window.addEventListener("DOMContentLoaded", function () {
 	}
 	
     //这个是拍照按钮的事件，          
-    $("#snap").click(function () {          
-         context.drawImage(video, 0, 0, 600, 460);
+    $("#snap").click(function () {   
+    	 $(".blind").attr("class","blind"), $(".blind").css("opacity","1"), setTimeout(function() {
+            $(".blind").attr("class","blind anim"), $(".blind").css("opacity","0")
+         }, 50);  
+            
+         context.drawImage(video, 0, 0, 600, 450);
          
          $("#video").hide();
          $("#canvas").show();
@@ -143,24 +169,29 @@ window.addEventListener("DOMContentLoaded", function () {
 	
 	//确认事件，          
     $("#confirm").click(function () {              
-         CatchCode();           
-	}); 
-	          
-}, false);                   
-    
-	function CatchCode() {        
-		// 获取浏览器页面的画布对象
+         // 获取浏览器页面的画布对象
 		var canvans = document.getElementById("canvas");                  
 		var base64Data = canvans.toDataURL(); //将图像转换为base64数据     
-		//开始异步上             
-		$.post("<%=request.getContextPath() %>/upload/uploadImage.do", { "imageData": base64Data }, function (data, status) {             
+		//开始异步上
+		$.ajax({  
+               url: "<%=request.getContextPath() %>/upload/uploadImage.do",  
+               type: 'POST',  
+               timeout: 15*1000,  
+               data:{"imageData": base64Data},
+               success: function(data) {  
 				if (data.result == '0') {                
 					alert("提交成功");                   
 				}else {              
 				    alert("提交失败");         
-				}          
-            
-		}, "text");           
-	}      
+				}   
+		                 
+               },  
+               error:function(result){  
+                   
+               }  
+           });//end          
+	}); 
+	          
+}, false);                       
  </script> 
 </html>

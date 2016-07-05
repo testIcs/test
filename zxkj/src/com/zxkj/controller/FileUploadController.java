@@ -2,8 +2,8 @@ package com.zxkj.controller;
 
 import java.io.File;
 import java.io.IOException;
-
-import net.sf.json.JSONObject;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
@@ -31,7 +31,7 @@ public class FileUploadController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/uploadImage.do", method = RequestMethod.POST)
-	public JSONObject uploadImage(String imageData){
+	public Map<String, String> uploadImage(String imageData){
 		Base64 base64 = new Base64();
 		//base64 decode image
 		byte[] b = base64.decode(imageData.substring("data:image/png;base64,".length()).getBytes());
@@ -41,7 +41,7 @@ public class FileUploadController {
 		//write image
 		File file = new File(filePath);
 		
-		JSONObject json = new JSONObject();
+		Map<String, String> json = new HashMap<String, String>(); 
 		try {
 			FileUtils.writeByteArrayToFile(file, b);
 			
