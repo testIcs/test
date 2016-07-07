@@ -11,7 +11,7 @@
 <div class="wrapper">
 	<div class="top">
     	<div class="topleft"></div>
-        <div class="topright"><a href="index.html">首页</a></div>
+        <div class="topright"><a href="/zxkj/home/home.do">首页</a></div>
     </div>
     <div class="content">
 		<div class="apply-block">
@@ -30,7 +30,7 @@
                 	  2、陌陌科技提供的服务包含免费服务与收费服务。用户可以通过付费方式购买收费服务，具体方式为：用户通过网上银行、支付宝或其他“陌陌”平台提供的付费途径支付一定数额的人民币购买“陌陌”平台的虚拟货币——陌陌币，然后根据陌陌科技公布的资费标准以陌陌币购买用户欲使用的收费服务，从而获得收费服务使用权限。对于收费服务，陌陌科技会在用户使用之前给予用户明确的提示，只有用户根据提示确认其同意按照前述支付方式支付费用并完成了支付行为，用户才能使用该等收费服务。支付行为的完成以银行或第三方支付平台生成“支付已完成”的确认通知为准。</p>
                 </div>
                 <div class="apply-block-button">
-                	<a href="upload_a.html"><input name="" type="button" value="确 认" /></a>
+                	<a href="../applyUpload/toApplyUploadList.do"><input type="button" value="确 认" /></a>
                 </div>
           	</div>
         </div>

@@ -51,4 +51,24 @@ public class ApplyController {
 	public String toLoanApplication(ModelMap modelMap){
 		return "apply_manage/toUploadLoanApplication";
 	}
+	
+	/**
+	 * 跳转到上传贷款申请页面
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/toFrameNum.do", method = RequestMethod.GET)
+	public String toFrameNum(ModelMap modelMap){
+		return "apply_manage/frame_num";
+	}
+	
+	/**
+	 * 跳转到上传贷款申请页面
+	 * @param modelMap
+	 * @return
+	 */
+	@RequestMapping(value = "/toReviewTips.do", method = RequestMethod.GET)
+	public String toReviewTips(ModelMap modelMap){
+		return "apply_manage/review_tips";
+	}	
 }
