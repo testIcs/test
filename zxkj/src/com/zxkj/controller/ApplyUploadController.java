@@ -25,8 +25,9 @@ public class ApplyUploadController {
 	}
 	
 	/**
+	 * 上传贷款申请页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toUploadLoan.do", method = RequestMethod.GET)
 	public String toUploadLoan(ModelMap modelMap){
@@ -43,8 +44,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 上传身份证页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String
 	 */
 	@RequestMapping(value = "/toUploadIdCard.do", method = RequestMethod.GET)
 	public String toUploadIdCard(ModelMap modelMap){
@@ -61,8 +63,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 上传车辆信息页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toUploadCar.do", method = RequestMethod.GET)
 	public String toUploadCar(ModelMap modelMap){
@@ -79,8 +82,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 上传银行流水页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toUploadBank.do", method = RequestMethod.GET)
 	public String toUploadBank(ModelMap modelMap){
@@ -88,8 +92,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String
 	 */
 	@RequestMapping(value = "/toBankSubmit.do", method = RequestMethod.GET)
 	public String toBankSubmit(ModelMap modelMap){
@@ -97,8 +102,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 上传授权书页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toUploadAuth.do", method = RequestMethod.GET)
 	public String toUploadAuth(ModelMap modelMap){
@@ -107,7 +113,7 @@ public class ApplyUploadController {
 	
 	/**
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toAuthSubmit.do", method = RequestMethod.GET)
 	public String toAuthSubmit(ModelMap modelMap){
@@ -115,8 +121,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 上传收入证明页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toUploadIncome.do", method = RequestMethod.GET)
 	public String toUploadIncome(ModelMap modelMap){
@@ -124,8 +131,9 @@ public class ApplyUploadController {
 	}	
 	
 	/**
+	 * 上传房产信息页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String 
 	 */
 	@RequestMapping(value = "/toUploadHouse.do", method = RequestMethod.GET)
 	public String toUploadHouse(ModelMap modelMap){
@@ -142,8 +150,9 @@ public class ApplyUploadController {
 	}
 	
 	/**
+	 * 上传其他补充页面
 	 * @param modelMap 返回到页面的信息
-	 * @return String 申请注册页面名称
+	 * @return String
 	 */
 	@RequestMapping(value = "/toUploadOther.do", method = RequestMethod.GET)
 	public String toUploadOther(ModelMap modelMap){

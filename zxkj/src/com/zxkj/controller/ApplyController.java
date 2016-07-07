@@ -47,16 +47,6 @@ public class ApplyController {
 	 * @param modelMap
 	 * @return
 	 */
-	@RequestMapping(value = "/toUploadLoanApplication.do", method = RequestMethod.GET)
-	public String toLoanApplication(ModelMap modelMap){
-		return "apply_manage/toUploadLoanApplication";
-	}
-	
-	/**
-	 * 跳转到上传贷款申请页面
-	 * @param modelMap
-	 * @return
-	 */
 	@RequestMapping(value = "/toFrameNum.do", method = RequestMethod.GET)
 	public String toFrameNum(ModelMap modelMap){
 		return "apply_manage/frame_num";

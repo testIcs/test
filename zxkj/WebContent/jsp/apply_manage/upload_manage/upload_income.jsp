@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>贷款申请</title>
+<title>收入证明</title>
 <link rel="stylesheet" type="text/css" href="../css/JDstyle.css" />
 </head>
 <body>
@@ -58,9 +58,17 @@
         <div class="rightmain">
 			<div class="idcard-block">
            	  	<div class="right-title">请您将收入证明放置在资料扫描区</div>
-                <div class="idcard-area"><img src="../css/images/pic3.jpg" width="600" height="320" /></div>
+                <div class="idcard-area">
+                	<div class="blind"></div>
+                	<video id="video" width="600" height="460" autoplay></video>
+                	<canvas id="canvas" width="600" height="450" style="display:none;margin: 5px 0 0 0;"></canvas> 
+                </div>
             </div>
-            <div class="submit"><a href="toIncomeSubmit.do"><input type="button" value="提  交" /></a></div>
+            <div class="submit">
+            	<input id="snap" type="button" style="width:270px; margin:0px 80px 0px 0px;"  value="拍  照" />
+            	<input id="resnap" type="button" style="width:270px; margin:0px 80px 0px 0px;display:none"  value="重  拍" />
+            	<input id="confirm" type="button" style="width:270px;" value="确认" />
+            </div>
         </div>
     </div>
     <div class="footer">
@@ -69,4 +77,6 @@
     </div>    
 </div>
 </body>
+<script type="text/javascript" src="../3th/jquery.min.js"></script>
+<script type="text/javascript" src="../script/util_manage/camera.js"></script>
 </html>
