@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxkj.dao.DicMapper">
+
+	<!-- 查询金融产品字典信息 -->
+	<select id="findFinancialProducts" resultType="Map">
+		SELECT
+			value AS value,
+			name AS name
+		FROM
+			dic_loan_type
+	</select>
+	
+	<!-- 查询贷款利率字典信息 -->
+	<select id="findLendingRate" resultType="Map">
+		SELECT
+			value AS value,
+			name AS name
+		FROM
+			dic_payment_ratio
+	</select>
+	
+	<!-- 查询贷款期限字典信息 -->
+	<select id="findLoanTerm" resultType="Map">
+		SELECT
+			value AS value,
+			name AS name
+		FROM
+			dic_loan_term
+	</select>
+</mapper>
