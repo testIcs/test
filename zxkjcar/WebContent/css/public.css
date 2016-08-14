@@ -1,0 +1,115 @@
+body{
+	margin:0px; padding:0px; font-family:Microsoft Yahei; font-size:14px; line-height:30px; color:#000; background:#f8f8f8;
+}
+
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, code, del, dfn, em, img, strong, dd, dl, dt, li, ol, ul, fieldset, form, label, button, input, table, caption, tbody, tfoot, thead, tr, th, td, menu{
+	margin:0px; padding:0px;
+}
+
+table {
+	border-collapse:collapse;
+	border-spacing:0;
+	empty-cells:show
+}
+ol, ul, menu {
+	list-style:none
+}
+img {
+	border:0
+}
+
+a{
+	text-decoration:none; cursor:pointer;
+}
+a.blue{
+	color:#1085d7;
+}
+a.blue:hover{
+	text-decoration:underline;
+}
+.green{
+	color:#02ca74;
+}
+.red{
+	color:#f05b57;
+}
+.font01{
+	color:#fff;
+}
+.font02{
+	color:#0aa0b8;
+}
+.font03{
+	color:#bebebe;
+}
+.font04{
+	color:#999;
+}
+div.bottomspace{
+	padding-bottom:50px;
+}
+.star{
+	color:#f5362f; margin-right:5px;
+}
+input,select,textarea{
+	border:1px #d5d5d5 solid; border-radius:4px; -moz-border-radius:4px; -webkit-border-radius:4px; font-family:Microsoft Yahei; resize:none;
+}
+
+.pagetop{
+	width:auto; height:63px; background:#219c81; border-bottom:3px #29ab8f solid;
+}
+.pagetop1{
+	width:auto; height:70px; border-bottom:3px #29ab8f solid;
+}
+.top{
+	width:1190px; height:63px; margin:0px auto; padding:0px; color:#fff; position:relative;
+}
+.logo{
+	width:270px; height:50px; float:left; margin-top:8px;
+}
+.footer{
+	width:auto; height:89px; border-top:1px #414f5a solid; background:#25292c;
+}
+.footercon{
+	width:1190px; height:79px; color:#a1a1a1; margin:0px auto; padding:10px 0px 0px 0px;
+}
+.fc-left{
+	width:600px; height:30px; float:left;
+}
+.fc-right{
+	width:400px; height:30px; float:right; text-align:right;
+}
+.fc-right a{
+	color:#a1a1a1; text-decoration:none; margin-left:20px;
+}
+.fc-right a:hover{
+	text-decoration:underline;
+}
+
+.browser_tips{
+	background:#29ab8f ; 
+	width:100%; 
+	height:50px; 
+	line-height:50px; 
+	text-align:center; 
+	color:#fff; 
+	position:fixed; 
+	bottom:2px; 
+	z-index:99999;
+	font-size:24px;
+}
+.browser_tips a{
+	color:#D0F479; 
+}
+
+.browser_tips a:hover{
+	text-decoration: underline;
+}
+
+.others-logo{
+	font-size: 12px;
+	color: #666;
+	float:left;
+}
+
+

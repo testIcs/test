@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxkj.dao.AppointMapper">
+	<!-- 用户预约 -->
+	<insert id="addAppointment" parameterType="addAppointment">
+		<selectKey keyProperty="id" order="AFTER" resultType="Integer">
+	      	SELECT LAST_INSERT_ID()
+		</selectKey>
+		INSERT INTO tbl_appointment(
+			app_user_name,
+			app_phone_no,
+			app_affair,
+			app_date,
+			app_time_slot
+		)
+		VALUES
+		(
+			#{appUserName},
+			#{appPhoneNo},
+			#{appAffair},
+			#{appDate},
+			#{appTimeSlotValue}
+		)
+	</insert>
+	
+	<!-- 预约大厅数据查询 -->
+	<select id="listBookingHall" parameterType="java.util.HashMap" resultType="map">
+		select d.value timeslotid ,sum(a.app_affair) affairs from tbl_appointment a
+       left join dic_time_slot d on a.app_time_slot=d.value
+       where 
+             app_date = #{datestr}
+       group by app_time_slot
+	</select>
+	
+	<!-- 预约数据明细 -->
+	<select id="listAppointDetail" parameterType="java.util.HashMap" resultType="map">
+		select d.value timeslotid ,sum(a.app_affair) affairs from tbl_appointment a
+       left join dic_time_slot d on a.app_time_slot=d.value
+       where 
+             app_date = #{datestr}
+       group by app_time_slot
+	</select>
+	
+	<!-- 通过时间段值查询时间段内预约人信息 -->
+	<select id="findUsersBySlot" parameterType="Map" resultType="User">
+		SELECT
+			app_user_name AS userName,
+			app_phone_no AS phoneNo
+		FROM
+			tbl_appointment
+		WHERE
+			app_time_slot = #{appTimeSlot}
+			AND
+			app_date >= #{appDate}
+	</select>
+</mapper>

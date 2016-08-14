@@ -1,0 +1,128 @@
+body{
+	margin:0px; padding:0px; background:#f0f0f0; font-family:Microsoft Yahei; color:#000;
+}
+a{
+	text-decoration:none;
+}
+
+
+.top{
+	width:100%; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background:#900000;
+}
+.content{
+	margin:5px; background:#fff; padding-bottom:10px;
+}
+.title{
+	width:100%; border-bottom:2px #900000 solid; height:40px; line-height:40px; color:#900000;
+}
+.title span{
+	margin-left:15px;
+}
+.tips{
+	background:#fcf6d6; height:32px; line-height:32px; text-align:center; color:#f6664b; margin:10px;
+}
+.tips a{
+	color:#000;
+}
+.nametag,.inputtag{
+	margin:5px 20px 0px 20px; height:30px; line-height:30px;
+}
+.inputtag input,.inputtag select{
+	border:1px #dadada solid; border-radius:4px; width:90%; height:30px;
+}
+.inputtag span{
+	color:#F00; margin-left:10px;
+}
+.inputtag input.submit{
+	width:100%; text-align:center; font-family:Microsoft Yahei; color:#fff; background:#900000; font-size:18px; margin-top:15px;
+}
+.banner{
+	width:100%; height:240px; background:url(../css/images/banner.jpg) no-repeat top center; background-size:100% 100%;
+}
+.block{
+	padding:10px;	
+}
+.b-a,.b-b,.b-c,.b-d{
+	width:49%; height:130px; margin:5px 0px;
+}
+.b-a,.b-c{
+	float:left;
+}
+.b-b,.b-d{
+	float:right;
+}
+.b-a{
+	background:#128cfb url(../css/images/01.png) no-repeat 30px 30px;
+}
+.b-b{
+	background:#99b802 url(../css/images/02.png) no-repeat 30px 30px;
+}
+.b-c{
+	background:#00aea3 url(../css/images/04.png) no-repeat 30px 30px;
+}
+.b-d{
+	background:#fe8705 url(../css/images/03.png) no-repeat 30px 30px;
+}
+.block span{
+	float:right; margin:80px 30px 0px 0px; color:#fff; font-size:18px;
+}
+
+
+.table{
+	margin-top:10px;
+}
+ul.days{
+	height:60px; list-style:none; border-top:1px #ccc solid; margin:0px; padding:0px;
+}
+ul.days li.day-block{
+	width:20%; height:40px; float:left; display:block; text-align:center; line-height:20px; font-size:14px; padding:10px 0px; cursor:pointer;
+}
+ul.days li.day-block span{
+	font-size:12px; color:#666;
+}
+ul.days li.sel{
+	background:#900000; color:#fff;
+}
+ul.days li.sel span{
+	color:#fff;
+}
+.table td{
+	line-height:30px; text-align:center; border-top:1px #ccc solid; border-right:1px #ccc solid;
+}
+.table table{
+	border-bottom:1px #ccc solid; border-left:1px #ccc solid;
+}
+
+
+
+
+
+.main{
+	background:url(../css/images/bg.gif) no-repeat; background-size:cover; bottom:0; width:100%; height:100%; position:absolute; z-index:-999;
+}
+ul.linkblock{
+	margin:100px 0px 0px 0px; padding:0px; list-style:none;
+}
+ul.linkblock li{
+	width:80%; height:60px; margin:15px auto; background:#fff; border-radius:6px; text-align:center; line-height:60px; font-size:24px; cursor:pointer; border:2px #fff solid;
+}
+ul.linkblock li.a{
+	background:#fff url(../css/images/01.png) no-repeat 10px 10px;
+}
+ul.linkblock li.b{
+	background:#fff url(../css/images/02.png) no-repeat 10px 10px;
+}
+ul.linkblock li.c{
+	background:#fff url(../css/images/03.png) no-repeat 10px 10px;
+}
+ul.linkblock li.d{
+	background:#fff url(../css/images/04.png) no-repeat 10px 10px;
+}
+ul.linkblock li:hover{
+	border:2px #C30 solid;
+}
+
+
+
+
+

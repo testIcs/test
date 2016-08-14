@@ -1,0 +1,165 @@
+body {
+	margin: 0px;
+	padding: 0px;
+	font-size: 14px;
+	line-height: 30px;
+	font-family: Microsoft Yahei;
+	background: #fff;
+}
+
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	border: 0;
+}
+
+img {
+	border: none;
+}
+
+input, textarea {
+	margin: 0px;
+	padding: 0px;
+	outline: none;
+}
+
+.login {
+	margin: 0 auto; /* 居中 这个是必须的，，其它的属性非必须 */
+	width: 350px; /* 给个宽度 顶到浏览器的两边就看不出居中效果了 */
+	height: 500px;
+	vertical-align: middle;
+	text-align: center; /* 文字等内容居中 */
+	padding-top: 80px;
+}
+
+div.flicking_con .login {
+	width: 350px;
+	height: auto;
+	padding: 30px 20px;
+	background: #fff;
+	position: absolute;
+	top: 80px;
+	right: 0px;
+	z-index: 9999;
+}
+
+div.flicking_con .loginform {
+	width: 350px;
+	height: auto;
+	margin-top: 80px;
+}
+
+.loginform .l-block {
+	width: 348px;
+	height: 40px;
+	border: 1px #ddd solid;
+	margin-bottom: 15px;
+}
+
+.loginform .l-block:hover {
+	width: 348px;
+	height: 40px;
+	border: 1px #319cd1 solid;
+	margin-bottom: 15px;
+}
+
+.loginform .l-block i {
+	width: 20px;
+	height: 20px;
+	background: url(../images/icon_login.png) no-repeat;
+	display: inline-block;
+	vertical-align: text-bottom;
+	float: left;
+	margin: 10px 0px 0px 8px;
+}
+
+.loginform .l-block i.icon-user {
+	background-position: 0px -20px;
+}
+
+.loginform .l-block:hover i.icon-user {
+	background-position: 0px 0px;
+}
+
+.loginform .l-block i.icon-password {
+	background-position: -20px -20px;
+}
+
+.loginform .l-block:hover i.icon-password {
+	background-position: -20px 0px;
+}
+
+.l-block input.l-input {
+	width: 300px;
+	height: 40px;
+	line-height: 40px;
+	border: 0px;
+	font-family: Microsoft Yahei;
+	float: left;
+	margin: 0px 10px;
+}
+
+.loginform .l-txt {
+	width: 348px;
+	height: 30px;
+	font-size: 12px;
+	color: #666;
+	text-align: right;
+}
+
+.loginform span.l-txt-left {
+	width: 150px;
+	height: 30px;
+	float: left;
+	display: block;
+	text-align: left;
+}
+
+.loginform span.l-txt-right {
+	width: 150px;
+	height: 30px;
+	float: right;
+	display: block;
+	text-align: right;
+}
+
+.loginform a {
+	color: #1d62af;
+	text-decoration: none;
+}
+
+.loginform a:hover {
+	color: #1d62af;
+	text-decoration: underline;
+}
+
+.l-txt input.l-check {
+	width: 14px;
+	height: 14px;
+	border: 0px;
+}
+
+.loginform .l-button {
+	width: 348px;
+	height: 48px;
+	margin-bottom: 10px;
+}
+
+.l-button input.l-inp-but {
+	width: 348px;
+	height: 48px;
+	line-height: 48px;
+	font-size: 16px;
+	color: #fff;
+	text-align: center;
+	background: #f29a4c;
+	font-family: Microsoft Yahei;
+	border: 0px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.l-button input.l-inp-but:hover {
+	background: #ee8b33;
+}

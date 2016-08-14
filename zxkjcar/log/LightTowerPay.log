@@ -1,0 +1,2 @@
+[LT] [2016-05-11 22:30:10,536] [INFO] (SmsHandle.java.186) | 使用AxisCallClient调用WebService地址｛http://211.99.191.148/mms/services/info｝方法｛sendSMS｝成功！
+[LT] [2016-05-11 22:32:06,006] [INFO] (SmsHandle.java.186) | 使用AxisCallClient调用WebService地址｛http://211.99.191.148/mms/services/info｝方法｛sendSMS｝成功！
