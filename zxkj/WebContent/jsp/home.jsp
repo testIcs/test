@@ -11,10 +11,10 @@
 <div class="index-content">
 	<div class="index-main">
     	<div class="index-logo"></div>
-        <a href="trial.do"><div class="index-trial"><span>贷款试算</span><i></i></div></a>
-        <a href="/zxkj/home/toApplyPage.do"><div class="index-apply"><span>贷款申请</span><i></i></div></a>
-        <a href="sign.do"><div class="index-sign"><span>贷款签约</span><i></i></div></a>
-        <a href="service.do"><div class="index-service"><span>贷后服务</span><i></i></div></a>
+        <div class="index-trial"><a href="/zxkj/trial/toTrialIndexPage.do"><span>贷款试算</span><i></i></a></div>
+        <div class="index-apply"><a href="/zxkj/apply/toApplyPage.do"><span>贷款申请</span><i></i></a></div>
+        <div class="index-sign"><a href="/zxkj/sign/toUserNotePage.do"><span>贷款签约</span><i></i></a></div>
+        <div class="index-service"><a href="/zxkj/service/toServiceIndexPage.do"><span>贷后服务</span><i></i></a></div>
     </div>
 	<div class="footer">
     	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>

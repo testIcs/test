@@ -22,6 +22,17 @@ public class ApplyController
 {
 	private static final Logger LOG = LoggerFactory.getLogger(ApplyController.class);
 	
+	/**
+	 * 用户登录
+	 * @param user 用户登录信息
+	 * @return 用户登录状态
+	 * @throws IOException
+	 */
+	@RequestMapping(value = "/toApplyPage.do", method = RequestMethod.GET)
+	public String toApplyPage(ModelMap modelMap) throws IOException {
+		return "apply_manage/apply";
+	}
+	
 	@RequestMapping(value = "/toApplyRegisterPage.do", method = RequestMethod.GET)
 	public String toApplyRegisterPage(ModelMap modelMap){
 		return "apply_manage/apply_register";
