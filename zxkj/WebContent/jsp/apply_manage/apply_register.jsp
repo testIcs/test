@@ -101,33 +101,35 @@
         	<div class="title"><span>注册</span></div>
           	<div class="left-con">
            		<div class="table">
-                	<table width="100%" border="0" cellspacing="0" cellpadding="0">
-                      <tr>
-                        <td class="td-left">姓　　名</td>
-                        <td>
-                        	<input type="text" id="real_name"  class="txt-search" />
-                        </td>
-                      </tr>
-                      <tr>
-                        <td class="td-left">身份证号</td>
-                        <td><input type="text" id="id_card" class="txt-search" /></td>
-                      </tr>
-                      <tr>
-                        <td class="td-left">地　　址</td>
-                        <td><input type="text" id="address"  class="txt-search" /></td>
-                      </tr>
-                      <tr>
-                        <td class="td-left">电　　话</td>
-                        <td><input type="text" id="phone_no"  class="txt-search" /></td>
-                      </tr>
-                      <tr>
-                        <td class="td-left">验 证 码</td>
-                        <td>
-                        	<input type="text" id="captch"  class="txt-search" style="width:200px;float:left;"/>
-                        	<input type="button" class="txt-search" style="width:150px;float:left; margin-left:20px;" value="获取验证码"/>
-                        </td>
-                      </tr>
-                    </table>
+           			<form name="applyRegisterForm">
+           			    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+	                      <tr>
+	                        <td class="td-left">姓　　名</td>
+	                        <td>
+	                        	<input type="text" id="real_name"  class="txt-search" name="user.realName"/>
+	                        </td>
+	                      </tr>
+	                      <tr>
+	                        <td class="td-left">身份证号</td>
+	                        <td><input type="text" id="id_card" class="txt-search" name="user.idCard"/></td>
+	                      </tr>
+	                      <tr>
+	                        <td class="td-left">地　　址</td>
+	                        <td><input type="text" id="address"  class="txt-search" name="user.address"/></td>
+	                      </tr>
+	                      <tr>
+	                        <td class="td-left">电　　话</td>
+	                        <td><input type="text" id="phone_no"  class="txt-search" name="user.phone"/></td>
+	                      </tr>
+	                      <tr>
+	                        <td class="td-left">验 证 码</td>
+	                        <td>
+	                        	<input type="text" id="captch"  class="txt-search" style="width:200px;float:left;"/>
+	                        	<input type="button" class="txt-search" style="width:150px;float:left; margin-left:20px;" value="获取验证码"/>
+	                        </td>
+	                      </tr>
+                    	</table>
+           			</form>
                 </div>
                 <div class="keyboard">
                 	<div id="softkey"></div>
@@ -160,7 +162,7 @@
             	<a href="/zxkj/apply/toRateconfirm.do">
             		<input style="width:150px; height:50px; font-size:30px;" type="button" value="提  交" />
             	</a>
-            	<a href="/zxkj/home/toApplyPage.do">
+            	<a href="/zxkj/apply/toApplyPage.do">
             		<input style="width:150px; height:50px; font-size:30px;" type="button" value="返  回" />
             	</a>
             </div>
