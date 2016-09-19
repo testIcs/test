@@ -106,26 +106,27 @@
 	                      <tr>
 	                        <td class="td-left">姓　　名</td>
 	                        <td>
-	                        	<input type="text" id="real_name"  class="txt-search" name="user.realName"/>
+	                        	<input type="text" id="real_name"  class="txt-search" name="realName"/>
 	                        </td>
 	                      </tr>
 	                      <tr>
 	                        <td class="td-left">身份证号</td>
-	                        <td><input type="text" id="id_card" class="txt-search" name="user.idCard"/></td>
+	                        <td><input type="text" id="id_card" class="txt-search" name="idCard"/></td>
 	                      </tr>
 	                      <tr>
 	                        <td class="td-left">地　　址</td>
-	                        <td><input type="text" id="address"  class="txt-search" name="user.address"/></td>
+	                        <td><input type="text" id="address"  class="txt-search" name="address"/></td>
 	                      </tr>
 	                      <tr>
 	                        <td class="td-left">电　　话</td>
-	                        <td><input type="text" id="phone_no"  class="txt-search" name="user.phone"/></td>
+	                        <td><input type="text" id="phone_no"  class="txt-search" name="phone"/></td>
 	                      </tr>
 	                      <tr>
 	                        <td class="td-left">验 证 码</td>
 	                        <td>
 	                        	<input type="text" id="captch"  class="txt-search" style="width:200px;float:left;"/>
-	                        	<input type="button" class="txt-search" style="width:150px;float:left; margin-left:20px;" value="获取验证码"/>
+	                        	<input type="button" class="txt-search" style="width:150px;float:left; margin-left:20px;" 
+	                        			value="获取验证码"/>
 	                        </td>
 	                      </tr>
                     	</table>
@@ -156,10 +157,10 @@
                 </div>
             </div>
             <div class="submit">
-            	<a href="javascript:readIdCard();">
+            	<a href="javascript:ApplyRegister.readIdCard();">
             		<input style="width:150px; height:50px; font-size:30px;" type="button" value="扫  描" />
             	</a>
-            	<a href="/zxkj/apply/toRateconfirm.do">
+            	<a id="submit_ar" href="javascript:;">
             		<input style="width:150px; height:50px; font-size:30px;" type="button" value="提  交" />
             	</a>
             	<a href="/zxkj/apply/toApplyPage.do">
@@ -178,89 +179,5 @@
 <script type="text/javascript" src="../3th/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-<script type="text/javascript">
-
-	/**
-	* xxx-x-x-xxxx年xx月xx日-xxxxxxxxxxxx号-61011119900101501X-c:\xxxx.jpg
-	*/
-	function resetIdCardInfo(data)
-	{
-		if(!data)
-		{
-			return alert("信息读取失败,请重新读取!", "提示");
-		}
-		
-		var _idCardInfoArr = data.split("-");
-		
-		if(!(
-				_idCardInfoArr 
-				&& 
-				_idCardInfoArr[0] 
-				&& 
-				_idCardInfoArr[1] 
-				&&
-				_idCardInfoArr[2]
-				&&
-				_idCardInfoArr[3]
-				&&
-				_idCardInfoArr[4]
-				&&
-				_idCardInfoArr[5]
-		))
-		{
-			return alert("信息读取失败,请重新读取!", "提示");
-		}
-
-		$(".idcard-area img").next().addClass("img-div").end().remove();
-		
-		$("#real_name").val(_idCardInfoArr[0]);
-		$("#address").val(_idCardInfoArr[4]);
-		$("#id_card").val(_idCardInfoArr[5]);
-		
-		$(".img-name").html(_idCardInfoArr[0]);
-		$(".img-sex").html(_idCardInfoArr[1]);
-		$(".img-nation").html(_idCardInfoArr[2]);
-		$(".img-birth-year").html(_idCardInfoArr[3].substring(0,4));
-		$(".img-birth-month").html(_idCardInfoArr[3].substring(5,7));
-		$(".img-birth-day").html(_idCardInfoArr[3].substring(8,10));
-		$(".img-address1").html(_idCardInfoArr[4].substr(0,11));
-		$(".img-address2").html(_idCardInfoArr[4].substring(11,_idCardInfoArr[4].length));
-		$(".img-idcard").html(_idCardInfoArr[5]);
-		$(".img-head").css({
-			"background":"url("+window.location.protocol+"//"+window.location.host+"/zxkj/id_card_images/"+_idCardInfoArr[5]+".Jpg)"
-		});
-		
-	}
-
-	function readIdCard()
-	{
-		$.ajax({
-			type : 'get',
-			url : '/zxkj/apply/readIdCard.do'
-		}).done(function(data)
-	    {
-			resetIdCardInfo(data);
-	    }).fail(function()
-	    {
-	    	alert("信息读取失败,请重新读取!", "提示");
-	    }); 
-	}
-	
-	$(function()
-	{
-		$('.txt-search').each(function(i, o)
-		{
-			$(o).on("focus", function()
-			{
-				var _self = this;
-				VirtualKeyboard.toggle(_self.id, 'softkey');
-				$("#kb_langselector, #kb_mappingselector, #copyrights").css("display", "none");
-			}).on("blur", function()
-			{
-				var _self = this;
-				VirtualKeyboard.toggle(_self.id, 'softkey');
-			});
-		});
-	});
-</script>
+<script type="text/javascript" src="../script/apply_manage/apply_register.js"></script>
 </html>
