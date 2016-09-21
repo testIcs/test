@@ -71,7 +71,7 @@
 			var base64Data = canvans.toDataURL(); //将图像转换为base64数据     
 			//开始异步上
 			$.ajax({  
-	               url: "<%=request.getContextPath() %>/upload/uploadImage.do",  
+	               url: baseurl+"/upload/uploadImage.do",  
 	               type: 'POST',  
 	               timeout: 15*1000,  
 	               data:{"imageData": base64Data},

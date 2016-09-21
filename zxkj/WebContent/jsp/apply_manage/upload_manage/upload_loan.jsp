@@ -77,6 +77,9 @@
     </div>    
 </div>
 </body>
+<script type="text/javascript">
+	var baseurl="<%=request.getContextPath() %>";
+</script>
 <script type="text/javascript" src="../3th/jquery.min.js"></script>
 <script type="text/javascript" src="../script/util_manage/camera.js"></script>
 </html>
