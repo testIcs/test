@@ -16,7 +16,7 @@ public class User implements Serializable
 	/**
 	 * 用户id
 	 */
-	private String userId = "";
+	private Integer userId;
 	/**
 	 * 用户登录名
 	 */
