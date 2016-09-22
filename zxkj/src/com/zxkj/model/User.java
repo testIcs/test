@@ -5,6 +5,7 @@ import java.sql.Date;
 
 import lombok.Data;
 
+
 @Data
 public class User implements Serializable 
 {
