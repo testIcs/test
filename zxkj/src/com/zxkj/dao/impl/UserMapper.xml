@@ -4,15 +4,39 @@
 
 <mapper namespace="com.zxkj.dao.UserMapper">
 
-	
+	<!-- 通过账号查找用户信息 -->
 	<select id="login" parameterType="user" resultType="user">
-		select id userId,
+		select 
+			id userId,
 			user_name userName,
 			card_no realName,
 			email email,
 			phone_no phone 
-		from tbl_user_baseinfo 
-		where user_name = #{userName}
+		from 
+			tbl_user_baseinfo 
+		where 
+			user_name = #{userName}
 	</select>
+	
+	<!-- 添加用户信息 -->
+	<insert id="saveIdCardInfo" parameterType="User">
+		<selectKey keyProperty="userId" order="AFTER" resultType="Integer">
+			SELECT LAST_INSERT_ID() 
+		</selectKey>
+		INSERT INTO 
+			tbl_user_baseinfo 
+		(
+			card_no,
+			phone_no,
+			addtime,
+			address
+		)
+		VALUES(
+			#{idCard},
+			#{phone},
+			#{addTime},
+			#{address}
+		)
+	</insert>
 	
 </mapper>

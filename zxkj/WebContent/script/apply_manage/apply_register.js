@@ -8,7 +8,7 @@
 	{
 		if(!data)
 		{
-			return alert("信息读取失败,请重新读取!", "提示");
+			return alert("信息读取失败,请重新读取!");
 		}
 		
 		var _idCardInfoArr = data.split("-");
@@ -90,17 +90,56 @@
 		});
 	}
 	
+	/**
+	 * 验证身份证信息是否填写 
+	 */
+	function validateIdCardInfo()
+	{
+		var _name = $('#real_name').val(),
+		    _idCard = $('#id_card').val(),
+		    _address = $('#address').val(),
+		    _phoneNo = $('#phone_no').val(),
+		    _captch = $('#captch').val();
+		if(
+				(_name && _name.length) 
+				&& 
+				(_idCard && _idCard.length)
+				&& 
+				(_address && _address.length)
+				&& 
+				(_phoneNo && _phoneNo.length)
+				&&
+				(_captch && _captch.length)
+		)
+		{
+			return true;
+		}
+		else 
+		{
+			return false;
+		}
+		return false;
+	}
+	
+	/**
+	 * 跳转到税率确认页面 
+	 */
 	function toReateConfirmPage()
 	{
+		// 验证页面所填写内容
+		if(!validateIdCardInfo())
+		{
+			return alert("请填写或扫描身份证信息!");
+		}
+		
 		$.ajax({
 			url : '/zxkj/apply/saveIdCardInfo.do',
 			type : 'post',
 			dataType : 'json',
 			data : $('form[name="applyRegisterForm"]').serialize()
-		}).done(function(data)
+		}).done(function(userId)
 		{
-			debugger;
-			if(data && data.saveIdCardFlag)
+			if(userId)
 			{
 				alert("身份证信息保存成功!");
 				location.href = '/zxkj/apply/toRateconfirm.do';
