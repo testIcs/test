@@ -1,6 +1,7 @@
 package com.zxkj.model;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 import lombok.Data;
 
@@ -16,7 +17,7 @@ public class User implements Serializable
 	/**
 	 * 用户id
 	 */
-	private String userId = "";
+	private Integer userId;
 	/**
 	 * 用户登录名
 	 */
@@ -60,5 +61,10 @@ public class User implements Serializable
 	 * 住址 
 	 */
 	private String address;
+	
+	/**
+	 * 添加事件 
+	 */
+	private Date addTime;
 	
 }
