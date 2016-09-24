@@ -126,8 +126,10 @@
 	 */
 	function toReateConfirmPage()
 	{
+		location.href = '/zxkj/apply/toRateconfirm.do';
+		
 		// 验证页面所填写内容
-		if(!validateIdCardInfo())
+		/*if(!validateIdCardInfo())
 		{
 			return alert("请填写或扫描身份证信息!");
 		}
@@ -152,7 +154,7 @@
 		}).fail(function()
 		{
 			console.log('submitIdCardInfo fail!');
-		});
+		});*/
 	}
 	
 

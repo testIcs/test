@@ -79,10 +79,6 @@
             </div>
             <div class="sendbutton"><input name="" type="button" value="点击发送" /></div>
         </div>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
     </div>    
 </div>
 </body>

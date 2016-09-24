@@ -32,11 +32,22 @@ public class UserServiceImpl implements UserService
 	 */
 	public int login(User user) 
 	{
-		return ("zxkj".equals(user.getUserName()) && "zxkj".equals(user.getPassword())) 
-				? 
-				Constants.STATUS_OK 
-				:
-				Constants.DATA_INCORRECT; 
+		User userDB = userMapper.findUserByUser(user);
+		if(null != userDB)
+		{
+			if(userDB.getPassword().equals(user.getPassword()))
+			{
+				return Constants.STATUS_OK;
+			}
+			else
+			{
+				return Constants.DATA_INCORRECT;
+			}
+		}
+		else 
+		{
+			return Constants.DATA_INCORRECT;
+		}
 	}
 
 	@Override
@@ -45,5 +56,11 @@ public class UserServiceImpl implements UserService
 		user.setAddTime(new Date(System.currentTimeMillis()));
 		userMapper.saveIdCardInfo(user);
 		return user.getUserId();
+	}
+
+	@Override
+	public User findUserByUser(User user) 
+	{
+		return userMapper.findUserByUser(user);
 	}
 }

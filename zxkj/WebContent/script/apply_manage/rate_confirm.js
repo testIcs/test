@@ -33,8 +33,59 @@
 		initLoanTermSelect();
 	}
 	
+	function validateLoanVal()
+	{
+		var _typeId = parseInt($('#fp_rc').val()),
+		    _termId = parseInt($('#lt_rc').val()),
+		    _rateId = parseInt($('#lr_rc').val());
+		return ((-1 != _typeId) && (-1 != _termId) && (-1 != _rateId));
+		 
+	}
+	
+	function saveLoanInfo()
+	{
+		if(!validateLoanVal())
+		{
+			return alert("请选择相关项");
+		}
+		
+		$.ajax(
+		{
+			type : 'post',
+			url : '/zxkj/apply/saveLoanInfo.do',
+			dataType : 'json',
+			data : $('form[name="loanForm"]').serialize()
+		}).done(function(data)
+		{
+			if(data)
+			{
+				alert("保存成功", "提示");
+				location.href='/zxkj/apply/toWarrantPage.do';
+			}
+			else 
+			{
+				alert("保存失败", "提示");
+			}
+			
+		}).fail(function()
+		{
+			console.log('saveLoanInfo fail!');
+		});
+	}
+	
+	function bindEvtForBtn()
+	{
+		$('#loan_save').unbind().on(
+		{
+			'click': saveLoanInfo
+		});
+		
+	}
+	
 	function init(){
 		initSelect();
+		
+		bindEvtForBtn();
 	}
 	
 	module.init = init;

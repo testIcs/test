@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>贷款申请</title>
+<title>请输入车架号</title>
 <link rel="stylesheet" type="text/css" href="../css/JDstyle.css" />
 </head>
 <body>
@@ -25,16 +25,12 @@
                       </tr>
                     </table>
                 </div>
-                <div class="keyboard"><img src="../css/images/pic1.jpg" width="700" height="270" /></div>
-            	<div class="table-button" style="text-align:center; padding-top:50px;">
+                <div class="keyboard"><img src="../css/images/pic1.jpg" /></div>
+            	<div class="table-button" style="text-align:center; padding-top:30px;">
                 	<a href="toReviewTips.do"><input name="" type="button" value="确 定" /></a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
     </div>    
 </div>
 </body>

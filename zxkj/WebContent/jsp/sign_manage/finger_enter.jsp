@@ -17,12 +17,11 @@
     	<div class="face-title">贷款人指纹采集</div>
         <div class="summary">请贷款人将拇指放入指纹仪进行指纹采集</div>
 		<div class="zhiwen"></div>
-        <div class="facebutton"><a href="/zxkj/sign/toContractPage.do"><input name="" type="button" value="确  认" /></a></div>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
-    </div>    
+        <div class="facebutton"><a id="zw_lz" href="javascript:;"><input name="" type="button" value="确  认" /></a></div>
+    </div>  
 </div>
 </body>
+<script type="text/javascript" src="../3th/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
+<script type="text/javascript" src="../script/sign_manage/finger_enter.js"></script>
 </html>

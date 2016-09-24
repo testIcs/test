@@ -17,11 +17,7 @@
     	<div class="face-title">贷款人脸识别比对</div>
 		<div class="faceblock"></div>
         <div class="facebutton"><a href="/zxkj/sign/toFingerEnterPage.do"><input name="" type="button" value="拍  照" /></a></div>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
-    </div>    
+    </div>  
 </div>
 </body>
 </html>

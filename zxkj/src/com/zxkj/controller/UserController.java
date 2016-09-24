@@ -50,6 +50,10 @@ public class UserController {
 		DesEncrypt encrypt = new DesEncrypt(KEY_STR);
 		user.setPassword(encrypt.decrypt(pwd));
 		int status = userService.login(user);
+		
+		User userNew = userService.findUserByUser(user);
+		user.setUserId(userNew.getUserId());
+		
 		returnMap.put("status", status);
 		returnMap.put("user", user);
 		request.getSession().setAttribute("user", user);

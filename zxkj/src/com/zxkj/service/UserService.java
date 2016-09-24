@@ -23,4 +23,7 @@ public interface UserService
 	 */
 	Integer saveIdCardInfo(User user);
 	
+	
+	User findUserByUser(User user);
+	
 }

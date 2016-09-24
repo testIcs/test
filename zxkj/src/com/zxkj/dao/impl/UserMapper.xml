@@ -5,15 +5,16 @@
 <mapper namespace="com.zxkj.dao.UserMapper">
 
 	<!-- 通过账号查找用户信息 -->
-	<select id="login" parameterType="user" resultType="user">
+	<select id="findUserByUser" parameterType="user" resultType="user">
 		select 
 			id userId,
 			user_name userName,
+			password AS password,
 			card_no realName,
 			email email,
 			phone_no phone 
 		from 
-			tbl_user_baseinfo 
+			tbl_user_base
 		where 
 			user_name = #{userName}
 	</select>

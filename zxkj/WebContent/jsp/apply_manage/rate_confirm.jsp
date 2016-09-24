@@ -18,32 +18,30 @@
         	<div class="title"><span>简易贷</span></div>
           	<div class="left-con" style="height:400px;">
            		<div class="table">
+           		<form name="loanForm">
                 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
                       <tr>
                         <td class="td-left">金融产品</td>
-                        <td><select id="fp_rc"></select></td>
+                        <td><select id="fp_rc" name="typeId"></select></td>
                       </tr>
                       <tr>
                         <td class="td-left">贷款利率</td>
-                        <td><select id="lr_rc"></select></td>
+                        <td><select id="lr_rc" name="ratioId"></select></td>
                       </tr>
                       <tr>
                         <td class="td-left">贷款期限</td>
-                        <td><select id="lt_rc"></select></td>
+                        <td><select id="lt_rc" name="termId"></select></td>
                       </tr>
                     </table>
+                    </form>
                 </div>
             	<div class="table-button" style="text-align:center; padding-top:50px;">
-                	<a href="/zxkj/apply/toWarrantPage.do"><input type="button" value="确 定" /></a>
+                	<a id="loan_save" href="javascript:;"><input type="button" value="确 定" /></a>
                 	<a href="/zxkj/apply/toApplyRegisterPage.do"><input type="button" value="返 回" /></a>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
-    </div>    
+    </div>  
 </div>
 </body>
 <script type="text/javascript" src="../3th/jquery-1.9.1.js"></script>

@@ -21,8 +21,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zxkj.model.User;
+import com.zxkj.service.UserLoanService;
 import com.zxkj.service.UserService;
 import com.zxkj.util.idcard.JnaUtil;
+import com.zxkj.vo.UserLoanVO;
 
 @Scope("prototype")
 @Controller
@@ -33,6 +35,9 @@ public class ApplyController
 	
 	@Resource
 	private UserService userService;
+	
+	@Resource
+	private UserLoanService userLoanService;
 	
 	/**
 	 * 用户登录
@@ -58,6 +63,16 @@ public class ApplyController
 		return userService.saveIdCardInfo(user);
 	}
 
+	@RequestMapping(value = "/saveLoanInfo.do", method = RequestMethod.POST)
+	public @ResponseBody Integer saveLoanInfo(HttpServletRequest hsr,
+			@ModelAttribute("userLoanVO") UserLoanVO userLoanVO
+			)
+	{
+		User user = (User) hsr.getSession().getAttribute("user");
+		userLoanVO.setUserId(user.getUserId());
+		return userLoanService.saveUserLoanInfo(userLoanVO);
+	}
+	
 	@RequestMapping(value = "/toRateconfirm.do", method = RequestMethod.GET)
 	public String toRateconfirm(ModelMap modelMap)
 	{

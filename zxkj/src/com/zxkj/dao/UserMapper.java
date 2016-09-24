@@ -9,7 +9,7 @@ public interface UserMapper
 	 * @param user 登陆的用户信息
 	 * @return 返回登陆状态
 	 */
-	public User login(User user);
+	public User findUserByUser(User user);
 	
 	/**
 	 * 保存用户身份证信息

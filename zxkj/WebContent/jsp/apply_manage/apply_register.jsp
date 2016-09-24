@@ -168,11 +168,7 @@
             	</a>
             </div>
         </div>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
-    </div>    
+    </div>  
 </div>
 </body>
 <script type="text/javascript" src="../3th/virtualkeyboard/vk_loader.js?vk_layout=CN Chinese Simpl. Pinyin&vk_skin=flat_gray" ></script>

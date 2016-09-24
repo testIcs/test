@@ -6,5 +6,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/platform-3.5.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jna-3.5.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/ZKFingerReader.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

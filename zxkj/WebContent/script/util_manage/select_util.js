@@ -14,7 +14,6 @@ window.SelectUtilModule = (function($, module) {
 	            dataType : "json"
 	        }).done(function(data)
 	        {
-	        	debugger;
 	            if (data && data.length)
 	            {
 	            	var auxArr = ['<option value="-1">请选择</option>'];

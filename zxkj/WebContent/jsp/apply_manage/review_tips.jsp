@@ -20,11 +20,7 @@
     	<div class="space"></div>
     	<div class="space"></div>
     	<h1>您的资料已提交<br />正在审核</h1>
-    </div>
-    <div class="footer">
-    	<div class="footerleft"><span class="italic">用户至上 用心服务</span><span class="f-a">Customer First Service Foremost</span></div>
-        <div class="footerright"></div>
-    </div>    
+    </div>  
 </div>
 </body>
 </html>
