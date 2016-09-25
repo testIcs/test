@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxkj.dao.FileMapper">
+	<!-- 保存文件信息 -->
+	<insert id="saveFileInfo" parameterType="FileInfo"> 
+		<selectKey keyProperty="Integer" order="AFTER" resultType="Integer">
+			SELECT LAST_INSERT_KEY
+		</selectKey>
+		INSERT INTO
+			tbl_file_info
+			(
+				file_name,
+				file_save_name,
+				add_time,
+				file_save_url,
+				file_type
+			)
+			VALUES
+			(
+				#{name},
+				#{saveName},
+				#{saveTime},
+				#{saveUrl},
+				#{fileType}
+			)
+	</insert>
+</mapper>

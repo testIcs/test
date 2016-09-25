@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.zxkj.service.DicService;
+import com.zxkj.service.IDic;
 
 @Scope("prototype")
 @Controller
@@ -23,7 +23,7 @@ public class DicController {
 	private static final Logger LOG = LoggerFactory.getLogger(DicController.class);
 
 	@Autowired
-	private DicService dicService;
+	private IDic dicService;
 	
 	/**
 	 * @param modelMap 返回到页面的信息

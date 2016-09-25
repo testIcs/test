@@ -8,7 +8,7 @@ import com.zxkj.model.User;
 /**
  * 用户操作SERVICE
  */
-public interface UserService 
+public interface IUser
 {
 	/**
 	 * 用户登录

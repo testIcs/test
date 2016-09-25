@@ -9,16 +9,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
-import com.zxkj.common.Constants;
 import com.zxkj.dao.DicMapper;
-import com.zxkj.dao.UserMapper;
-import com.zxkj.model.User;
-import com.zxkj.service.DicService;
-import com.zxkj.service.UserService;
+import com.zxkj.service.IDic;
 
 @Scope("prototype")
 @Service("dicService")
-public class DicServiceImpl implements DicService {
+public class DicServiceImpl implements IDic 
+{
 	
 	private static final Logger LOG = LoggerFactory.getLogger(DicServiceImpl.class);
 	

@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.zxkj.common.Constants;
 import com.zxkj.dao.UserMapper;
 import com.zxkj.model.User;
-import com.zxkj.service.UserService;
+import com.zxkj.service.IUser;
 
 /**
  * {@inheritDoc}
@@ -19,7 +19,7 @@ import com.zxkj.service.UserService;
  */
 @Scope("prototype")
 @Service("userService")
-public class UserServiceImpl implements UserService 
+public class UserServiceImpl implements IUser 
 {
 	private static final Logger LOG = LoggerFactory.getLogger(UserServiceImpl.class);
 	

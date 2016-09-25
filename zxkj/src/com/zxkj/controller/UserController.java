@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxkj.model.User;
-import com.zxkj.service.UserService;
+import com.zxkj.service.IUser;
 import com.zxkj.util.DesEncrypt;
 import com.zxkj.util.EncryptKey;
 
@@ -35,7 +35,7 @@ public class UserController {
 	 * 用户Service
 	 */
 	@Autowired(required = true)
-	private UserService userService;
+	private IUser userService;
 
 	/**
 	 * 用户登录

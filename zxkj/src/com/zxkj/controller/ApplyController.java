@@ -21,8 +21,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zxkj.model.User;
-import com.zxkj.service.UserLoanService;
-import com.zxkj.service.UserService;
+import com.zxkj.service.IUser;
+import com.zxkj.service.IUserLoan;
 import com.zxkj.util.idcard.JnaUtil;
 import com.zxkj.vo.UserLoanVO;
 
@@ -34,10 +34,10 @@ public class ApplyController
 	private static final Logger LOG = LoggerFactory.getLogger(ApplyController.class);
 	
 	@Resource
-	private UserService userService;
+	private IUser userService;
 	
 	@Resource
-	private UserLoanService userLoanService;
+	private IUserLoan userLoanService;
 	
 	/**
 	 * 用户登录

@@ -7,7 +7,8 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.METHOD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface ITokenService {
+public @interface IToken 
+{
 	//生成token并保存
     boolean save() default false;
 

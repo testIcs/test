@@ -9,7 +9,8 @@ import java.util.Map;
 /**
  * 字典信息操作SERVICE
  */
-public interface DicService {
+public interface IDic 
+{
 	
 	/**
 	 * 查询金融产品字典信息

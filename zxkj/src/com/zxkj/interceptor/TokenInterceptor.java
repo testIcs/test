@@ -9,8 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
-import com.zxkj.service.ITokenService;
-
+import com.zxkj.service.IToken;
 
 public class TokenInterceptor extends HandlerInterceptorAdapter{
 	
@@ -48,7 +47,7 @@ public class TokenInterceptor extends HandlerInterceptorAdapter{
 		  if (handler instanceof HandlerMethod) {
 	            HandlerMethod handlerMethod = (HandlerMethod) handler;
 	            Method method = handlerMethod.getMethod();
-	            ITokenService annotation = method.getAnnotation(ITokenService.class);
+	            IToken annotation = method.getAnnotation(IToken.class);
 	            if (null != annotation) {
 	            	//进入审核页面,生成token
 	                if (annotation.save()) {
