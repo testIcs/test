@@ -95,40 +95,40 @@ function loanLimitResultTable(){
 		10	车易通-D
 	 */
 	if(listLoanType =="1"){
-		getResultA(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="2"){
-		getResultC(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="3"){
-		getResultD(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="4"){
 		getResultJA(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="5"){
+	}else if (listLoanType =="2"){
 		getResultJC(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="6"){
+	}else if (listLoanType =="3"){
 		getResultJD(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="7"){
+	}else if (listLoanType =="4"){
 		getResultRA(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="8"){
+	}else if (listLoanType =="5"){
 		getResultRC(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="9"){
+	}else if (listLoanType =="6"){
 		getResultRD(thePrice, listLoanTerm, addFirstPayMent);
-	}else if (listLoanType =="10"){
+	}else if (listLoanType =="7"){
 		getResultRE(thePrice, loanLimit, loanLimit2, listLoanTerm);
+	}else if (listLoanType =="8"){
+		getResultA(thePrice, listLoanTerm, addFirstPayMent);
+	}else if (listLoanType =="9"){
+		getResultC(thePrice, listLoanTerm, addFirstPayMent);
+	}else if (listLoanType =="10"){
+		getResultD(thePrice, listLoanTerm, addFirstPayMent);
 	}
 }
 
 function htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods){
-	var htmlResult="";
-	htmlResult +='<div class="line"><span class="l">&#x9996;&#x4ED8;&#x91D1;&#x989D;&#xFF1A;</span>'+
-		'<span class="r">'+firstpayment.toFixed(2)+'元</span></div>';
-	htmlResult +='<div class="line"><span class="l">&#x4FDD;&#x8BC1;&#x91D1;&#x989D;&#xFF1A;</span>'+
-		'<span class="r">'+deposit.toFixed(2)+'元</span></div>';
-	htmlResult +='<div class="line"><span class="l">&#x6BCF;&#x6708;&#x79DF;&#x91D1;&#xFF1A;</span>'+
-	'<span class="r">'+rent.toFixed(2)+'元</span></div>';
-	htmlResult +='<div class="line"><span class="l">&#x6BCF;&#x65E5;&#x79DF;&#x91D1;&#xFF1A;</span>'+
-		'<span class="r" style="color: Orange;"><b>'+dailyrent.toFixed(2)+'</b>元</span></div>';
-	htmlResult +='<div class="line"><span class="l">&#x6BCF;&#x65E5;&#x79DF;&#x91D1;&#xFF1A;</span>'+
-		'<span class="r">'+periods.toFixed(2)+'</span></div>';
+//	var htmlResult="";
+//	htmlResult +='<div class="line"><span class="l">&#x9996;&#x4ED8;&#x91D1;&#x989D;&#xFF1A;</span>'+
+//		'<span class="r">'+firstpayment.toFixed(2)+'元</span></div>';
+//	htmlResult +='<div class="line"><span class="l">&#x4FDD;&#x8BC1;&#x91D1;&#x989D;&#xFF1A;</span>'+
+//		'<span class="r">'+deposit.toFixed(2)+'元</span></div>';
+//	htmlResult +='<div class="line"><span class="l">&#x6BCF;&#x6708;&#x79DF;&#x91D1;&#xFF1A;</span>'+
+//	'<span class="r">'+rent.toFixed(2)+'元</span></div>';
+//	htmlResult +='<div class="line"><span class="l">&#x6BCF;&#x65E5;&#x79DF;&#x91D1;&#xFF1A;</span>'+
+//		'<span class="r" style="color: Orange;"><b>'+dailyrent.toFixed(2)+'</b>元</span></div>';
+//	htmlResult +='<div class="line"><span class="l">&#x6BCF;&#x65E5;&#x79DF;&#x91D1;&#xFF1A;</span>'+
+//		'<span class="r">'+periods.toFixed(2)+'</span></div>';
 //$('#result_div_loanlimit').html(htmlResult); 
 	//将结果返回到后台
 	$.ajax({
