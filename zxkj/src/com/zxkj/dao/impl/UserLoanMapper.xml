@@ -3,7 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.zxkj.dao.UserLoanMapper">
-
 	<!-- 添加用户信息 -->
 	<insert id="saveUserLoanInfo" parameterType="UserLoanVO">
 		<selectKey keyProperty="id" order="AFTER" resultType="Integer">
@@ -25,4 +24,19 @@
 		)
 	</insert>
 	
+	<!-- 贷款试算 手机号收集 start-->
+	<select id="judgePhoneExist" parameterType="String" resultType="Integer">
+		select count(id) from tbl_phone_info where phone_no=#{phoneNo}
+	</select>
+	
+	<insert id="addPhone" parameterType="String">
+		INSERT INTO 
+			tbl_phone_info
+		(phone_no)
+		value
+		(#{phoneNo})
+		
+	</insert>
+	
+	<!-- 贷款试算 手机号收集 end-->
 </mapper>

@@ -7,7 +7,7 @@
 		<typeAlias alias="user" type="com.zxkj.model.User"/>
 		<typeAlias alias="Map" type="java.util.Map"/>
 		<typeAlias alias="UserLoanVO" type="com.zxkj.vo.UserLoanVO"/>
-		<typeAlias alias="UserLoanVO" type="com.zxkj.vo.UserFingerPrintVO"/>
+		<typeAlias alias="UserFingerPrintVO" type="com.zxkj.vo.UserFingerPrintVO"/>
 	</typeAliases>
 	<mappers>	
 		<mapper resource="com/zxkj/dao/impl/UserMapper.xml" />	
