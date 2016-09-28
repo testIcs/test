@@ -15,7 +15,7 @@
         <a href="/zxkj/apply/toApplyPage.do"><div class="index-apply"><span>贷款申请</span><i></i></div></a>
         <a href="/zxkj/sign/toUserNotePage.do"><div class="index-sign"><span>贷款签约</span><i></i></div></a>
         <a href="/zxkj/service/toServiceIndexPage.do"><div class="index-service"><span>贷后服务</span><i></i></div></a>
-    	<a href="test.html"><div class="index-test"><span style="padding-left:20px;">测一测</span><i></i></div></a>
+    	<a href="/zxkj/home/test.do"><div class="index-test"><span style="padding-left:20px;">测一测</span><i></i></div></a>
     </div>
 </div>
 </body>
