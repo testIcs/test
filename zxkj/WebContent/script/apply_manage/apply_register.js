@@ -99,7 +99,7 @@
 		    _idCard = $('#id_card').val(),
 		    _address = $('#address').val(),
 		    _phoneNo = $('#phone_no').val(),
-		    _captch = $('#captch').val();
+		    _captch ="123"; //$('#captch').val();
 		if(
 				(_name && _name.length) 
 				&& 
