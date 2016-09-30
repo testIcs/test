@@ -5,9 +5,6 @@
 <mapper namespace="com.zxkj.dao.FileMapper">
 	<!-- 保存文件信息 -->
 	<insert id="saveFileInfo" parameterType="FileInfo"> 
-		<selectKey keyProperty="Integer" order="AFTER" resultType="Integer">
-			SELECT LAST_INSERT_KEY
-		</selectKey>
 		INSERT INTO
 			tbl_file_info
 			(
@@ -23,7 +20,7 @@
 				#{saveName},
 				#{saveTime},
 				#{saveUrl},
-				#{fileType}
+				#{type}
 			)
 	</insert>
 </mapper>

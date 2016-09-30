@@ -158,9 +158,9 @@
 			}
 			
 			//赋值结果
-			$("#hilt").text(hilt+"元");
-			$("#shoufu").text(shoufu+"元");
-			$("#carprice").text(carprice+"元");
+			$("#hilt").text(hilt.toFixed(2)+"元");
+			$("#shoufu").text(shoufu.toFixed(2)+"元");
+			$("#carprice").text(carprice.toFixed(2)+"元");
 			
 			//隐藏问题7页面
 			$("#question7").hide("slow");

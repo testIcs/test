@@ -79,7 +79,7 @@ public class TrailController
                 userLoanService.addPhone(phoneNo);
             }
             new SmsHandle().smsSend(phoneNo, "您的测试结果为:首付金额：" + firstpayment + "元，保证金额：" + deposit + "元，每月租金：" + rent
-                    + "元，每日租金：" + dailyrent + "元，每时租金：" + periods);
+                    + "元，每日租金：" + dailyrent + "元，每时租金：" + periods+ "元");
 
             result.put("result", "0");
         }

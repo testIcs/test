@@ -48,7 +48,7 @@
 		$(".img-address2").html(_idCardInfoArr[4].substring(11,_idCardInfoArr[4].length));
 		$(".img-idcard").html(_idCardInfoArr[5]);
 		$(".img-head").css({
-			"background":"url("+window.location.protocol+"//"+window.location.host+"/zxkj/id_card_images/"+_idCardInfoArr[5]+".Jpg)"
+			"background":"url("+window.location.protocol+"//"+window.location.host+"/zxkj/id_card_images/"+_idCardInfoArr[5]+".Jpeg)"
 		});
 		
 	}

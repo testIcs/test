@@ -27,8 +27,8 @@
 			VALUES
 			(
 				#{userId},
-				#{fileId},
-				#{updateTime}
+				1,
+				#{addTime}
 			)
 	</insert>
 </mapper>

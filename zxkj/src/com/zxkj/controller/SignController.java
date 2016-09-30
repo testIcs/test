@@ -46,8 +46,8 @@ public class SignController
 	
 	
 	/**
-	 * @param modelMap 返回到签约模块-用户须知页面
-	 * @return String 首页名称
+	 * @param modelMap 杩斿洖鍒扮绾︽ā鍧�-鐢ㄦ埛椤荤煡椤甸潰
+	 * @return String 棣栭〉鍚嶇О
 	 */
 	@RequestMapping(value = "/toUserNotePage.do", method = RequestMethod.GET)
 	public String toUserNotePage(ModelMap modelMap){
@@ -55,8 +55,8 @@ public class SignController
 	}
 	
 	/**
-	 * @param modelMap 返回到人脸识别页面
-	 * @return String 人脸识别页面
+	 * @param modelMap 杩斿洖鍒颁汉鑴歌瘑鍒〉闈�
+	 * @return String 浜鸿劯璇嗗埆椤甸潰
 	 */
 	@RequestMapping(value = "/toFaceRecPage.do", method = RequestMethod.GET)
 	public String toFaceRecPage(ModelMap modelMap)
@@ -65,8 +65,8 @@ public class SignController
 	}
 
 	/**
-	 * @param modelMap 返回到签约模块-用户须知页面
-	 * @return String 首页名称
+	 * @param modelMap 杩斿洖鍒扮绾︽ā鍧�-鐢ㄦ埛椤荤煡椤甸潰
+	 * @return String 棣栭〉鍚嶇О
 	 */
 	@RequestMapping(value = "/toFingerEnterPage.do", method = RequestMethod.GET)
 	public String toFingerEnterPage(ModelMap modelMap)
@@ -97,8 +97,8 @@ public class SignController
 	}
 	
 	/**
-	 * @param modelMap 返回到签约模块-用户须知页面
-	 * @return String 首页名称
+	 * @param modelMap 杩斿洖鍒扮绾︽ā鍧�-鐢ㄦ埛椤荤煡椤甸潰
+	 * @return String 棣栭〉鍚嶇О
 	 * @throws IOException 
 	 */
 	@RequestMapping(value = "/gainZWInfo.do", method = RequestMethod.POST)
@@ -114,40 +114,40 @@ public class SignController
 		
 		User userSession = (User) hs.getAttribute("user"); 
 		User userDB = userService.findUserByUser(userSession);
-		Integer userId = userDB.getUserId();
+		Integer userId =1; //userDB.getUserId();
 		// UserFingerPrintVO ufpVODB = ufpService.findUFPByUserId(userId);
 		
-		// 获得文件保存路径
+		// 鑾峰緱鏂囦欢淇濆瓨璺緞
 		String filePath = pjtPath + "/zhi_wen_images/fingerprint_" + userId + "_01.bmp";
-		// 生成指纹文件
+		// 鐢熸垚鎸囩汗鏂囦欢
 		ZWUtils.makeZWImg(filePath);
-		// 保存指纹文件信息
+		// 淇濆瓨鎸囩汗鏂囦欢淇℃伅
 		Integer fileId = fileService.saveFileInfo(packageFileInfo(userId, filePath));
-		// 保存用户文件信息
+		// 淇濆瓨鐢ㄦ埛鏂囦欢淇℃伅
 		ufpService.saveUFPVO(packageUFPVO(userId, fileId));
 		
 		response.getWriter().write("../zhi_wen_images/fingerprint_" + userId + "_01.bmp");
 		
-		// 还没有录指纹
+		// 杩樻病鏈夊綍鎸囩汗
 //		if(null == ufpVODB)
 //		{
-//			// 获得文件保存路径
+//			// 鑾峰緱鏂囦欢淇濆瓨璺緞
 //			String filePath = pjtPath + "/zhi_wen_images/fingerprint_" + userId + "_01.bmp";
-//			// 生成指纹文件
+//			// 鐢熸垚鎸囩汗鏂囦欢
 //			ZWUtils.makeZWImg(filePath);
-//			// 保存指纹文件信息
+//			// 淇濆瓨鎸囩汗鏂囦欢淇℃伅
 //			Integer fileId = fileService.saveFileInfo(packageFileInfo(userId, filePath));
-//			// 保存用户文件信息
+//			// 淇濆瓨鐢ㄦ埛鏂囦欢淇℃伅
 //			ufpService.saveUFPVO(packageUFPVO(userId, fileId));
 //		}
-		// 已经录指纹
+		// 宸茬粡褰曟寚绾�
 		/*else 
 		{ 
-			// 临时方案,已经录了指纹 就跳转
+			// 涓存椂鏂规,宸茬粡褰曚簡鎸囩汗 灏辫烦杞�
 			response.getWriter().write("1");
 			
-			// 正规方案
-			// 获取最新录的指纹和数据库中保存的指纹进行信息对比,指纹匹配再跳转页面
+			// 姝ｈ鏂规
+			// 鑾峰彇鏈�鏂板綍鐨勬寚绾瑰拰鏁版嵁搴撲腑淇濆瓨鐨勬寚绾硅繘琛屼俊鎭姣�,鎸囩汗鍖归厤鍐嶈烦杞〉闈�
 		}*/
 	}
 	
@@ -158,8 +158,8 @@ public class SignController
 	}
 	
 	/**
-	 * @param modelMap 返回到签约模块-用户须知页面
-	 * @return String 首页名称
+	 * @param modelMap 杩斿洖鍒扮绾︽ā鍧�-鐢ㄦ埛椤荤煡椤甸潰
+	 * @return String 棣栭〉鍚嶇О
 	 */
 	@RequestMapping(value = "/toContractComparison.do", method = RequestMethod.GET)
 	public String toContractComparison(ModelMap modelMap)
@@ -168,8 +168,8 @@ public class SignController
 	}
 	
 	/**
-	 * @param modelMap 返回到签约模块-用户须知页面
-	 * @return String 首页名称
+	 * @param modelMap 杩斿洖鍒扮绾︽ā鍧�-鐢ㄦ埛椤荤煡椤甸潰
+	 * @return String 棣栭〉鍚嶇О
 	 */
 	@RequestMapping(value = "/toSignFinish.do", method = RequestMethod.GET)
 	public String toSignFinish(ModelMap modelMap)
