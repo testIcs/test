@@ -60,14 +60,14 @@
            	  	<div class="right-title">请您将授权书放置在资料扫描区</div>
                 <div class="idcard-area">
                 	<div class="blind"></div>
-                	<video id="video" width="600" height="460" autoplay></video>
-                	<canvas id="canvas" width="600" height="450" style="display:none;margin: 5px 0 0 0;"></canvas> 
+                	<video id="video" width="400" height="300" autoplay></video>
+                	<canvas id="canvas" width="400" height="290" style="display:none;margin: 5px 0 0 0;"></canvas> 
                 </div>            
             </div>
             <div class="submit">
-            	<input id="snap" type="button" style="width:270px; margin:0px 80px 0px 0px;"  value="拍  照" />
-            	<input id="resnap" type="button" style="width:270px; margin:0px 80px 0px 0px;display:none"  value="重  拍" />
-            	<input id="confirm" type="button" style="width:270px;" value="确认" />
+            	<input id="snap" type="button" style="width:175px; margin:0px;"  value="拍  照" />
+            	<input id="resnap" type="button" style="width:175px; margin:0px;display:none"  value="重  拍" />
+            	<input id="confirm" type="button" style="width:175px;" value="确认" />
             </div>
         </div>
     </div>    

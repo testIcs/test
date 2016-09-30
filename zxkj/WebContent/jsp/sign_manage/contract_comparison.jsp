@@ -17,9 +17,13 @@
     	<div class="face-title">贷款合同比对</div>
         <div class="compar">
             <div class="compaleft"></div>
-            <div class="comparight"></div>
+            <div class="comparight">
+            	<div class="blind"></div>
+               	<video id="video" width="510" height="620" autoplay></video>
+               	<canvas id="canvas" width="510" height="610" style="display:none;margin: 5px 0 0 0;"></canvas> 
+            </div>
         </div>
-        <div class="facebutton" style="width:1680px;">
+        <div class="facebutton" style="width:1280px;">
         	<input style="margin:0px 15px;" type="button" value="返  回" />
         	<a href="/zxkj/sign/toSignFinish.do"><input style="margin:0px 15px;" type="button" value="下一步" /></a>
         	<input style="margin:0px 15px;" type="button" value="拍  照" />
@@ -28,4 +32,9 @@
     </div>  
 </div>
 </body>
+<script type="text/javascript">
+	var baseurl="<%=request.getContextPath() %>";
+</script>
+<script type="text/javascript" src="../3th/jquery.min.js"></script>
+<script type="text/javascript" src="../script/util_manage/camera.js"></script>
 </html>
