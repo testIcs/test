@@ -27,7 +27,7 @@
         	<input style="margin:0px 15px;" type="button" value="返  回" />
         	<a href="/zxkj/sign/toSignFinish.do"><input style="margin:0px 15px;" type="button" value="下一步" /></a>
         	<input style="margin:0px 15px;" type="button" value="拍  照" />
-        	<a href="signtips.html"><input style="margin:0px 15px;" type="button" value="保  存" /></a>
+        	<a href="/zxkj/sign/toSignFinish.do"><input style="margin:0px 15px;" type="button" value="保  存" /></a>
         </div>
     </div>  
 </div>
