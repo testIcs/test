@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxkj.dao.NoticeMapper">
+	<!-- 增加公告 -->
+	<insert id="addNotice" parameterType="String">
+		INSERT into tbl_notice (notice_context,release_time,state) value (#{context},now(),0)
+	</insert>
+	
+	<!-- 修改公告 -->
+	<update id="updateNotice" >
+		update tbl_notice set state=1
+	</update>
+	
+	<!-- 查询公告 -->
+	<select id="findLastNotice" resultType="String">
+		select notice_context from tbl_notice where state=0
+	</select>
+
+</mapper>
