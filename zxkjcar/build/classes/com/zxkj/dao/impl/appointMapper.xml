@@ -51,8 +51,16 @@
 		FROM
 			tbl_appointment
 		WHERE
-			app_time_slot = #{appTimeSlot}
+			app_time_slot = #{timeSlot}
 			AND
-			app_date >= #{appDate}
+			app_date = #{appDate}
+	</select>
+	
+	<!-- 查询某一天 某一时间段有多少个预约-->
+	<select id="queryAppointment" parameterType="Map" resultType="Integer">
+		select 
+		count(app_affair) from 
+		tbl_appointment 
+		where app_date=#{day}  and app_time_slot=#{sort}
 	</select>
 </mapper>

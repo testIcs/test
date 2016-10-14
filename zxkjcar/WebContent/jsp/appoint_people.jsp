@@ -31,17 +31,18 @@ response.setDateHeader("Expires", -10);
 			<div class="top">便民在线预约系统</div>
 				<div class="content">
 					<div class="title"><span>预约人信息</span></div>
+					 <div class="nametag">查询日期</div>
+				     <div class="inputtag">
+				    	<span>*</span><input name="appDatePeo" id="appDatePeo" />
+				    	<input type="button" id="serach" value="查询">
+				     </div>
 				    <div class="table">
-				    	<ul id="main-menus" class="days">
-				        	<li id="MENU_1" class="day-block sel">
-				        		<span id="day_1">周一</span><br /><span id="date_1">2016年8月1日</span>
-				        	</li>
-				        </ul>
 				        <table id="appoint_people_table" width="100%" border="0" cellspacing="0" cellpadding="0"></table>
 				    </div>
 				</div>
 		</section>
 	</form>
+	<div id="datePlugin"></div>
 	<footer>
 		<p>
 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a>
@@ -54,14 +55,17 @@ response.setDateHeader("Expires", -10);
 <script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="../3th/jquery.alerts.js"></script>
 <script type="text/javascript" src="../script/appoint_people.js"></script>
+<script type="text/javascript" src="../3th/datepickter/date.js" ></script>
+<script type="text/javascript" src="../3th/datepickter/iscroll.js" ></script>
 <script type="text/javascript">
-	$(function()
-	{
-		AppointPeople.init(
-		{
-			'appDate':'${param.appDate}'
-		});
-		
-	});
+$(function()
+{
+	$('#appDatePeo').date();
+	
+	AppointPeople.init(
+    {
+    	'appDatePeo':'${param.appDate}'
+    });
+});
 </script>
 </html>

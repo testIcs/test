@@ -122,6 +122,21 @@ ul.linkblock li:hover{
 	border:2px #C30 solid;
 }
 
+#appDatePeo{
+	width: 50%;
+}
+
+#serach{
+	width: 30%;
+}
+
+.margin-top-80{
+	margin-top:80px;
+}
+
+.list-style-none{
+	list-style:none;
+}
 
 
 

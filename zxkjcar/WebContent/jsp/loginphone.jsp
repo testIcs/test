@@ -39,16 +39,16 @@ response.setDateHeader("Expires", -10);
 			<section id="login">
 				<div class="top">会员登录</div>
 				<div class="content">
-				    <div class="nametag">账号</div>
+				    <div class="nametag">手机号</div>
 				    <div class="inputtag">
-				    	<input name="userName" type="text" id="userName" placeholder="请输入用户名"  /><span>*</span>
+				    	<input name="phoneNo" type="text" id="phoneNo" placeholder="请输入手机号"  /><span>*</span>
 				    </div>
 				    <div class="nametag">密码</div>
 				    <div class="inputtag">
 				    	<input id="password" name="password" type="password" placeholder="请输入密码" /><span>*</span>
 				    </div>
 				    <div class="inputtag">
-				    	<input name="btnLogin" id="btnLogin" type="text" class="submit" value="登录" href="#" style="cursor:pointer;"/>
+				    	<input name="btnLogin" id="btnLogin" type="text" class="submit" value="登录" style="cursor:pointer;"/>
 				    </div>
 				    <div class="inputtag" style="text-align:right; color:#900000; font-size:14px; line-height:30px; 
 				    		margin-top:20px;"><a  id="btnRegister"  href="#">免费注册</a>

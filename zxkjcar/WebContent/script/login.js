@@ -5,10 +5,10 @@
 	 */
 	function doLogin()
     {
-		var _userName = $('#userName').val(),
+		var _phoneNo = $('#phoneNo').val(),
 	    	_pass = $('#password').val()
-		if(!(_userName && _pass)){
-			alert("密码不能为空");
+		if(!(_phoneNo && _pass)){
+			jAlert("密码不能为空");
 			return;
 		}
 		
@@ -18,17 +18,33 @@
 			cache:false,  			
 			dataType:'json', 
 			data:{
-				userName:_userName,
+				phoneNo:_phoneNo,
 				password:_pass
 			}
 		}).done(function(data){
-			if(data && ("0" == data.status))
+			if(data)
 			{
-				jAlert("登录成功","提示");
-				window.location.href='home.jsp?status='+data.status;
-				return;
+				if("0" == data.status)
+				{
+					jAlert("登录成功","提示");
+					if("-1"==data.role)
+					{
+						window.location.href='/zxkjcar/admin/index.do';
+					}
+					else
+					{
+						window.location.href='home.jsp?status='+data.status;
+					}
+					return;
+				}
+				else if("8000"==data.status)
+				{
+					jAlertError("账号审核中，暂时无法登陆","提示");
+					return;
+				}
 			}
-			jAlert("登录失败","提示");
+			
+			jAlert("手机号或密码错误","提示");
 		}).fail(function(){
 			jAlert("登录发生错误","提示");
 		});

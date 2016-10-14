@@ -1,29 +1,42 @@
 package com.zxkj.service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
 import com.zxkj.model.Appointment;
 
-public interface IAppoint 
+public interface IAppoint
 {
-	/**
-	 * 预约事件添加
-	 * @param appointment
-	 */
-	Integer addAppointment(Appointment appointment);
-	
-	/**
-	 * 预约大厅数据查询
-	 * @return
-	 */
-	List<Map<String, Object>> listBookingHall(Map<String, String> paramsMap);
-	
-	/**
-	 * 预约数据明细
-	 * @return
-	 */
-	List<Map<String, Object>> listAppointDetail(Map<String, String> paramsMap);
-	
-	List<Map<String, Object>> findEverySlotPeopleOneDay(String appDate); 
+    /**
+     * 预约事件添加
+     * 
+     * @param appointment
+     */
+    Integer addAppointment(Appointment appointment);
+
+    /**
+     * 预约大厅数据查询
+     * 
+     * @return
+     */
+    List<Map<String, Object>> listBookingHall(Map<String, String> paramsMap);
+
+    /**
+     * 预约数据明细
+     * 
+     * @return
+     */
+    List<Map<String, Object>> listAppointDetail(Map<String, String> paramsMap);
+
+    List<Map<String, Object>> findEverySlotPeopleOneDay(Date appDate);
+
+    /**
+     * 查询某一天 某一时间段有多少个预约
+     * 
+     * @param day
+     * @param sort
+     * @return
+     */
+    Integer queryAppointment(String day, Integer sort);
 }

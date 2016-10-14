@@ -1,7 +1,5 @@
 window.AppointPeople = (function($,module)
 {
-	var _appDate_;
-	
 	/**
 	 * 初始化某一天每个时段预约人信息  
 	 */
@@ -14,7 +12,6 @@ window.AppointPeople = (function($,module)
 			
 			$.each(_slotUserMapList, function(i, slotUserMap)
 			{
-				debugger;
 			    var _timeSlot = slotUserMap.slotName,
 			        _userNames = slotUserMap.userNames,
 			        _userNameArr = [];
@@ -32,7 +29,7 @@ window.AppointPeople = (function($,module)
 	/**
 	 * 查找某一天每个时段预约人信息 
 	 */
-	function findAppointPeople()
+	function findAppointPeople(dateTime)
 	{
 		$.ajax(
 		{
@@ -41,7 +38,7 @@ window.AppointPeople = (function($,module)
 			dataTyle : 'json',
 			data : 
 			{
-				'appDate' : _appDate_	
+				'appDate' : dateTime	
 			}
 		}).done(function(data)
 		{
@@ -53,11 +50,20 @@ window.AppointPeople = (function($,module)
 		});
 	}
 	
+	//初始化数据，默认显示当天的后一天数据
+	function initData(){
+		
+	}
+	
+    //页面初始化
 	function init(param)
 	{
-		debugger;
-		_appDate_ = param.appDate;
-		findAppointPeople();
+		$("#appDatePeo").val(param.appDatePeo);
+		findAppointPeople(param.appDatePeo);
+		
+		$("#serach").click(function(){
+			findAppointPeople($("#appDatePeo").val());
+		})
 	}
 	
 	

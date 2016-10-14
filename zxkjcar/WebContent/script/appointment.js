@@ -3,18 +3,6 @@ window.Appointment = (function($, module)
 {
 	var _userLoginStatus_;
 	
-	function initStatusPromptMsg()
-	{
-		if("0" == _userLoginStatus_)
-	    {
-			$('#user_status_prompt').hide();
-	    }
-		else 
-		{
-			$('#user_status_prompt').html('您没有登录，不能提交，请先<a href="javascript:;">登录</a>').show();
-		}
-	}
-	
 	/**
 	 * 预约时间段列表查询
 	 */
@@ -119,7 +107,7 @@ window.Appointment = (function($, module)
 				appUserName : appUserName,
 				appPhoneNo : appPhoneNo,
 				appAffair : appAffair,
-				appDate : getDate(appDate),
+				appDate : appDate,
 				appTimeSlotValue : appTimeSlotValue
 			}
 		}).done(function(data) 
@@ -153,10 +141,7 @@ window.Appointment = (function($, module)
 	function init(param) 
 	{
 		_userLoginStatus_ = param.status;
-		
-		// 初始化用户登录状态提示信息
-		initStatusPromptMsg();
-		
+				
 		// 邮箱提示
 		// emailPrompt();
 

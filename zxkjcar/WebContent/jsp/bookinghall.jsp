@@ -24,6 +24,18 @@ response.setDateHeader("Expires", -10);
 <link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
 <link href="../css/datepicktercss/common.css" rel="stylesheet" type="text/css">
 <link rel="stylesheet" type="text/css" href="../css/jquery.alerts.css">
+<style type="text/css">
+	.notice{
+		position: fixed;
+		bottom: 0;
+		display: block;
+		background: rgba(0,0,0,0.69);
+		width: 100%;
+		color: #ffc600;
+		height: 40px;
+    	line-height: 40px;
+	}
+</style>
 </head>
 <body>
 	<form id="bookingHall"  method="post">
@@ -48,42 +60,47 @@ response.setDateHeader("Expires", -10);
 				          <tr>
 				            <td>9:00-9:30</td>
 				            <td id="td_1_img"><img src="../css/images/green.png" width="18" height="19" /></td>
-				            <td id="td_1_value">可申请</td>
+				            <td id="td_1_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="1">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>9:30-10:00</td>
 				            <td><img id="td_2_img" src="../css/images/green.png" width="18" height="19" /></td>
-				            <td id="td_2_value">可申请</td>
+				            <td id="td_2_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="2">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>10:00-10:30</td>
 				            <td><img id="td_3_img" src="../css/images/green.png" width="18" height="19" /></td>
-				            <td id="td_3_value">可申请</td>
+				            <td id="td_3_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="3">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>10:30-11:00</td>
 				            <td><img id="td_4_img" src="../css/images/green.png" width="18" height="19" /></td>
-				            <td id="td_4_value">可申请</td>
+				            <td id="td_4_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="4">可申请</a></td>
+				          </tr>
+				          <tr>
+				            <td>11:00-11:30</td>
+				            <td><img id="td_5_img" src="../css/images/green.png" width="18" height="19" /></td>
+				            <td id="td_5_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="5">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>15:00-15:30</td>
-				            <td><img id="td_5_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
-				            <td id="td_5_value">可申请</td>
+				            <td><img id="td_6_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
+				            <td id="td_6_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="6">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>15:30-16:00</td>
-				            <td><img id="td_6_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
-				            <td id="td_6_value">可申请</td>
+				            <td><img id="td_7_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
+				            <td id="td_7_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="7">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>16:00-16:30</td>
-				            <td><img id="td_7_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
-				            <td id="td_7_value">可申请</td>
+				            <td><img id="td_8_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
+				            <td id="td_8_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="8">可申请</a></td>
 				          </tr>
 				          <tr>
 				            <td>16:30-17:00</td>
-				            <td><img id="td_8_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
-				            <td id="td_8_value">可申请</td>
+				            <td><img id="td_9_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
+				            <td id="td_9_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="9">可申请</a></td>
 				          </tr>
 				        </table>
 				    </div>

@@ -73,7 +73,6 @@ response.setDateHeader("Expires", -10);
 	</footer>
 </body>
 <script type="text/javascript" src="../3th/jquery-1.9.0.min.js"></script>
-<script type="text/javascript" src="../3th/datepickter/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="../3th/jquery.alerts.js"></script>
 <script type="text/javascript" src="../3th/datepickter/date.js" ></script>
 <script type="text/javascript" src="../3th/datepickter/iscroll.js" ></script>

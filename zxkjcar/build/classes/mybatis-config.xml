@@ -12,5 +12,6 @@
 		<mapper resource="com/zxkj/dao/impl/userMapper.xml" />	
 		<mapper resource="com/zxkj/dao/impl/appointMapper.xml" />
 		<mapper resource="com/zxkj/dao/impl/dicMapper.xml" />	
+		<mapper resource="com/zxkj/dao/impl/NoticeMapper.xml" />	
 	</mappers>
 </configuration> 

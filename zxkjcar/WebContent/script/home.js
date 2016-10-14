@@ -8,7 +8,7 @@
 			window.location.href='loginphone.jsp';
 		});
 		$("#register_index").on("click", function(){
-			window.location.href='register_index.jsp';
+			window.location.href='register_agreement.jsp';
 		});
 		$("#appointment").on("click", function(){
 			window.location.href='appointment.jsp?status='+_status_;

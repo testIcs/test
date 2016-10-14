@@ -7,12 +7,14 @@
 	<!-- 用户登录 -->
 	<select id="login" parameterType="String" resultType="user">
 		select id userId,
-			user_name userName,
-			id_number realName,
-			password password,
-			phone_no phone 
+			user_name as userName,
+			id_number as realName,
+			password as password,
+			phone_no as phone,
+			state as state,
+			role as role
 		from tbl_user_info 
-		where user_name = #{userName}
+		where phone_no = #{phoneNo}
 	</select>
 	
 	<!-- 判断账号是否存在 -->
@@ -32,6 +34,7 @@
 			password,
 			phone_no,
 			id_number,
+			state,
 			descrip
 		)
 		VALUES
@@ -40,7 +43,35 @@
 			#{password},
 			#{phoneNo},
 			#{idNumber},
+			#{state},
 			#{descrip}
 		)
 	</insert>
+	
+	<update id="updateUser" parameterType="user">
+		update tbl_user_info
+		set
+			state = #{state}
+		where id = #{id}
+	</update>
+	
+	<!-- 查询需要审核的人员 -->
+	<select id="queryBeAuditedUser" resultType="user">
+		select 
+			id as userId ,
+			user_name userName,
+			phone_no phoneNo,
+			id_number idNumber
+		from tbl_user_info
+		where state=0
+	</select>
+	
+	<delete id="deleteUser" parameterType="Integer">
+		delete from tbl_user_info where id = #{id}
+	</delete>
+	
+	<!-- 查询手机号-->
+	<select id="phoneExist" parameterType="String" resultType="Integer" >
+		select count(id) from tbl_user_info where phone_no=#{phoneNo}
+	</select>
 </mapper>
