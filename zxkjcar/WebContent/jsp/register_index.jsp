@@ -79,10 +79,10 @@ response.setDateHeader("Expires", -10);
 		</form>
 	</div>
 	<footer>
-		<p>
-			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a>
-		</p>
-		<p></p>
+<!-- 		<p> -->
+<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
+<!-- 		</p> -->
+<!-- 		<p></p> -->
 		<p>Copyright © 2014-2015 智与行科技</p>
 	</footer>
 </body>

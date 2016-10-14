@@ -43,47 +43,46 @@ response.setDateHeader("Expires", -10);
 				          <tr>
 				            <td>时间</td>
 				            <td>预约数量</td>
-<!-- 				            <td>操作</td> -->
 				          </tr>
 				          <tr>
 				            <td>9:00-9:30</td>
-<!-- 				            <td id="td_1_img"><img src="../css/images/green.png" width="18" height="19" /></td> -->
 				            <td id="td_1_value">0</td>
 				          </tr>
 				          <tr>
 				            <td>9:30-10:00</td>
-<!-- 				            <td><img id="td_2_img" src="../css/images/green.png" width="18" height="19" /></td> -->
 				            <td id="td_2_value">0</td>
 				          </tr>
 				          <tr>
 				            <td>10:00-10:30</td>
-<!-- 				            <td><img id="td_3_img" src="../css/images/green.png" width="18" height="19" /></td> -->
 				            <td id="td_3_value">0</td>
 				          </tr>
 				          <tr>
 				            <td>10:30-11:00</td>
-<!-- 				            <td><img id="td_4_img" src="../css/images/green.png" width="18" height="19" /></td> -->
 				            <td id="td_4_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>15:00-15:30</td>
-<!-- 				            <td><img id="td_5_img" src="../css/images/green.png" alt="" width="18" height="19" /></td> -->
+				            <td>11:00-11:30</td>
 				            <td id="td_5_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>15:30-16:00</td>
-<!-- 				            <td><img id="td_6_img" src="../css/images/green.png" alt="" width="18" height="19" /></td> -->
+				            <td>14:30-15:00</td>
 				            <td id="td_6_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>16:00-16:30</td>
-<!-- 				            <td><img id="td_7_img" src="../css/images/green.png" alt="" width="18" height="19" /></td> -->
+				            <td>15:00-15:30</td>
 				            <td id="td_7_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>16:30-17:00</td>
-<!-- 				            <td><img id="td_8_img" src="../css/images/green.png" alt="" width="18" height="19" /></td> -->
+				            <td>15:30-16:00</td>
 				            <td id="td_8_value">0</td>
+				          </tr>
+				          <tr>
+				            <td>16:00-16:30</td>
+				            <td id="td_9_value">0</td>
+				          </tr>
+				          <tr>
+				            <td>16:30-17:00</td>
+				            <td id="td_10_value">0</td>
 				          </tr>
 				        </table>
 				    </div>
@@ -91,11 +90,11 @@ response.setDateHeader("Expires", -10);
 		</section>
 	</form>
 	<footer>
-		<p>
-			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a>
-		</p>
+<!-- 		<p> -->
+<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
+<!-- 		</p> -->
 		<p></p>
-		<p>Copyright © 2014-2015 智与行科技</p>
+		<p>Copyright © 2014-2015 智与行科技</p>	
 	</footer>
 </body>
 <script type="text/javascript" src="../3th/jquery.min.js"></script>

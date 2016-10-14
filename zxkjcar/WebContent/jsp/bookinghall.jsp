@@ -83,24 +83,29 @@ response.setDateHeader("Expires", -10);
 				            <td id="td_5_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="5">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>15:00-15:30</td>
+				            <td>14:30-15:00</td>
 				            <td><img id="td_6_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
 				            <td id="td_6_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="6">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>15:30-16:00</td>
+				            <td>15:00-15:30</td>
 				            <td><img id="td_7_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
 				            <td id="td_7_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="7">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>16:00-16:30</td>
+				            <td>15:30-16:00</td>
 				            <td><img id="td_8_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
 				            <td id="td_8_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="8">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>16:30-17:00</td>
+				            <td>16:00-16:30</td>
 				            <td><img id="td_9_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
 				            <td id="td_9_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="9">可申请</a></td>
+				          </tr>
+				           <tr>
+				            <td>16:30-17:00</td>
+				            <td><img id="td_10_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
+				            <td id="td_10_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="9">可申请</a></td>
 				          </tr>
 				        </table>
 				    </div>
@@ -108,9 +113,9 @@ response.setDateHeader("Expires", -10);
 		</section>
 	</form>
 	<footer>
-		<p>
-			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a>
-		</p>
+<!-- 		<p> -->
+<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
+<!-- 		</p> -->
 		<p></p>
 		<p>Copyright © 2014-2015 智与行科技</p>
 	</footer>
