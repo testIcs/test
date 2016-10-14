@@ -87,6 +87,7 @@ response.setDateHeader("Expires", -10);
 	</footer>
 </body>
 <script type="text/javascript" src="../3th/jquery.min.js"></script>
+<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
 <script type="text/javascript" src="../3th/bootstrap.min.js"></script>
 <script type="text/javascript" src="../3th/bootstrapValidator.min.js"></script>
 <script type="text/javascript" src="../script/register_index.js"></script>

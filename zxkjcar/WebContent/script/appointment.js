@@ -67,63 +67,80 @@ window.Appointment = (function($, module)
 	 */
 	function appointmentSubmit() 
 	{
-		var appUserName = $("#appUserName").val();
-		var appPhoneNo = $("#appPhoneNo").val();
-		var appAffair = $("#appAffair").val();
-		var appDate = $("#appDate").val();
-		var appTimeSlotValue = $("#appTimeSlotValue").val();
+		debugger;
+		var appUserName = $("#appUserName").val();//预约人姓名
+		var appPhoneNo = $("#appPhoneNo").val();//预约人电话
+		var appAffair = $("#appAffair").val();//预约数量
+		var appDate = $("#appDate").val();//预约日期
+		var appTimeSlotValue = $("#appTimeSlotValue").val();//预约时间段
 		var dateDiffDay = DateDiff(appDate);
 		
 		if(!appPhoneNo.length)
 		{
-			return alert("手机号不能为空!");
+			return jAlert("手机号不能为空!");
 		}
 		
 		if(!ValidaeUtil.validatePhoneNo(appPhoneNo))
 		{
-			return alert("手机号错误!");
+			return jAlert("手机号错误!");
 		}
 		
 		if(!appAffair.length)
 		{
-			return alert("预约数量不能为空!");
+			return jAlert("预约数量不能为空!");
 		}
 		
 		if(30 < appAffair.length)
 		{
-			return alert("预约数量最多为30个!");
+			return jAlert("预约数量最多为30个!");
 		}
 		
 		if(2 >= parseInt(dateDiffDay))
 		{
-			return alert("只能预约三天以后的时间请确认!");
+			return jAlert("只能预约三天以后的时间请确认!");
 		}
+		//查询选中是时间段可申请事务的数量
+		$.ajax( 
+				{    
+					url:"/zxkjcar/appoint/checkAppointment.do",   
+					type:'post',    
+					dataType:'json',
+					data:{day:appDate,sort:appTimeSlotValue},
+					success:function(data) 
+					{
+						if(data.num> appAffair){
+							$.ajax({
+								url : "/zxkjcar/appoint/addAppointment.do",
+								type : "post",
+								dataType : "json",
+								data : {
+									appUserName : appUserName,
+									appPhoneNo : appPhoneNo,
+									appAffair : appAffair,
+									appDate : appDate,
+									appTimeSlotValue : appTimeSlotValue
+								}
+							}).done(function(data) 
+							{
+								if (!data) 
+								{
+									jAlert("预约成功");
+									window.location.href = 'home.jsp';
+									return;
+								}
+								jAlert("预约失败");
+								return;
+							}).fail(function() 
+							{
+								jAlert("预约发生错误");
+							});
+						}else{
+							jAlert("该时间段可预约数为："+data.num+"","提示")
+						}
+						
+					}
+				});
 		
-		$.ajax({
-			url : "/zxkjcar/appoint/addAppointment.do",
-			type : "post",
-			dataType : "json",
-			data : {
-				appUserName : appUserName,
-				appPhoneNo : appPhoneNo,
-				appAffair : appAffair,
-				appDate : appDate,
-				appTimeSlotValue : appTimeSlotValue
-			}
-		}).done(function(data) 
-		{
-			if (!data) 
-			{
-				alert("预约成功");
-				window.location.href = 'home.jsp';
-				return;
-			}
-			alert("预约失败");
-			return;
-		}).fail(function() 
-		{
-			alert("预约发生错误");
-		});
 	}
 
 	/**

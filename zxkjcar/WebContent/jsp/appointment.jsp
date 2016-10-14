@@ -72,7 +72,8 @@ response.setDateHeader("Expires", -10);
 		<p>Copyright © 2014-2015 智与行科技</p>
 	</footer>
 </body>
-<script type="text/javascript" src="../3th/jquery-1.9.0.min.js"></script>
+<script type="text/javascript" src="../3th/jquery.min.js"></script>
+<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="../3th/jquery.alerts.js"></script>
 <script type="text/javascript" src="../3th/datepickter/date.js" ></script>
 <script type="text/javascript" src="../3th/datepickter/iscroll.js" ></script>

@@ -56,10 +56,10 @@
 			app_date = #{appDate}
 	</select>
 	
-	<!-- 查询某一天 某一时间段有多少个预约-->
+	<!-- 查询某一个时间段内已经预约了多少事务-->
 	<select id="queryAppointment" parameterType="Map" resultType="Integer">
 		select 
-		count(app_affair) from 
+		SUM(app_affair) from 
 		tbl_appointment 
 		where app_date=#{day}  and app_time_slot=#{sort}
 	</select>

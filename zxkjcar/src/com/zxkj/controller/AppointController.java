@@ -140,6 +140,7 @@ public class AppointController
 
     /**
      * 申请检查
+     * 查询某一个时间段内已经预约了多少事务
      * 
      * @return
      * @throws IOException
@@ -149,6 +150,7 @@ public class AppointController
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         Integer num = appointService.queryAppointment(day, sort);
+        if(null == num) num = 0;
         returnMap.put("num", 60 - num);
         return returnMap;
     }

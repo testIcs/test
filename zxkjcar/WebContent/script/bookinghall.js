@@ -139,7 +139,7 @@ window.BookingHall = (function($,module)
 		findBookingHallList($("#date_1").text());
 	}
 	
-	//申请
+	//预约申请，查询选中是时间段可申请事务的数量
 	function appointment(obj){
 		var day =$(".sel").find("span[id^=date_]").text();
 		var sort = $(obj).attr("id")

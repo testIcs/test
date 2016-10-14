@@ -56,7 +56,7 @@ public interface AppointMapper
     List<User> findUsersBySlot(Map<String, Object> map);
 
     /**
-     * 查询某一天 某一时间段有多少个预约
+     * 查询某一个时间段内已经预约了多少事务
      * 
      * @param day
      * @param sort
