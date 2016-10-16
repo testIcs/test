@@ -63,4 +63,12 @@ public interface AppointMapper
      * @return
      */
     Integer queryAppointment(Map<String, Object> map);
+    
+    /**
+     * 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0
+     * 
+     * @param day
+     * @return
+     */
+    Integer queryUserIsAppHisThisWeek(String day);
 }

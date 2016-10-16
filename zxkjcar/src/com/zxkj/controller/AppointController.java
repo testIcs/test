@@ -154,4 +154,22 @@ public class AppointController
         returnMap.put("num", 60 - num);
         return returnMap;
     }
+    
+    /**
+     * 申请检查
+     * 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0
+     * 
+     * @return
+     * @throws IOException
+     */
+    @RequestMapping(value = "/queryUserIsAppHisThisWeek.do", method = RequestMethod.POST)
+    public @ResponseBody Object queryUserIsAppHisThisWeek(String day) throws IOException
+    {
+        Map<String, Object> returnMap = new HashMap<String, Object>();
+        Integer num = appointService.queryUserIsAppHisThisWeek(day);
+        if(null == num) num = 0;
+        returnMap.put("num", num);
+        return returnMap;
+    }
+    
 }

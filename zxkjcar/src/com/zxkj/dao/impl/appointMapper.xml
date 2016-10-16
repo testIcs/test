@@ -63,4 +63,12 @@
 		tbl_appointment 
 		where app_date=#{day}  and app_time_slot=#{sort}
 	</select>
+	
+	<!-- 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0-->
+	<select id="queryUserIsAppHisThisWeek" parameterType="Map" resultType="Integer">
+	
+		select COUNT(1) from tbl_appointment 
+		where 
+		yearweek(DATE_FORMAT(app_date,'%Y-%m-%d'))=yearweek('2016-10-20')
+	</select>
 </mapper>

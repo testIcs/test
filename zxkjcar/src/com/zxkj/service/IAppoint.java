@@ -39,4 +39,12 @@ public interface IAppoint
      * @return
      */
     Integer queryAppointment(String day, Integer sort);
+    
+    /**
+     * 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0
+     * 
+     * @param day
+     * @return
+     */
+    Integer queryUserIsAppHisThisWeek(String day);
 }

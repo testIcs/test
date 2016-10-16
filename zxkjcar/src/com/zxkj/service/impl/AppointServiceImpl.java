@@ -88,4 +88,10 @@ public class AppointServiceImpl implements IAppoint
         return appointMapper.queryAppointment(maps);
     }
 
+	@Override
+	public Integer queryUserIsAppHisThisWeek(String day) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

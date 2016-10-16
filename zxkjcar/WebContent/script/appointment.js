@@ -99,7 +99,9 @@ window.Appointment = (function($, module)
 		{
 			return jAlert("只能预约三天以后的时间请确认!");
 		}
-		//查询选中是时间段可申请事务的数量
+		
+		var flag = queryUserIsAppHisThisWeek(appDate);
+		//查询选中时间段可申请事务的数量
 		$.ajax( 
 				{    
 					url:"/zxkjcar/appoint/checkAppointment.do",   
@@ -108,7 +110,7 @@ window.Appointment = (function($, module)
 					data:{day:appDate,sort:appTimeSlotValue},
 					success:function(data) 
 					{
-						if(data.num> appAffair){
+						if(data.num> appAffair){//如果剩余事务数量大于申请事务数量，进行申请操作
 							$.ajax({
 								url : "/zxkjcar/appoint/addAppointment.do",
 								type : "post",
@@ -141,6 +143,24 @@ window.Appointment = (function($, module)
 					}
 				});
 		
+	}
+	
+	/**
+	 * 查询登录用户是否在选定周已经进行过预约操作
+	 */
+	function queryUserIsAppHisThisWeek(appDate){
+		$.ajax( 
+				{    
+					url:"/zxkjcar/appoint/queryUserIsAppHisThisWeek.do",   
+					type:'post',    
+					dataType:'json',
+					data:{day:appDate},
+					success:function(data) 
+					{
+						
+						
+					}
+				});
 	}
 
 	/**
