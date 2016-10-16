@@ -35,6 +35,8 @@ response.setDateHeader("Expires", -10);
 <body>
 <div class="top">注册人员审核</div>
 <div class="container-fluid">
+  <button id="reviewUser" class="btn btn-primary">注册审核</button>
+  <button id="manageUser" class="btn btn-primary">人员管理</button>
   <button id="addUser" class="btn btn-primary">增加用户</button>
   <table class="table">
     <thead>
