@@ -67,35 +67,38 @@ public class AppointController
     		Calendar cal = Calendar.getInstance();
             cal.setTime(new Date());
             int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
-            if(4 == w){
-            	cal.setTime(appDate);
-                int selDate = cal.get(Calendar.DAY_OF_WEEK) - 1;
-                if(selDate == 1 || selDate == 2 || selDate == 4 || selDate == 5 ){
-                	//格式化日期
-                	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                	//查询登录用户在给定的日期内一周是否已经进行过申请
-                	User user = (User) request.getSession().getAttribute("user");
-                	Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate),user.getPhoneNo()); 
-                	if(null != weekNum && weekNum == 0){
-                		//查询某一个时间段内已经预约了多少事务
-                		checkNum = appointService.queryAppointment(format.format(appDate), appointment.getAppTimeSlotValue());
-                		if(null ==checkNum ) checkNum = 0;
-                		if((60-checkNum) > appointment.getAppTimeSlotValue()){
-                			
-                			appointment.setAppDate(appDate);
-                			appointment.setAppPhoneNo(user.getPhoneNo());
-                			status = appointService.addAppointment(appointment);
-                		}else {
-                			status = Constants.DATA_NOT_COMPLETE;
-                		}
-                	}else{
-                		status = Constants.DATA_ALREADY_EXIST;
-                	}
-                }else{
-                	status = Constants.STATUS_ERROR;
-                }
-            }else{
+            
+            //得到系统当前时间是周几
+            cal.setTime(appDate);
+            int selDate = cal.get(Calendar.DAY_OF_WEEK) - 1;
+            
+            if(4 != w){//每周的周四才能进行预约
             	status = Constants.VALIDATE_EXPIRES;
+            }else if(selDate == 3){//只能预约每周的周一、周二、周四和周五
+            	status = Constants.STATUS_ERROR;
+            }else{
+            	//格式化日期
+            	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+            	//查询登录用户在给定的日期内一周是否已经进行过申请
+            	User user = (User) request.getSession().getAttribute("user");
+            	Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate),user.getPhoneNo()); 
+            	//查询预约的时间所在的周是否已经有预约，即每周只能预约一次并且不能超过30个
+            	if(null != weekNum && weekNum == 0){
+            		//查询某一个时间段内已经预约了多少事务
+            		checkNum = appointService.queryAppointment(format.format(appDate), appointment.getAppTimeSlotValue());
+            		if(null ==checkNum ) checkNum = 0;
+            		//每个时间段只能预约60个，超过不能预约
+            		if((60-checkNum) > appointment.getAppTimeSlotValue()){
+            			
+            			appointment.setAppDate(appDate);
+            			appointment.setAppPhoneNo(user.getPhoneNo());
+            			status = appointService.addAppointment(appointment);
+            		}else {
+            			status = Constants.DATA_NOT_COMPLETE;
+            		}
+            	}else{
+            		status = Constants.DATA_ALREADY_EXIST;
+            	}
             }
         }
     	returnMap.put("status", status);
