@@ -46,5 +46,5 @@ public interface IAppoint
      * @param day
      * @return
      */
-    Integer queryUserIsAppHisThisWeek(String day);
+    Integer queryUserIsAppHisThisWeek(String day, String userPhone);
 }

@@ -2,6 +2,7 @@ package com.zxkj.controller;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxkj.common.Constants;
 import com.zxkj.model.Appointment;
+import com.zxkj.model.User;
 import com.zxkj.service.IAppoint;
 import com.zxkj.service.NoticeService;
 
@@ -57,13 +59,48 @@ public class AppointController
     @RequestMapping(value = "/addAppointment.do", method = RequestMethod.POST)
     public Object addAppointment(HttpServletRequest request, Appointment appointment, Date appDate)
     {
-        Integer status = Constants.DATA_INCORRECT;
-        if (null != appointment)
-        {
-            appointment.setAppDate(appDate);
-            status = appointService.addAppointment(appointment);
+    	Integer status = Constants.DATA_INCORRECT;
+    	Map<String, Object> returnMap = new HashMap<String, Object>();
+    	Integer checkNum = 0;
+    	if (null != appointment)
+    	{
+    		Calendar cal = Calendar.getInstance();
+            cal.setTime(new Date());
+            int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+            if(4 == w){
+            	cal.setTime(appDate);
+                int selDate = cal.get(Calendar.DAY_OF_WEEK) - 1;
+                if(selDate == 1 || selDate == 2 || selDate == 4 || selDate == 5 ){
+                	//格式化日期
+                	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                	//查询登录用户在给定的日期内一周是否已经进行过申请
+                	User user = (User) request.getSession().getAttribute("user");
+                	Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate),user.getPhoneNo()); 
+                	if(null != weekNum && weekNum == 0){
+                		//查询某一个时间段内已经预约了多少事务
+                		checkNum = appointService.queryAppointment(format.format(appDate), appointment.getAppTimeSlotValue());
+                		if(null ==checkNum ) checkNum = 0;
+                		if((60-checkNum) > appointment.getAppTimeSlotValue()){
+                			
+                			appointment.setAppDate(appDate);
+                			appointment.setAppPhoneNo(user.getPhoneNo());
+                			status = appointService.addAppointment(appointment);
+                		}else {
+                			status = Constants.DATA_NOT_COMPLETE;
+                		}
+                	}else{
+                		status = Constants.DATA_ALREADY_EXIST;
+                	}
+                }else{
+                	status = Constants.STATUS_ERROR;
+                }
+            }else{
+            	status = Constants.VALIDATE_EXPIRES;
+            }
         }
-        return status;
+    	returnMap.put("status", status);
+    	returnMap.put("num", (60-checkNum));
+        return returnMap;
     }
 
     /**
@@ -141,7 +178,6 @@ public class AppointController
     /**
      * 申请检查
      * 查询某一个时间段内已经预约了多少事务
-     * 
      * @return
      * @throws IOException
      */
@@ -156,6 +192,7 @@ public class AppointController
     }
     
     /**
+     * 废弃暂时不用
      * 申请检查
      * 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0
      * 
@@ -163,12 +200,13 @@ public class AppointController
      * @throws IOException
      */
     @RequestMapping(value = "/queryUserIsAppHisThisWeek.do", method = RequestMethod.POST)
-    public @ResponseBody Object queryUserIsAppHisThisWeek(String day) throws IOException
+    public @ResponseBody Object queryUserIsAppHisThisWeek(HttpServletRequest request,String day) throws IOException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
-        Integer num = appointService.queryUserIsAppHisThisWeek(day);
+        User user = (User) request.getSession().getAttribute("user");
+        Integer num = appointService.queryUserIsAppHisThisWeek(day,user.getPhoneNo());
         if(null == num) num = 0;
-        returnMap.put("num", num);
+        returnMap.put("numCount", num);
         return returnMap;
     }
     

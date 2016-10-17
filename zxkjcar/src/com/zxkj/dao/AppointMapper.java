@@ -70,5 +70,5 @@ public interface AppointMapper
      * @param day
      * @return
      */
-    Integer queryUserIsAppHisThisWeek(String day);
+    Integer queryUserIsAppHisThisWeek(Map<String, Object> map);
 }

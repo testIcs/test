@@ -69,6 +69,7 @@
 	
 		select COUNT(1) from tbl_appointment 
 		where 
-		yearweek(DATE_FORMAT(app_date,'%Y-%m-%d'))=yearweek('2016-10-20')
+		yearweek(DATE_FORMAT(app_date,'%Y-%m-%d'))=yearweek(#{day})
+		and app_phone_no = #{userPhone}
 	</select>
 </mapper>

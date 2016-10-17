@@ -89,9 +89,11 @@ public class AppointServiceImpl implements IAppoint
     }
 
 	@Override
-	public Integer queryUserIsAppHisThisWeek(String day) {
-		// TODO Auto-generated method stub
-		return null;
+	public Integer queryUserIsAppHisThisWeek(String day, String userPhone) {
+		Map<String, Object> maps = new HashMap<String, Object>();
+        maps.put("day", day);
+        maps.put("userPhone", userPhone);
+        return appointMapper.queryUserIsAppHisThisWeek(maps);
 	}
 
 }

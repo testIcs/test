@@ -67,100 +67,80 @@ window.Appointment = (function($, module)
 	 */
 	function appointmentSubmit() 
 	{
-		debugger;
 		var appUserName = $("#appUserName").val();//预约人姓名
-		var appPhoneNo = $("#appPhoneNo").val();//预约人电话
+//		var appPhoneNo = $("#appPhoneNo").val();//预约人电话
 		var appAffair = $("#appAffair").val();//预约数量
 		var appDate = $("#appDate").val();//预约日期
 		var appTimeSlotValue = $("#appTimeSlotValue").val();//预约时间段
 		var dateDiffDay = DateDiff(appDate);
 		
-		if(!appPhoneNo.length)
-		{
-			return jAlert("手机号不能为空!");
-		}
-		
-		if(!ValidaeUtil.validatePhoneNo(appPhoneNo))
-		{
-			return jAlert("手机号错误!");
-		}
+//		if(!appPhoneNo.length)
+//		{
+//			return jAlert("手机号不能为空!");
+//		}
+//		
+//		if(!ValidaeUtil.validatePhoneNo(appPhoneNo))
+//		{
+//			return jAlert("手机号错误!");
+//		}
 		
 		if(!appAffair.length)
 		{
 			return jAlert("预约数量不能为空!");
 		}
 		
-		if(30 < appAffair.length)
+		if(30 < appAffair)
 		{
 			return jAlert("预约数量最多为30个!");
 		}
 		
-		if(2 >= parseInt(dateDiffDay))
+		if(1 >= parseInt(dateDiffDay))
 		{
-			return jAlert("只能预约三天以后的时间请确认!");
+			return jAlert("只能预约两天天以后的时间请确认!");
 		}
-		
-		var flag = queryUserIsAppHisThisWeek(appDate);
-		//查询选中时间段可申请事务的数量
-		$.ajax( 
-				{    
-					url:"/zxkjcar/appoint/checkAppointment.do",   
-					type:'post',    
-					dataType:'json',
-					data:{day:appDate,sort:appTimeSlotValue},
-					success:function(data) 
-					{
-						if(data.num> appAffair){//如果剩余事务数量大于申请事务数量，进行申请操作
-							$.ajax({
-								url : "/zxkjcar/appoint/addAppointment.do",
-								type : "post",
-								dataType : "json",
-								data : {
-									appUserName : appUserName,
-									appPhoneNo : appPhoneNo,
-									appAffair : appAffair,
-									appDate : appDate,
-									appTimeSlotValue : appTimeSlotValue
-								}
-							}).done(function(data) 
-							{
-								if (!data) 
-								{
-									jAlert("预约成功");
-									window.location.href = 'home.jsp';
-									return;
-								}
-								jAlert("预约失败");
-								return;
-							}).fail(function() 
-							{
-								jAlert("预约发生错误");
-							});
-						}else{
-							jAlert("该时间段可预约数为："+data.num+"","提示")
-						}
-						
-					}
-				});
-		
-	}
+		if((new Date().getDay()) == 4){
+			return jAlert("请在每周的周四进行预约!");
+		}
+		//查询选中是时间段可申请事务的数量
+		$.ajax({
+			url : "/zxkjcar/appoint/addAppointment.do",
+			type : "post",
+			dataType : "json",
+			data : {
+				appUserName : appUserName,
+//				appPhoneNo : appPhoneNo,
+				appAffair : appAffair,
+				appDate : appDate,
+				appTimeSlotValue : appTimeSlotValue
+			}
+		}).done(function(data) 
+		{
+			if(data.status == 3000){
+				jAlert("一周只能申请一次，所选日期所在周已经进行过申请，请选择其他时间段（周）进行申请","提示")
+			}else if(data.status == 5000){
+				jAlert("该时间段可预约数为："+data.num+"","提示")
+			}else if(data.status == 2000){
+				jAlert("预约失败,请重新提交申请","提示");
+				return;
+			}else if(data.status == 7000){
+				jAlert("请在每周的周四进行预约","提示");
+				return;
+			}else if(data.status == 1000){
+				jAlert("处理预约的时间为每周的一、二、四和五，请预约这几天处理事情","提示");
+				return;
+			}else{
+				
+				jAlert("预约成功");
+				window.location.href = 'home.jsp';
+				return;
+			}
+			
+		}).fail(function() 
+		{
+			jAlert("预约发生错误");
+		});
 	
-	/**
-	 * 查询登录用户是否在选定周已经进行过预约操作
-	 */
-	function queryUserIsAppHisThisWeek(appDate){
-		$.ajax( 
-				{    
-					url:"/zxkjcar/appoint/queryUserIsAppHisThisWeek.do",   
-					type:'post',    
-					dataType:'json',
-					data:{day:appDate},
-					success:function(data) 
-					{
-						
-						
-					}
-				});
+		
 	}
 
 	/**

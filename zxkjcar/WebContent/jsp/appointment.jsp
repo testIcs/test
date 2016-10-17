@@ -39,10 +39,10 @@ response.setDateHeader("Expires", -10);
 			    <div class="inputtag">
 			    	<input id="appUserName" name="appUserName" type="text" placeholder="请输入姓名" /><span>*</span>
 			    </div>
-			    <div class="nametag">预约人电话</div>
-			    <div class="inputtag">
-			    	<input id="appPhoneNo" name="appPhoneNo" type="text" placeholder="请输入电话" /><span>*</span>
-			    </div>
+<!-- 			    <div class="nametag">预约人电话</div> -->
+<!-- 			    <div class="inputtag"> -->
+<!-- 			    	<input id="appPhoneNo" name="appPhoneNo" type="text" placeholder="请输入电话" /><span>*</span> -->
+<!-- 			    </div> -->
 			    <div class="nametag">预约事务数量</div>
 			    <div class="inputtag">
 			    	<input id="appAffair" name="appAffair" type="text" placeholder="请输入数量" /><span>*</span>
