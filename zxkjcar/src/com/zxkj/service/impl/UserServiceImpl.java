@@ -1,6 +1,8 @@
 package com.zxkj.service.impl;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,27 +34,36 @@ public class UserServiceImpl implements UserService
     /**
      * {@inheritDoc}
      */
-    public int login(User user)
+    public Map<String, Object> login(User user)
     {
+    	Map<String, Object> returnMap = new HashMap<String, Object>();
         User u = userMapper.login(user.getPhoneNo());
         Integer check = Constants.STATUS_OK;
         if (u == null)
         {
             check = Constants.STATUS_ERROR;
-            return check;
+            returnMap.put("status", check);
+            returnMap.put("userBean", u);
+            return returnMap;
         }
         else if (u.getState() == Constants.USER_STATE_AUDITING)
         {
             check = Constants.DATA_AUDITING;
+            returnMap.put("status", check);
+            returnMap.put("userBean", u);
+            return returnMap;
         }
         else if (!u.getPassword().equals(MD5Util.generatePassword(user.getPassword())))
         {
 
             check = Constants.DATA_INCORRECT;
+            returnMap.put("status", check);
+            returnMap.put("userBean", u);
+            return returnMap;
         }
-        user.setRole(u.getRole());
-        LOG.info("UserServiceImpl->login->check:{}", check);
-        return check;
+        returnMap.put("status", check);
+        returnMap.put("userBean", u);
+        return returnMap;
     }
 
     @Override

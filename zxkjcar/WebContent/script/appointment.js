@@ -67,7 +67,7 @@ window.Appointment = (function($, module)
 	 */
 	function appointmentSubmit() 
 	{
-		var appUserName = $("#appUserName").val();//预约人姓名
+//		var appUserName = $("#appUserName").val();//预约人姓名
 //		var appPhoneNo = $("#appPhoneNo").val();//预约人电话
 		var appAffair = $("#appAffair").val();//预约数量
 		var appDate = $("#appDate").val();//预约日期
@@ -107,7 +107,7 @@ window.Appointment = (function($, module)
 			type : "post",
 			dataType : "json",
 			data : {
-				appUserName : appUserName,
+//				appUserName : appUserName,
 //				appPhoneNo : appPhoneNo,
 				appAffair : appAffair,
 				appDate : appDate,

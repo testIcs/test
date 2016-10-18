@@ -4,6 +4,7 @@
 package com.zxkj.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zxkj.model.User;
 
@@ -19,7 +20,7 @@ public interface UserService
      *            登陆的用户信息
      * @return 返回登陆状态 0 成功，1用户名或密码错误，-1其它错误
      */
-    public int login(User user);
+    public Map<String, Object> login(User user);
 
     /**
      * 判断账号是否存在

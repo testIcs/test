@@ -72,7 +72,7 @@ public class AppointController
             cal.setTime(appDate);
             int selDate = cal.get(Calendar.DAY_OF_WEEK) - 1;
             
-            if(4 != w){//每周的周四才能进行预约
+            if(4 == w){//每周的周四才能进行预约
             	status = Constants.VALIDATE_EXPIRES;
             }else if(selDate == 3){//只能预约每周的周一、周二、周四和周五
             	status = Constants.STATUS_ERROR;
@@ -92,6 +92,7 @@ public class AppointController
             			
             			appointment.setAppDate(appDate);
             			appointment.setAppPhoneNo(user.getPhoneNo());
+            			appointment.setAppUserName(user.getUserName());
             			status = appointService.addAppointment(appointment);
             		}else {
             			status = Constants.DATA_NOT_COMPLETE;

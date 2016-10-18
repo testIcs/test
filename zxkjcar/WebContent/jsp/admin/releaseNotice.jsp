@@ -27,7 +27,7 @@ response.setDateHeader("Expires", -10);
 <div class="main" style="padding:50px 0 0 0">
 	<textarea class="form-control" rows="10" placeholder="输入公告内容"></textarea>
 	<div style="text-align: right;padding: 10px 20px 0 0;">
-		<button id="releaseNotice" type="button" class="btn btn-default">开始注册</button>
+		<button id="releaseNotice" type="button" class="btn btn-default">立即发布</button>
 	</div>
 </div>
 </body>

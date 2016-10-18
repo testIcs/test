@@ -35,10 +35,10 @@ response.setDateHeader("Expires", -10);
 			<div class="content">
 				<div class="title"><span>申请预约</span></div>
 			    <div id="user_status_prompt" class="tips"></div>
-			    <div class="nametag">预约人姓名</div>
-			    <div class="inputtag">
-			    	<input id="appUserName" name="appUserName" type="text" placeholder="请输入姓名" /><span>*</span>
-			    </div>
+<!-- 			    <div class="nametag">预约人姓名</div> -->
+<!-- 			    <div class="inputtag"> -->
+<!-- 			    	<input id="appUserName" name="appUserName" type="text" placeholder="请输入姓名" /><span>*</span> -->
+<!-- 			    </div> -->
 <!-- 			    <div class="nametag">预约人电话</div> -->
 <!-- 			    <div class="inputtag"> -->
 <!-- 			    	<input id="appPhoneNo" name="appPhoneNo" type="text" placeholder="请输入电话" /><span>*</span> -->

@@ -45,13 +45,17 @@ public class UserController
     public @ResponseBody Object login(HttpServletRequest request, User user) throws IOException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
-        int status = userService.login(user);
+        Map<String, Object> returnMapStatus = userService.login(user);
+        int status = (int) returnMapStatus.get("status");
         if (status == Constants.STATUS_OK)
         {
             returnMap.put("user", user);
+            User returnMapUser = (User) returnMapStatus.get("userBean");
+            user.setUserName(returnMapUser.getUserName());
+            user.setRole(returnMapUser.getRole());
+            user.setPassword("");
             request.getSession().setAttribute("user", user);
         }
-        LOG.info("UserController>login->status:{}", status);
         returnMap.put("role", user.getRole());
         returnMap.put("status", status);
         return returnMap;
