@@ -1,4 +1,4 @@
-﻿window.AuditUserModule = (function($, module)
+﻿window.ManagerUserModule = (function($, module)
 {
 	
 	//初始化数据
@@ -6,7 +6,7 @@
     {
 		
 		$.ajax({    
-			url:'/zxkjcar/admin/queryBeAuditedUser.do',       
+			url:'/zxkjcar/admin/queryAuditedUser.do',       
 			type:'post',    
 			cache:false,  			
 			dataType:'json', 
@@ -44,8 +44,8 @@
 			$datahtml +=  "<td>"+user.userName+"</td>";
 			$datahtml +=  "<td>"+user.phoneNo+"</td>";
 			$datahtml +=  "<td>";
-			$datahtml +=    "<button type='button' class='btn btn-primary btn-xs' onclick='AuditUserModule.passed("+user.userId+")'>通过</button>"
-			$datahtml +=    "<button type='button' class='btn btn-default btn-xs' onclick='AuditUserModule.deleteUser("+user.userId+")'>删除</button>"
+			$datahtml +=    "<button type='button' class='btn btn-primary btn-xs' onclick='ManagerUserModule.showDetail("+user.userId+")'>查看</button>"
+			$datahtml +=    "<button type='button' class='btn btn-default btn-xs' onclick='ManagerUserModule.deleteUser("+user.userId+")'>删除</button>"
 			$datahtml +=  "</td>";
 			$datahtml += "</tr>"
 		});
@@ -53,26 +53,8 @@
 	}
 	
 	//审核通过
-	function passed(id){
-		$.ajax( {    
-			url:'/zxkjcar/admin/auditUser.do',// 跳转到 action        
-			type:'post',    
-			cache:false,  			
-			dataType:'json', 
-			data:{id:id,state:1}
-		}).done(function(flag){
-			if(flag=='0')
-			{
-				jAlert("审核成功","提示");
-				initData();
-			}
-			else
-			{
-				jAlertError("审核失败","提示");
-			}
-		}).fail(function(){
-
-		});
+	function showDetail(id){
+		window.location.href=baseUrl+"/admin/showUserInfo.do?userId="+id;
 	}
 	
 	//审核通过
@@ -106,26 +88,16 @@
 		})
 	}
 	
-	/**
-	 * 为按钮绑定事件
-	 */
-	function bindEventForButton()
-	{
-		$("#addUser").on("click", function(){
-			window.location.href='adduser.jsp';
-		});
-	}
 	
 	function init()
 	{
-		bindEventForButton();
 		initData();
 	}
 	
 	module.init = init;
-	module.passed = passed;
+	module.showDetail = showDetail;
 	module.deleteUser = deleteUser;
 	
 	return module;
 	
-})($, window.AuditUserModule || {});
+})($, window.ManagerUserModule || {});

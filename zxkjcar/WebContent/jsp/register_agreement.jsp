@@ -66,7 +66,7 @@ response.setDateHeader("Expires", -10);
 	<p>7.初步拟定<span class="red">每周四中午12:00</span>开放预约窗口。</p>
 	<p>8.本产品如发现用户有任何违规操作行为，可删除其账号并不再提供使用权限</p>
 	<div style="font-size: .8em;width: 125px;margin: 0 auto;">
-		<input type="checkbox" checked="checked">我也阅读，并接受</input><br/>
+		<input type="checkbox" checked="checked">我已阅读，并接受</input><br/>
 		<a href="register_index.jsp" class="btn">去注册</a>
 	</div>
 </div>

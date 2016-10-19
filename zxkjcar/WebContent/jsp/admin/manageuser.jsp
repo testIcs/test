@@ -8,7 +8,7 @@ response.setHeader("Cache-Control","no-cache");
 response.setDateHeader("Expires", -10);
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>审核用户</title>
+<title>用户管理</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta charset="utf-8">
@@ -33,11 +33,8 @@ response.setDateHeader("Expires", -10);
 </style>
 </head>
 <body>
-<div class="top">注册人员审核</div>
+<div class="top">人员管理</div>
 <div class="container-fluid">
-  <button id="reviewUser" class="btn btn-primary">注册审核</button>
-  <button id="manageUser" class="btn btn-primary">人员管理</button>
-  <button id="addUser" class="btn btn-primary">增加用户</button>
   <table class="table">
     <thead>
         <tr>
@@ -53,10 +50,11 @@ response.setDateHeader("Expires", -10);
 </div>
 </body>
 <%@ include file="../include/footer.jsp" %>
-<script type="text/javascript" src="../../script/manageuser.js"></script>
+<script type="text/javascript" src="${baseUrl}/script/admin/manageuser.js"></script>
 <script type="text/javascript">
+	var baseUrl= "${baseUrl}";
 	$(function(){
-		AuditUserModule.init();
+		ManagerUserModule.init();
 	})
 </script>
 </html>

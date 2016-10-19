@@ -6,8 +6,14 @@ window.AdminHomeModule = (function($, module)
 {
 	function bindEvtForBtn(baseUrl)
 	{
-		$("#userManager").on("click", function(){
+		$("#registerAudit").on("click", function(){
 			window.location.href=baseUrl+'/jsp/admin/audituser.jsp';
+		});
+		$("#userManager").on("click", function(){
+			window.location.href=baseUrl+'/jsp/admin/manageuser.jsp';
+		});
+		$("#addUser").on("click", function(){
+			window.location.href=baseUrl+'/jsp/admin/adduser.jsp';
 		});
 		$("#releaseNotice").on("click", function(){
 			window.location.href=baseUrl+'/admin/notice.do';

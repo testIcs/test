@@ -40,6 +40,13 @@ public interface UserMapper
     List<User> queryBeAuditedUser();
 
     /**
+     * 查询已审核的人员
+     * 
+     * @return
+     */
+    List<User> queryAuditedUser();
+
+    /**
      * 删除用户
      * 
      * @param id
@@ -54,4 +61,12 @@ public interface UserMapper
      * @throws BusinessException
      */
     Integer phoneExist(String phone);
+
+    /**
+     * 根据用户id查询用户
+     * 
+     * @param userId
+     * @return
+     */
+    User queryUserById(Integer userId);
 }

@@ -105,6 +105,18 @@ public class AdminController
     }
 
     /**
+     * 查询审核通过的用户
+     * 
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/queryAuditedUser.do", method = RequestMethod.POST)
+    public Object queryAuditedUser()
+    {
+        return userService.queryAuditedUser();
+    }
+
+    /**
      * 审核用户
      * 
      * @return
@@ -163,4 +175,21 @@ public class AdminController
             return "1";
         }
     }
+
+    /**
+     * 展示用户详细信息
+     * 
+     * @return
+     */
+
+    @RequestMapping(value = "/showUserInfo.do", method = RequestMethod.GET)
+    public ModelAndView showUserInfo(Integer userId)
+    {
+        ModelAndView mv = new ModelAndView();
+        User user = userService.queryUserById(userId);
+        mv.getModelMap().put("user", user);
+        mv.setViewName("admin/user_detail");
+        return mv;
+    }
+
 }

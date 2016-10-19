@@ -36,7 +36,7 @@ public class UserServiceImpl implements UserService
      */
     public Map<String, Object> login(User user)
     {
-    	Map<String, Object> returnMap = new HashMap<String, Object>();
+        Map<String, Object> returnMap = new HashMap<String, Object>();
         User u = userMapper.login(user.getPhoneNo());
         Integer check = Constants.STATUS_OK;
         if (u == null)
@@ -113,6 +113,12 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    public List<User> queryAuditedUser()
+    {
+        return userMapper.queryAuditedUser();
+    }
+
+    @Override
     public void deleteUser(Integer id)
     {
         userMapper.deleteUser(id);
@@ -128,6 +134,12 @@ public class UserServiceImpl implements UserService
             return true;
         }
         return false;
+    }
+
+    @Override
+    public User queryUserById(Integer userId)
+    {
+        return userMapper.queryUserById(userId);
     }
 
 }

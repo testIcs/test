@@ -52,6 +52,13 @@ public interface UserService
     List<User> queryBeAuditedUser();
 
     /**
+     * 查询已审核的人员
+     * 
+     * @return
+     */
+    List<User> queryAuditedUser();
+
+    /**
      * 删除用户
      * 
      * @param id
@@ -66,4 +73,12 @@ public interface UserService
      * @throws BusinessException
      */
     Boolean phoneExist(String phone);
+
+    /**
+     * 根据用户id查询用户
+     * 
+     * @param userId
+     * @return
+     */
+    User queryUserById(Integer userId);
 }

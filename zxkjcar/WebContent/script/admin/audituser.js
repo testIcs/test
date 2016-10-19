@@ -6,7 +6,7 @@
     {
 		
 		$.ajax({    
-			url:'/zxkjcar/admin/queryBeAuditedUser.do',       
+			url:baseUrl+'/admin/queryBeAuditedUser.do',       
 			type:'post',    
 			cache:false,  			
 			dataType:'json', 
@@ -55,7 +55,7 @@
 	//审核通过
 	function passed(id){
 		$.ajax( {    
-			url:'/zxkjcar/admin/auditUser.do',// 跳转到 action        
+			url:baseUrl+'/admin/auditUser.do',// 跳转到 action        
 			type:'post',    
 			cache:false,  			
 			dataType:'json', 
@@ -83,7 +83,7 @@
 				return;
 			}
 			$.ajax( {    
-				url:'/zxkjcar/admin/deleteUser.do',// 跳转到 action        
+				url:baseUrl+'/admin/deleteUser.do',// 跳转到 action        
 				type:'post',    
 				cache:false,  			
 				dataType:'json', 
@@ -106,19 +106,9 @@
 		})
 	}
 	
-	/**
-	 * 为按钮绑定事件
-	 */
-	function bindEventForButton()
-	{
-		$("#addUser").on("click", function(){
-			window.location.href='adduser.jsp';
-		});
-	}
-	
+
 	function init()
 	{
-		bindEventForButton();
 		initData();
 	}
 	

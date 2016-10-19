@@ -66,6 +66,17 @@
 		where state=0
 	</select>
 	
+	<!-- 查询已审核的人员 -->
+	<select id="queryAuditedUser" resultType="user">
+		select 
+			id as userId ,
+			user_name userName,
+			phone_no phoneNo,
+			id_number idNumber
+		from tbl_user_info
+		where state=1 and role=0
+	</select>
+	
 	<delete id="deleteUser" parameterType="Integer">
 		delete from tbl_user_info where id = #{id}
 	</delete>
@@ -74,4 +85,17 @@
 	<select id="phoneExist" parameterType="String" resultType="Integer" >
 		select count(id) from tbl_user_info where phone_no=#{phoneNo}
 	</select>
+	
+	<!-- 根据用户id查找用户 -->
+	<select id="queryUserById" parameterType="Integer" resultType="user">
+		select 
+			id as userId ,
+			user_name as userName,
+			phone_no as phoneNo,
+			id_number as idNumber,
+			descrip as descrip
+		from tbl_user_info
+		where id=#{userId}
+	</select>
+	
 </mapper>
