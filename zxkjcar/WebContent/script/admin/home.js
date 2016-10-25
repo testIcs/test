@@ -18,6 +18,9 @@ window.AdminHomeModule = (function($, module)
 		$("#releaseNotice").on("click", function(){
 			window.location.href=baseUrl+'/admin/notice.do';
 		});
+		$("#queryPeopleApp").on("click", function(){
+			window.location.href='../jsp/appoint_people.jsp';
+		});
 
 	}
 	

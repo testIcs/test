@@ -27,6 +27,7 @@ response.setDateHeader("Expires", -10);
 	<ul class="linkblock">
     	<li id="registerAudit" name="appointment" class="d">注册审核</li>
     	<li id="userManager" name="loginphone" class="a">人员管理</li>
+    	<li id="queryPeopleApp" name="queryPeopleApp" class="a">预约信息</li>
     	<li id="addUser" name="bookinghall" class="c">新增用户</li>
     	<li id="releaseNotice" name="register_index" class="b">发布公告</li>
     </ul>

@@ -58,5 +58,10 @@ public class User implements Serializable
      * 用户角色 -1管理员 0 普通用户
      */
     private Integer role;
+    
+    /**
+     * 预约数量，预约大厅查询和后台查询预约人和预约数量时用
+     */
+    private Integer appNum;
 
 }

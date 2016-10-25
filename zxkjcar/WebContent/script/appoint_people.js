@@ -17,7 +17,7 @@ window.AppointPeople = (function($,module)
 			        _userNameArr = [];
 			    $.each(_userNames, function(i, user)
 			    {
-			    	_userNameArr[_userNameArr.length] = user.userName;
+			    	_userNameArr[_userNameArr.length] = user.userName+'('+user.appNum+')';
 			    });
 			    _htmStr += '<tr><td>'+_timeSlot+'</td><td colspan="2">'+_userNameArr.join(', ')+'</td></tr>';
 				
