@@ -47,6 +47,7 @@
 	<select id="findUsersBySlot" parameterType="Map" resultType="User">
 		SELECT
 			app_user_name AS userName,
+			app_affair AS appNum,
 			app_phone_no AS phoneNo
 		FROM
 			tbl_appointment
