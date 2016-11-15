@@ -98,8 +98,8 @@ window.Appointment = (function($, module)
 		{
 			return jAlert("只能预约两天天以后的时间请确认!");
 		}
-		if((new Date().getDay()) == 4){
-			return jAlert("请在每周的周四进行预约!");
+		if(!(new Date().getDay() == 3 && new Date().getHours()>=12 && new Date().getHours()<17)){
+			return jAlert("请在每周三的12:00-17:00进行预约!");
 		}
 		//查询选中是时间段可申请事务的数量
 		$.ajax({

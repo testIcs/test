@@ -45,23 +45,23 @@ response.setDateHeader("Expires", -10);
 				            <td>预约数量</td>
 				          </tr>
 				          <tr>
-				            <td>9:00-9:30</td>
+				            <td>9:30-10:00</td>
 				            <td id="td_1_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>9:30-10:00</td>
+				            <td>10:00-10:30</td>
 				            <td id="td_2_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>10:00-10:30</td>
+				            <td>10:30-11:00</td>
 				            <td id="td_3_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>10:30-11:00</td>
+				            <td>11:00-11:30</td>
 				            <td id="td_4_value">0</td>
 				          </tr>
 				          <tr>
-				            <td>11:00-11:30</td>
+				            <td>11:30-12:00</td>
 				            <td id="td_5_value">0</td>
 				          </tr>
 				          <tr>

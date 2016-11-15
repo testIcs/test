@@ -58,28 +58,28 @@ response.setDateHeader("Expires", -10);
 				            <td>操作</td>
 				          </tr>
 				          <tr>
-				            <td>9:00-9:30</td>
-				            <td id="td_1_img"><img src="../css/images/green.png" width="18" height="19" /></td>
+				            <td>9:30-10:00</td>
+				            <td><img id="td_1_img" src="../css/images/green.png" width="18" height="19" /></td>
 				            <td id="td_1_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="1">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>9:30-10:00</td>
+				            <td>10:00-10:30</td>
 				            <td><img id="td_2_img" src="../css/images/green.png" width="18" height="19" /></td>
 				            <td id="td_2_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="2">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>10:00-10:30</td>
+				            <td>10:30-11:00</td>
 				            <td><img id="td_3_img" src="../css/images/green.png" width="18" height="19" /></td>
 				            <td id="td_3_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="3">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>10:30-11:00</td>
+				            <td>11:00-11:30</td>
 				            <td><img id="td_4_img" src="../css/images/green.png" width="18" height="19" /></td>
 				            <td id="td_4_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="4">可申请</a></td>
 				          </tr>
 				          <tr>
-				            <td>11:00-11:30</td>
-				            <td><img id="td_5_img" src="../css/images/green.png" width="18" height="19" /></td>
+				            <td>11:30-12:00</td>
+				            <td id="td_5_img"><img src="../css/images/green.png" width="18" height="19" /></td>
 				            <td id="td_5_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="5">可申请</a></td>
 				          </tr>
 				          <tr>
@@ -105,7 +105,7 @@ response.setDateHeader("Expires", -10);
 				           <tr>
 				            <td>16:30-17:00</td>
 				            <td><img id="td_10_img" src="../css/images/green.png" alt="" width="18" height="19" /></td>
-				            <td id="td_10_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="9">可申请</a></td>
+				            <td id="td_10_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="10">可申请</a></td>
 				          </tr>
 				        </table>
 				    </div>
