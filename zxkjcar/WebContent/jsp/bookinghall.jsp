@@ -8,7 +8,7 @@ response.setHeader("Cache-Control","no-cache");
 response.setDateHeader("Expires", -10);
 %>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>预约</title>
+<title>预约大厅</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta charset="utf-8">
@@ -79,7 +79,7 @@ response.setDateHeader("Expires", -10);
 				          </tr>
 				          <tr>
 				            <td>11:30-12:00</td>
-				            <td id="td_5_img"><img src="../css/images/green.png" width="18" height="19" /></td>
+				            <td><img  id="td_5_img" src="../css/images/green.png" width="18" height="19" /></td>
 				            <td id="td_5_value"><a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="5">可申请</a></td>
 				          </tr>
 				          <tr>
