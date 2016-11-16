@@ -97,7 +97,7 @@ public class AppointController
                     if (null == checkNum)
                         checkNum = 0;
                     // 每个时间段只能预约60个，超过不能预约
-                    if ((60 - checkNum) > appointment.getAppTimeSlotValue())
+                    if ((60 - checkNum) > appointment.getAppAffair())
                     {
 
                         appointment.setAppDate(appDate);
