@@ -47,24 +47,19 @@ window.BookingHall = (function($,module)
 			{
 				if (data.bookingHallList && data.bookingHallList.length!=0){
 					$.each(data.bookingHallList, function(index, key) {
-						debugger;
 						var affairs = key["affairs"];
 						var timeslotid = key["timeslotid"];
-							if(45 < parseInt(affairs)&& parseInt(affairs) < 50){
-								$("#td_"+parseInt(timeslotid)+"_img img").removeAttr("src");
-								$("#td_"+parseInt(timeslotid)+"_img img").attr("src","../css/images/yellow.png");
+							if(45 < parseInt(affairs) && parseInt(affairs) <= 50){
+								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/yellow.png");
 								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
 							}
-							else if(50 < parseInt(affairs) && parseInt(affairs) <58){
-								$("#td_"+parseInt(timeslotid)+"_img img").removeAttr("src");
-								$("#td_"+parseInt(timeslotid)+"_img img").attr("src","../css/images/red.png");
+							else if(50 < parseInt(affairs)&& parseInt(affairs)<=58){
+								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/red.png");
 								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
 							}else if(parseInt(affairs) > 58){
-								$("#td_"+parseInt(timeslotid)+"_img").removeAttr("src");
 								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/grey.png");
 								$("#td_"+parseInt(timeslotid)+"_value").html("不可申请");
-							}else if (parseInt(affairs) < 45){
-								$("#td_"+parseInt(timeslotid)+"_img").removeAttr("src");
+							}else if (parseInt(affairs) <= 45){
 								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/green.png");
 								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
 							}
