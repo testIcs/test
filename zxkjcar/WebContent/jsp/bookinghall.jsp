@@ -46,7 +46,7 @@ response.setDateHeader("Expires", -10);
 				    <div class="table">
 				    	<ul id="main-menus" class="days">
 				        	<li id="MENU_1" class="day-block sel"><span id="day_1">周一</span><br /><span id="date_1">2016年8月1日</span></li>
-				        	<li id="MENU_2" class="day-block"><span id="day_2">周二</span><br /><span id="date_2">2016年8月2日</span></li>
+				        	<!-- <li id="MENU_2" class="day-block"><span id="day_2">周二</span><br /><span id="date_2">2016年8月2日</span></li> -->
 				        	<li id="MENU_3" class="day-block"><span id="day_3">周三</span><br /><span id="date_3">2016年8月3日</span></li>
 				        	<li id="MENU_4" class="day-block"><span id="day_4">周四</span><br /><span id="date_4">2016年8月4日</span></li>
 				        	<li id="MENU_5" class="day-block"><span id="day_5">周五</span><br /><span id="date_5">2016年8月5日</span></li>
