@@ -1,7 +1,9 @@
 package com.zxkj.controller;
 
 import java.io.IOException;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -12,6 +14,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +32,7 @@ import com.zxkj.model.Appointment;
 import com.zxkj.model.User;
 import com.zxkj.service.IAppoint;
 import com.zxkj.service.NoticeService;
+import com.zxkj.util.DateUtil;
 
 @Scope("prototype")
 @Controller
@@ -126,14 +130,21 @@ public class AppointController
      * 
      * @return
      * @throws IOException
+     * @throws ParseException
      */
     @RequestMapping(value = "/listBookingHall.do", method = RequestMethod.POST)
     public @ResponseBody Object listBookingHall(HttpServletRequest request, HttpServletResponse response)
-            throws IOException
+            throws IOException, ParseException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
-        Map<String, String> paramsMap = new HashMap<String, String>();
         String dateStr = request.getParameter("dateStr");
+        int week = DateUtil.dayForWeek(dateStr);
+        if (week == Constants.WEEK_WEDNESDAY)
+        {
+            returnMap.put("forbid", "true");
+            return returnMap;
+        }
+        Map<String, String> paramsMap = new HashMap<String, String>();
         paramsMap.put("datestr", dateStr + " 00:00:00");
         List<Map<String, Object>> returnList = appointService.listBookingHall(paramsMap);
         returnMap.put("bookingHallList", returnList);
@@ -226,5 +237,37 @@ public class AppointController
             num = 0;
         returnMap.put("numCount", num);
         return returnMap;
+    }
+
+    /**
+     * 获取可预约的日期
+     * 
+     * @return
+     */
+    @RequestMapping(value = "/getAppointmentDate.do", method = RequestMethod.POST)
+    public @ResponseBody Object getAppointmentDate()
+    {
+        List<String> dateList = new ArrayList<String>();
+
+        // 两天后开始预约
+        int afterDay = Constants.AFTER_APPOINTMENT_DAY;
+        while (dateList.size() < 5)
+        {
+            Date date = DateUtil.getDateAfter(new Date(), afterDay);
+            Calendar c = Calendar.getInstance();
+            c.setTime(date);
+
+            // 排除周六周日
+            if (c.get(Calendar.DAY_OF_WEEK) != Constants.WEEK_SATURDAY
+                    && c.get(Calendar.DAY_OF_WEEK) != Constants.WEEK_SUNDAY)
+            {
+
+                dateList.add(DateUtil.getWeekByDateStr(c.get(Calendar.DAY_OF_WEEK)) + "_"
+                        + DateFormatUtils.format(date, "yyyy-MM-dd"));
+            }
+
+            afterDay++;
+        }
+        return dateList;
     }
 }

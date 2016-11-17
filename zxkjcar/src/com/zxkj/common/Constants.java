@@ -64,4 +64,24 @@ public class Constants
      */
     public static final int USER_STATE_AUDITED = 1;
 
+    /**
+     * 距当前多少天可预约
+     */
+    public static final int AFTER_APPOINTMENT_DAY = 2;
+
+    /**
+     * 周三
+     */
+    public static final int WEEK_WEDNESDAY = 4;
+
+    /**
+     * 周六
+     */
+    public static final int WEEK_SATURDAY = 7;
+
+    /**
+     * 周日
+     */
+    public static final int WEEK_SUNDAY = 1;
+
 }
