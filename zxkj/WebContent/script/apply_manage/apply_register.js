@@ -6,6 +6,11 @@
 	 */
 	function resetIdCardInfo(data)
 	{
+		
+		$(".img-head").css({
+			"background":"url("+window.location.protocol+"//"+window.location.host+"/zxkj/id_card_images/zp.bmp)"
+		});
+		
 		if(!data)
 		{
 			return alert("信息读取失败,请重新读取!");

@@ -6,6 +6,7 @@ import com.zkteco.biometric.FingerprintCaptureListener;
 import com.zkteco.biometric.FingerprintSensor;
 import com.zkteco.biometric.FingerprintSensorErrorCode;
 
+
 public class ZWUtils 
 {
 	//the width of fingerprint image
@@ -51,12 +52,12 @@ public class ZWUtils
 			}
 		}
 		
-		public static final void makeZWImg(final String filePath) 
+		public static final Integer makeZWImg(final String folderPath) 
 				throws IOException
 		{
 			if (fingerprintSensor != null)
 			{
-				return;
+				return 0;
 			}
 			
 			cbRegTemp = 0;
@@ -72,7 +73,7 @@ public class ZWUtils
 			if (ret < 0)
 			{
 				FreeSensor();
-				return;
+				return 0;
 			}
 			
 			ret = fingerprintSensor.openDevice(0);
@@ -80,7 +81,7 @@ public class ZWUtils
 			if (ret != FingerprintSensorErrorCode.ERROR_SUCCESS)
 			{
 				FreeSensor();
-				return;
+				return 0;
 			}
 			
 			fingerprintSensor.setFakeFunOn(1);
@@ -91,93 +92,31 @@ public class ZWUtils
 			final FingerprintCaptureListener listener = new FingerprintCaptureListener() 
 			{
 				@Override
-				public void captureError(int arg0) {
+				public void captureError(int arg0) 
+				{
 				}
 				
 				@Override
-				public void captureOK(byte[] arg0) {
-					try {
-						writeBitmap(arg0, width, height, filePath);
-					} catch (IOException e) {
+				public void captureOK(byte[] arg0) 
+				{
+					try 
+					{
+						// 生成指纹图片
+						writeBitmap(arg0, width, height, folderPath + "/fingerprint.bmp");
+						
+						// 销毁当前线程
+						FreeSensor();
+					} 
+					catch (IOException e) 
+					{
 						e.printStackTrace();
 					}
 				}
 				
 				@Override
-				public void extractOK(byte[] arg0) {
-					if (fingerprintSensor.getFakeFunOn() == 1)
-					{
-						int fakeStatus = fingerprintSensor.getFakeStatus();
-						if ((fakeStatus & 31) != 31)
-						{
-							return;
-						}
-					}
-					if(bRegister)
-					{
-						int[] fid = new int[1];
-						int[] score = new int [1];
-		                int ret = fingerprintSensor.IdentifyFP(arg0, fid, score);
-		                if (ret == 0)
-		                {
-		                    bRegister = false;
-		                    enroll_idx = 0;
-		                    return;
-		                }
-		                if (enroll_idx > 0 && fingerprintSensor.MatchFP(regtemparray[enroll_idx-1], arg0) <= 0)
-		                {
-		                    return;
-		                }
-		                System.arraycopy(arg0, 0, regtemparray[enroll_idx], 0, 2048);
-		                enroll_idx++;
-		                if (enroll_idx == 3) {
-		                	int[] _retLen = new int[1];
-		                    _retLen[0] = 2048;
-		                    byte[] regTemp = new byte[_retLen[0]];
-		                    
-		                    if (0 == (ret = fingerprintSensor.GenRegFPTemplate(regtemparray[0], regtemparray[1], regtemparray[2], regTemp, _retLen)) &&
-		                    		0 == (ret = fingerprintSensor.DBAdd(iFid, regTemp))) {
-		                    	iFid++;
-		                    	cbRegTemp = _retLen[0];
-		                        System.arraycopy(regTemp, 0, lastRegTemp, 0, cbRegTemp);
-		                    } else {
-		                    }
-		                    bRegister = false;
-		                } else {
-		                }
-					}
-					else
-					{
-						if (bIdentify)
-						{
-							int[] fid = new int[1];
-							int[] score = new int [1];
-							int ret = fingerprintSensor.IdentifyFP(arg0, fid, score);
-		                    if (ret == 0)
-		                    {
-		                    }
-		                    else
-		                    {
-		                    }
-		                        
-						}
-						else
-						{
-							if(cbRegTemp <= 0)
-							{
-							}
-							else
-							{
-								int ret = fingerprintSensor.MatchFP(lastRegTemp, arg0);
-								if(ret > 0)
-								{
-								}
-								else
-								{
-								}
-							}
-						}
-					}
+				public void extractOK(byte[] arg0) 
+				{
+					
 				}
 			};
 			
@@ -188,8 +127,10 @@ public class ZWUtils
 	        if (!bRet)
 	        {
 	     	    FreeSensor();
-				return;
+				return 0;
 	        }
+	        
+	        return 1;
 		}
 		
 		public static byte[] changeByte(int data) 
@@ -252,8 +193,11 @@ public class ZWUtils
 				dos.writeByte(0);
 			}
 
-			for(int i=0;i<nHeight;i++)
-				dos.write(imageBuf, (nHeight-1-i)*nWidth, nWidth);
+			for(int i = 0; i < nHeight; i++)
+			{
+				dos.write(imageBuf, (nHeight-1-i)*nWidth, nWidth);			
+			}
+				
 			dos.flush();
 			dos.close();
 			fos.close();

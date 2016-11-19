@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>欢迎进入支付系统</title>
+<title>欢迎进入车贷系统</title>
 <link rel="stylesheet" type="text/css" href="./css/indexstyle.css" />
 <link rel="stylesheet" type="text/css" href="./css/jquery.alerts.css">
 </head>
@@ -16,13 +16,13 @@
 					<i class="icon-user"></i><input id="userName" name="user.userName"
 						type="text" class="l-input" onpaste="return false"
 						oncontextmenu="return false" oncopy="return false"
-						oncut="return false" />
+						oncut="return false" value="zxkj" />
 				</div>
 				<div class="l-block">
 					<i class="icon-password"></i><input id="password"
 						name="user.password" type="password" class="l-input"
 						onpaste="return false" oncontextmenu="return false"
-						oncopy="return false" oncut="return false" />
+						oncopy="return false" oncut="return false"  value="zxkj"  />
 				</div>
 				<div class="l-button">
 					<input id="tester_login_submit" name="tester_login_submit"
