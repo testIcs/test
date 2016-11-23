@@ -15,9 +15,9 @@
     </div>
     <div class="content">
     	<div class="face-title">贷款人指纹采集</div>
-        <div class="summary">请贷款人将拇指放入指纹仪进行指纹采集</div>
+        <div class="summary" before="请贷款人将拇指放入指纹仪进行指纹采集" after="指纹采集成功!">请贷款人将拇指放入指纹仪进行指纹采集</div>
 		<div class="zhiwen"></div>
-        <div class="facebutton"><a id="zw_lz" href="javascript:;"><input name="" type="button" value="确  认" /></a></div>
+        <div class="facebutton"></div>
     </div>  
 </div>
 </body>
