@@ -64,7 +64,7 @@ function loanLimitResul() {
         return false;
 	}*/
 	var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
-	if (""!=phoneNo&&reg.test(phoneNo)) {
+	if (""!=phoneNo&&!reg.test(phoneNo)) {
 		$('#errormsg').html("<font color='red'><b>请输入正确的手机号</b></font>");
         return false;
 	}
