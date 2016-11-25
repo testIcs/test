@@ -1,20 +1,20 @@
 package com.zxkj.controller;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.commons.codec.binary.Base64;
-import org.apache.commons.io.FileUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.zxkj.util.HttpClientUtil;
+
+import net.sf.json.JSONObject;
+
 /**
- * 文件上传控制器
+ *
  * @author liulong
  *
  */
@@ -31,25 +31,16 @@ public class FileUploadController {
 	 */
 	@ResponseBody
 	@RequestMapping(value = "/uploadImage.do", method = RequestMethod.POST)
-	public Map<String, String> uploadImage(String imageData){
-		Base64 base64 = new Base64();
-		//base64 decode image
-		byte[] b = base64.decode(imageData.substring("data:image/png;base64,".length()).getBytes());
-		String fileName = String.valueOf(System.currentTimeMillis());
-		//image path
-		String filePath = "d:" + File.separator + fileName + ".png";
-		//write image
-		File file = new File(filePath);
+	public Map<String, Object> uploadImage(String imageData){
+		imageData = imageData.substring("data:image/png;base64,".length());
+		HttpClientUtil client = HttpClientUtil.getInstance();
+		client.parameter("imageData", imageData);
+		String result = client.call("http://192.168.3.43:8080/zyxjServer/file/toUpLoadFile.do");
 		
-		Map<String, String> json = new HashMap<String, String>(); 
-		try {
-			FileUtils.writeByteArrayToFile(file, b);
-			
-			json.put("result", "0");
-		} catch (IOException e) {
-			json.put("result", "1");
-		}
-		
-		return json;
+		JSONObject json = JSONObject.fromObject(result);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("result", json.optString("result"));
+		map.put("filePath", json.optString("filePath"));
+		return map;
 	}
 }
