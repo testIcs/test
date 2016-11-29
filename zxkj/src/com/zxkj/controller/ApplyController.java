@@ -84,6 +84,12 @@ public class ApplyController
 	{
 		return "apply_manage/warrant";
 	}
+	
+	@RequestMapping(value = "/toWarrantPageForLessInfo.do", method = RequestMethod.GET)
+	public String toWarrantPageLess(ModelMap modelMap)
+	{//add by wlh
+		return "apply_manage/warrantLess";
+	}
 
 	@RequestMapping(value = "/toFrameNum.do", method = RequestMethod.GET)
 	public String toFrameNum(ModelMap modelMap)
