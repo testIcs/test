@@ -22,6 +22,7 @@ public class JnaUtil
 		String idCardInfoOld = null;
 		try {
 			idCardInfoOld = new String(pointer.getString(0).getBytes("GB2312"), "GBK");
+			System.out.println(idCardInfoOld+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
