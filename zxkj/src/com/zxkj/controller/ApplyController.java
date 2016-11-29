@@ -23,6 +23,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.zxkj.model.User;
 import com.zxkj.service.IUser;
 import com.zxkj.service.IUserLoan;
+import com.zxkj.util.idcard.Id100ReadUtil;
 import com.zxkj.util.idcard.JnaUtil;
 import com.zxkj.vo.UserLoanVO;
 
@@ -100,11 +101,14 @@ public class ApplyController
 	@RequestMapping(value = "/readIdCard.do", method = RequestMethod.GET)
 	public void readIdCard(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+		System.out.println("library path: " + System.getProperty("java.library.path"));
 		String pjtPath = request.getSession().getServletContext().getRealPath("");
 		pjtPath += "\\id_card_images";
-		String idCardInfo = JnaUtil.readIdCardInfo(pjtPath);
+		System.out.println("pjtPath:"+pjtPath);
+		System.load("C:\\Windows\\System32\\JdjDll.dll");
+		String imgName = JnaUtil.readIdCardInfo(pjtPath);
 		response.setHeader("Content-type", "text/html;charset=GBK");  
 		response.setCharacterEncoding("GBK");
-		response.getWriter().write(idCardInfo); 
+		response.getWriter().write(imgName); 
 	}	
 }
