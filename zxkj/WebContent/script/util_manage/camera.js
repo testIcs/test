@@ -114,10 +114,8 @@
 	               data:{"imageData": base64Data},
 	               success: function(data) {  
 					if (data.result == '0') {                
-						alert("提交成功");                   
-					}else {              
-					    alert("提交失败");
-					    if(itemInfo=="身份证"){//modify by wlh
+						alert("提交成功");
+						if(itemInfo=="身份证"){//modify by wlh
 					    	var bt=window.parent.document.getElementById("btIDCard");
 						    bt.value="已经上传";
 						    bt.disabled=true;
@@ -166,6 +164,9 @@
 						    bt.style.background="LimeGreen";
 						    bt.style.color="GhostWhite";
 					    }
+					}else {              
+					    alert("提交失败");
+					    
 					}   
 			                 
 	               },  
