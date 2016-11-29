@@ -67,7 +67,7 @@ public class Constants
     /**
      * 距当前多少天可预约
      */
-    public static final int AFTER_APPOINTMENT_DAY = 2;
+    public static final int AFTER_APPOINTMENT_DAY = 3;
 
     /**
      * 周三
