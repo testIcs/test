@@ -46,7 +46,7 @@ public class JnaUtil
 		idCardInfoNew += "-";
 		String fileName = strNewArrOld[6].substring(24);
 		
-		// ½«Éú³ÉµÄÎÄ¼şÒÆ¶¯µ½ÏîÄ¿Â·¾¶ÏÂ
+		// å°†ç”Ÿæˆçš„æ–‡ä»¶ç§»åŠ¨åˆ°é¡¹ç›®è·¯å¾„ä¸‹
 		FileUtil.moveFile(fileName, photoPath);
 		
 		idCardInfoNew += fileName;
@@ -76,9 +76,9 @@ public class JnaUtil
 	
 	public static String readIdCardInfo(String photoPath)
 	{
+		
 		System.setProperty("jna.encoding", "GB2312");
 		int portNo = findReader();
-		
 		if(USB_NO_MIN <= portNo || portNo <= USB_NO_MAX)
 		{
 			int openPortFlag = openPort(portNo);
@@ -92,13 +92,13 @@ public class JnaUtil
 			}
 			else 
 			{
-				log.info("USB½Ó¿Ú´ò¿ªÊ§°Ü!");
+				log.info("USBæ¥å£æ‰“å¼€å¤±è´¥!");
 				return "";
 			}
 		}
 		else 
 		{
-			log.info("USB½Ó¿Ú²»ºÏ·¨!");
+			log.info("USBæ¥å£ä¸åˆæ³•!");
 			return "";
 		}
 	}
