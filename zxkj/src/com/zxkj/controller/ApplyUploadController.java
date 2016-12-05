@@ -24,11 +24,6 @@ public class ApplyUploadController {
 		return "apply_manage/upload_manage/upload_id_card";
 	}
 	
-	@RequestMapping(value = "/toApplyUploadListLess.do", method = RequestMethod.GET)
-	public String toApplyUploadListLess(ModelMap modelMap){//add by wlh
-		return "apply_manage/upload_manage/upload_id_card_less";
-	}
-	
 	/**
 	 * 上传贷款申请页面
 	 * @param modelMap 返回到页面的信息

@@ -58,13 +58,13 @@ function loanLimitResul() {
         $('#errormsg').html("<font color='red'><b>车价不能超过8个字符</b></font>");
         return false;
     }
-	/*if(""==phoneNo)//wlh 20161125 手机号不再必填
+	if(""==phoneNo)
 	{
 		$('#errormsg').html("<font color='red'><b>请输入手机号</b></font>");
         return false;
-	}*/
+	}
 	var reg = /^0?1[3|4|5|7|8][0-9]\d{8}$/;
-	if (""!=phoneNo&&!reg.test(phoneNo)) {
+	if (!reg.test(phoneNo)) {
 		$('#errormsg').html("<font color='red'><b>请输入正确的手机号</b></font>");
         return false;
 	}
@@ -184,7 +184,6 @@ function getResultA(carprice, operator, shoufu){
 	rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -211,7 +210,6 @@ function getResultC(carprice, operator, shoufu){
 	else{alert("请您选择融资年限")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;periods=periods-deposit/rent;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -240,7 +238,6 @@ function getResultD(carprice, operator, shoufu){
 	else{alert("请您选择融资年限")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -266,7 +263,6 @@ function getResultJA(carprice, operator, shoufu){
 	else{alert("请您输入车价")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -297,7 +293,6 @@ function getResultJC(carprice, operator, shoufu){
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
 	firstpayment=carprice*shoufu+carprice*0.3;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -328,7 +323,6 @@ function getResultJD(carprice, operator, shoufu){
 	else{alert("请您输入车价")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);dailyrent=rent/30;
 	firstpayment=carprice*shoufu+carprice*0.3;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -358,7 +352,6 @@ function getResultRA(carprice, operator, shoufu){
 	else{alert("请您选择融资年限")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -390,7 +383,6 @@ function getResultRC(carprice, operator, shoufu){
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
 	periods=periods-deposit/rent;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -422,7 +414,6 @@ function getResultRD(carprice, operator, shoufu){
 	else{alert("请您选择融资年限")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);
 	dailyrent=rent/30;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
 }
@@ -456,11 +447,6 @@ function getResultRE(carprice, baoxian, gouzhishui, operator){
 	else{alert("请您输入车辆、保险及购置税的价格")}rate=rate/1200;
 	var rent=(rate*Math.pow(1+rate,periods)*loan)/(Math.pow(1+rate,periods)-1);dailyrent=rent/30;
 	firstpayment=(loan-470)*0.3;
-	displayResultInfo(firstpayment, deposit, rent, dailyrent, periods);
 	//填写页面数据
 	htmlResultToPage(firstpayment, deposit, rent, dailyrent, periods);
-}
-function displayResultInfo(firstpayment, deposit, rent, dailyrent, periods){//add by wlh 弹出试算结果信息
-	alert("您的测试结果为:首付金额：" + firstpayment + "元，保证金额：" + deposit + "元，每月租金：" + rent
-            + "元，每日租金：" + dailyrent + "元，每时租金：" + periods+ "元");
 }
