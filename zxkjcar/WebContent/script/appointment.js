@@ -91,17 +91,15 @@ window.Appointment = (function($, module)
 		{
 			return jAlert("只能预约两天以后的时间请确认!");
 		}
-//		if(!(new Date().getDay() == 3 && new Date().getHours()>=12 && new Date().getHours()<17)){
-//			return jAlert("请在每周三的12:00-17:00进行预约!");
-//		}
+		if(!(new Date().getDay() == 3 && new Date().getHours()>=12 && new Date().getHours()<17)){
+			return jAlert("请在每周三的12:00-17:00进行预约!");
+		}
 		//查询选中是时间段可申请事务的数量
 		$.ajax({
 			url : "/zxkjcar/appoint/addAppointment.do",
 			type : "post",
 			dataType : "json",
 			data : {
-//				appUserName : appUserName,
-//				appPhoneNo : appPhoneNo,
 				appAffair : appAffair,
 				appDate : appDate,
 				appTimeSlotValue : appTimeSlotValue
@@ -156,9 +154,6 @@ window.Appointment = (function($, module)
 		_userLoginStatus_ = param.status;
 		selectsort = param.selectsort
 				
-		// 邮箱提示
-		// emailPrompt();
-
 		// 为按钮绑定事件
 		bindEventForButton();
 	}
