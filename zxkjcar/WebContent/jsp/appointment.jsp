@@ -49,7 +49,7 @@ response.setDateHeader("Expires", -10);
 			    </div>
 			    <div class="nametag">预约日期</div>
 			    <div class="inputtag">
-			    	<input name="appDate" id="appDate" /><span>*</span>
+			    	<input name="appDate" id="appDate" value="${param.day }"/><span>*</span>
 			    </div>
 			    <div class="nametag">预约时间</div>
 			    <div class="inputtag">
@@ -88,7 +88,8 @@ $(function()
 	
 	Appointment.init(
     {
-    	'status':'${param.status}'
+    	'status':'${param.status}',
+    	'selectsort' : "${param.sort}"//从预约大厅选择的时间段
     });
 });
 </script>

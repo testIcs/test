@@ -27,11 +27,12 @@
 	
 	<!-- 预约大厅数据查询 -->
 	<select id="listBookingHall" parameterType="java.util.HashMap" resultType="map">
-		select d.value timeslotid ,sum(a.app_affair) affairs from tbl_appointment a
-       left join dic_time_slot d on a.app_time_slot=d.value
-       where 
-             app_date = #{datestr}
-       group by app_time_slot
+	select 
+       a.value timeslotid,
+       coalesce(b.affairs,0) affairs 
+	from dic_time_slot a
+	left join 
+		(SELECT app_time_slot,sum(app_affair) affairs from tbl_appointment where app_date = #{datestr} group by app_time_slot)b on b.app_time_slot=a.value
 	</select>
 	
 	<!-- 预约数据明细 -->

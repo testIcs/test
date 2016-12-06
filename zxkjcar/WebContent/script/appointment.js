@@ -1,7 +1,7 @@
 //交付件新增模块化
 window.Appointment = (function($, module) 
 {
-	var _userLoginStatus_;
+	var _userLoginStatus_,selectsort;
 	
 	/**
 	 * 预约时间段列表查询
@@ -15,8 +15,13 @@ window.Appointment = (function($, module)
 			var auxArr = [];
 			//            auxArr[0] = "<option value='-1'>--</option>";
 			$.each(data.bookingHallList, function(index, key) {
-				auxArr[index] = "<option value='" + key["value"] + "'>"
-						+ key["name"] + "</option>";
+				if(key.value==selectsort){
+					auxArr[index] = "<option value='" + key["value"] + "' selected = 'selected'>"
+					+ key["name"] + "</option>";
+				}else{
+					auxArr[index] = "<option value='" + key["value"] + "'>"
+					+ key["name"] + "</option>";
+				}
 			});
 			$('#appTimeSlotValue').html(auxArr.join(''));
 		}
@@ -67,22 +72,10 @@ window.Appointment = (function($, module)
 	 */
 	function appointmentSubmit() 
 	{
-//		var appUserName = $("#appUserName").val();//预约人姓名
-//		var appPhoneNo = $("#appPhoneNo").val();//预约人电话
 		var appAffair = $("#appAffair").val();//预约数量
 		var appDate = $("#appDate").val();//预约日期
 		var appTimeSlotValue = $("#appTimeSlotValue").val();//预约时间段
 		var dateDiffDay = DateDiff(appDate);
-		
-//		if(!appPhoneNo.length)
-//		{
-//			return jAlert("手机号不能为空!");
-//		}
-//		
-//		if(!ValidaeUtil.validatePhoneNo(appPhoneNo))
-//		{
-//			return jAlert("手机号错误!");
-//		}
 		
 		if(!appAffair.length)
 		{
@@ -96,11 +89,11 @@ window.Appointment = (function($, module)
 		
 		if(1 >= parseInt(dateDiffDay))
 		{
-			return jAlert("只能预约两天天以后的时间请确认!");
+			return jAlert("只能预约两天以后的时间请确认!");
 		}
-		if(!(new Date().getDay() == 3 && new Date().getHours()>=12 && new Date().getHours()<17)){
-			return jAlert("请在每周三的12:00-17:00进行预约!");
-		}
+//		if(!(new Date().getDay() == 3 && new Date().getHours()>=12 && new Date().getHours()<17)){
+//			return jAlert("请在每周三的12:00-17:00进行预约!");
+//		}
 		//查询选中是时间段可申请事务的数量
 		$.ajax({
 			url : "/zxkjcar/appoint/addAppointment.do",
@@ -123,15 +116,18 @@ window.Appointment = (function($, module)
 				jAlert("预约失败,请重新提交申请","提示");
 				return;
 			}else if(data.status == 7000){
-				jAlert("请在每周的周四进行预约","提示");
+				jAlert("请在每周的周三12：00-17:00进行预约","提示");
 				return;
 			}else if(data.status == 1000){
 				jAlert("处理预约的时间为每周的一、二、四和五，请预约这几天处理事情","提示");
 				return;
+			}else if(data.status == 9000){
+				jAlert("非工作日不能预约","提示");
+				return;
 			}else{
-				
-				jAlert("预约成功");
-				window.location.href = 'home.jsp';
+				jAlert("预约成功","提示",function(){
+					window.location.href = 'home.jsp';
+				});
 				return;
 			}
 			
@@ -158,6 +154,7 @@ window.Appointment = (function($, module)
 	function init(param) 
 	{
 		_userLoginStatus_ = param.status;
+		selectsort = param.selectsort
 				
 		// 邮箱提示
 		// emailPrompt();

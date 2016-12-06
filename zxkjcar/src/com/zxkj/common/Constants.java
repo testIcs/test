@@ -53,6 +53,11 @@ public class Constants
      */
     public static final int DATA_AUDITING = 8000;
 
+    /**
+     * 休息日
+     */
+    public static final int REST_DAY = 9000;
+
     /************* 用户状态常量 ***************/
     /**
      * 审核中

@@ -28,6 +28,22 @@ window.BookingHall = (function($,module)
 					$.each(data.bookingHallList, function(index, key) {
 						var affairs = key["affairs"];
 						var timeslotid = key["timeslotid"];
+						if(timeslotid==5){
+							if(20 < parseInt(affairs) && parseInt(affairs) <= 25){
+								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/yellow.png");
+								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
+							}
+							else if(25 < parseInt(affairs)&& parseInt(affairs)<30){
+								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/red.png");
+								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
+							}else if(parseInt(affairs) >= 30){
+								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/grey.png");
+								$("#td_"+parseInt(timeslotid)+"_value").html("不可申请");
+							}else if (parseInt(affairs) <= 20){
+								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/green.png");
+								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
+							}
+						}else{
 							if(45 < parseInt(affairs) && parseInt(affairs) <= 50){
 								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/yellow.png");
 								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
@@ -42,7 +58,13 @@ window.BookingHall = (function($,module)
 								$("#td_"+parseInt(timeslotid)+"_img").attr("src","../css/images/green.png");
 								$("#td_"+parseInt(timeslotid)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(index+1)+">可申请</a>");
 							}
+						}
 					});
+				}else{
+					for(var i=0;i<10;i++){
+						$("#td_"+(i+1)+"_img").attr("src","../css/images/green.png");
+						$("#td_"+(i+1)+"_value").html("<a href='javaScript:void(0)' onclick='BookingHall.appointment(this)' id="+(i+1)+">可申请</a>");
+					}
 				}   
 			}
 		});
@@ -149,7 +171,7 @@ window.BookingHall = (function($,module)
 					{
 						if(data.num>0){
 							jAlert("该时间段还剩"+data.num+"可预约","提示",function(){
-								window.location.href="/zxkjcar/jsp/appointment.jsp"
+								window.location.href="/zxkjcar/jsp/appointment.jsp?day="+day+"&sort="+sort
 							})
 						}else{
 							jAlert("该时间段还剩"+data.num+"可预约","提示")

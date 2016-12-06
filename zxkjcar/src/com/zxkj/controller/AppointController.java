@@ -66,22 +66,28 @@ public class AppointController
         Integer status = Constants.DATA_INCORRECT;
         Map<String, Object> returnMap = new HashMap<String, Object>();
         Integer checkNum = 0;
+        Integer total = 60;// 每个时间段默认可预约的总数
         if (null != appointment)
         {
+            // 得到系统当前时间是周几
             Calendar cal = Calendar.getInstance();
             cal.setTime(new Date());
-            int w = cal.get(Calendar.DAY_OF_WEEK) - 1;
+            int w = cal.get(Calendar.DAY_OF_WEEK);
             int h = cal.get(Calendar.HOUR_OF_DAY);// 当前小时数字
 
-            // 得到系统当前时间是周几
+            // 所选时间是周几
             cal.setTime(appDate);
-            int selDate = cal.get(Calendar.DAY_OF_WEEK) - 1;
-
-            if (!(3 == w && h >= 12 && h < 17))
+            int selDate = cal.get(Calendar.DAY_OF_WEEK);
+            // 如果选择了周六周日，提示不能预约
+            if (selDate == Constants.WEEK_SUNDAY || selDate == Constants.WEEK_SATURDAY)
+            {
+                status = Constants.REST_DAY;
+            }
+            else if (!(Constants.WEEK_WEDNESDAY == w && h >= 12 && h < 17))
             {// 每周的周三的12：00-17:00才能进行预约
                 status = Constants.VALIDATE_EXPIRES;
             }
-            else if (selDate == 3)
+            else if (selDate == Constants.WEEK_WEDNESDAY)
             {// 只能预约每周的周一、周二、周四和周五
                 status = Constants.STATUS_ERROR;
             }
@@ -100,8 +106,13 @@ public class AppointController
                             appointment.getAppTimeSlotValue());
                     if (null == checkNum)
                         checkNum = 0;
-                    // 每个时间段只能预约60个，超过不能预约
-                    if ((60 - checkNum) >= appointment.getAppAffair())
+                    // 11：30-12:00为30个，其他为60个，超过不能预约
+                    if (appointment.getAppTimeSlotValue().intValue() == 5)
+                    {
+                        total = 30;
+                    }
+
+                    if ((total - checkNum) >= appointment.getAppAffair())
                     {
 
                         appointment.setAppDate(appDate);
@@ -121,7 +132,7 @@ public class AppointController
             }
         }
         returnMap.put("status", status);
-        returnMap.put("num", (60 - checkNum));
+        returnMap.put("num", (total - checkNum));
         return returnMap;
     }
 
@@ -217,7 +228,14 @@ public class AppointController
         Integer num = appointService.queryAppointment(day, sort);
         if (null == num)
             num = 0;
-        returnMap.put("num", 60 - num);
+        if (sort == 5)
+        {
+            returnMap.put("num", (30 - num < 0 ? 0 : 30 - num));
+        }
+        else
+        {
+            returnMap.put("num", 60 - num);
+        }
         return returnMap;
     }
 
