@@ -38,7 +38,7 @@ public class FileUtil
 	 */
 	public static final boolean makeFolderByPath(final String filePath)
 	{
-		return new File(filePath).mkdirs();
+		return new File(filePath).mkdir();
 	}
 	
 	public static final boolean judgeFileExist(final String folderPath)

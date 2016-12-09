@@ -36,12 +36,11 @@ public class FileUploadController {
 		HttpClientUtil client = HttpClientUtil.getInstance();
 		client.parameter("imageData", imageData);
 		String result = client.call("http://192.168.3.43:8080/zyxjServer/file/toUpLoadFile.do");
+		
+		JSONObject json = JSONObject.fromObject(result);
 		Map<String, Object> map = new HashMap<String, Object>();
-		if(result!=null&&!"".equals(result)){
-			JSONObject json = JSONObject.fromObject(result);
-			map.put("result", json.optString("result"));
-			map.put("filePath", json.optString("filePath"));
-		}
+		map.put("result", json.optString("result"));
+		map.put("filePath", json.optString("filePath"));
 		return map;
 	}
 }

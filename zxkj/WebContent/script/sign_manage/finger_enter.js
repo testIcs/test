@@ -12,12 +12,12 @@
 			var _arr = data.split('--');
 			if(_arr[1])
 			{
-				$('.facebutton').html('<font size="6px;">指纹仪正常可用</font>');
+				$('.facebutton').html('指纹仪正常可用');
 				_folderPath_ = _arr[0];
 			}
 			else 
 			{
-				$('.facebutton').html('<font size="6px;">指纹仪出错,无法录入指纹</font>');
+				$('.facebutton').html('<font>指纹仪出错,无法录入指纹</font>');
 			}
 		}
 		else 

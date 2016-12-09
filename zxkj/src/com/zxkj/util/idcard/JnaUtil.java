@@ -22,6 +22,8 @@ public class JnaUtil
 		String idCardInfoOld = null;
 		try {
 			idCardInfoOld = new String(pointer.getString(0).getBytes("GB2312"), "GBK");
+			System.out.println(idCardInfoOld+"!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			log.info("idCardInfoOld: " + idCardInfoOld);
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
@@ -46,7 +48,7 @@ public class JnaUtil
 		idCardInfoNew += "-";
 		String fileName = strNewArrOld[6].substring(24);
 		
-		// å°†ç”Ÿæˆçš„æ–‡ä»¶ç§»åŠ¨åˆ°é¡¹ç›®è·¯å¾„ä¸‹
+		// ½«Éú³ÉµÄÎÄ¼şÒÆ¶¯µ½ÏîÄ¿Â·¾¶ÏÂ
 		FileUtil.moveFile(fileName, photoPath);
 		
 		idCardInfoNew += fileName;
@@ -76,9 +78,9 @@ public class JnaUtil
 	
 	public static String readIdCardInfo(String photoPath)
 	{
-		
 		System.setProperty("jna.encoding", "GB2312");
 		int portNo = findReader();
+		
 		if(USB_NO_MIN <= portNo || portNo <= USB_NO_MAX)
 		{
 			int openPortFlag = openPort(portNo);
@@ -92,13 +94,13 @@ public class JnaUtil
 			}
 			else 
 			{
-				log.info("USBæ¥å£æ‰“å¼€å¤±è´¥!");
+				log.info("USB½Ó¿Ú´ò¿ªÊ§°Ü!");
 				return "";
 			}
 		}
 		else 
 		{
-			log.info("USBæ¥å£ä¸åˆæ³•!");
+			log.info("USB½Ó¿Ú²»ºÏ·¨!");
 			return "";
 		}
 	}

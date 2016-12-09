@@ -93,7 +93,7 @@
                       <tr>
                         <td class="td-left">手机号:</td>
                         <td>
-                        	<input id="phoneNO" placeholder="手机号码(可选)" type="text"/>
+                        	<input id="phoneNO" placeholder="手机号码(必填)" type="text"/>
 							<span style="font-size: 14px;color: #f00;">为方便您查看，我们会将计算结果发送到您手机上</span>
 						</td>
                       </tr>

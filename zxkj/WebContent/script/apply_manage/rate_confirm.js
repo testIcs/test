@@ -48,7 +48,6 @@
 		{
 			return alert("请选择相关项");
 		}
-		var _typeId = parseInt($('#fp_rc').val());
 		
 		$.ajax(
 		{
@@ -61,13 +60,10 @@
 			if(data)
 			{
 				alert("保存成功", "提示");
-				if((1 == _typeId) || (2 == _typeId) || (3 == _typeId)){//modify by wlh
-					location.href='/zxkj/apply/toWarrantPage.do';
-				}else{
-					alert("less");
-					location.href='/zxkj/apply/toWarrantPageForLessInfo.do';
-				}
-			}else{
+				location.href='/zxkj/apply/toWarrantPage.do';
+			}
+			else 
+			{
 				alert("保存失败", "提示");
 			}
 			
