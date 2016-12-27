@@ -78,8 +78,13 @@ public class AppointController
             // 所选时间是周几
             cal.setTime(appDate);
             int selDate = cal.get(Calendar.DAY_OF_WEEK);
+            // 如果是元旦(暂时加上)
+            if (judgeNewYearDay())
+            {
+                status = Constants.NEW_YEAR_DAY;
+            }
             // 如果选择了周六周日，提示不能预约
-            if (selDate == Constants.WEEK_SUNDAY || selDate == Constants.WEEK_SATURDAY)
+            else if (selDate == Constants.WEEK_SUNDAY || selDate == Constants.WEEK_SATURDAY)
             {
                 status = Constants.REST_DAY;
             }
@@ -137,6 +142,26 @@ public class AppointController
     }
 
     /**
+     * 判断元旦
+     * 
+     * @return
+     */
+    private boolean judgeNewYearDay()
+    {
+        // 当前时间
+        Calendar now = Calendar.getInstance();
+        now.setTime(new Date());
+
+        Calendar before = Calendar.getInstance();
+        before.set(2016, 11, 31);
+
+        Calendar after = Calendar.getInstance();
+        after.set(2017, 0, 2);
+
+        return now.compareTo(before) >= 0 && now.compareTo(before) <= 1;
+    }
+
+    /**
      * 预约大厅
      * 
      * @return
@@ -153,6 +178,13 @@ public class AppointController
         if (week == Constants.WEEK_WEDNESDAY)
         {
             returnMap.put("forbid", "true");
+            return returnMap;
+        }
+
+        Date seleteDate = DateUtil.getDate(dateStr, "yyyy-MM-dd");
+        if (seleteDate.compareTo(DateUtil.getDate("2017-01-02", "yyyy-MM-dd")) == 0)
+        {
+            returnMap.put("newYear", "true");
             return returnMap;
         }
         Map<String, String> paramsMap = new HashMap<String, String>();

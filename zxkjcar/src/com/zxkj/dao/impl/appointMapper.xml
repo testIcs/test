@@ -68,10 +68,40 @@
 	
 	<!-- 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0-->
 	<select id="queryUserIsAppHisThisWeek" parameterType="Map" resultType="Integer">
-	
 		select COUNT(1) from tbl_appointment 
 		where 
 		yearweek(DATE_FORMAT(app_date,'%Y-%m-%d'))=yearweek(#{day})
 		and app_phone_no = #{userPhone}
 	</select>
+	
+	<!-- 分页查询数据 -->
+	<select id="pageList" parameterType="Map" resultType="addAppointment">
+		select
+			a.id as id,
+			a.app_user_name as appUserName,
+			a.app_phone_no as appPhoneNo,
+			a.app_affair as appAffair,
+			a.app_date as appDate,
+			a.app_time_slot as appTimeSlotValue,
+			b.name as appTimeSlotName,
+			a.app_appdate as applyTime
+		from tbl_appointment a
+		left join dic_time_slot b on a.app_time_slot=b.value
+		where app_status=1
+		and app_date > now()
+    	order by app_date desc
+		LIMIT #{startRow}, #{pageSize}
+	</select>
+	
+	<select id="queryTotal" resultType="Integer">
+		select
+			count(id)
+		from tbl_appointment 
+		where app_status=1 and app_date > now()
+	</select>
+	
+	<!-- 删除预约 -->
+	<delete id="deleteAppointment" parameterType="Integer" >
+		delete from tbl_appointment where id=#{id}
+	</delete>
 </mapper>

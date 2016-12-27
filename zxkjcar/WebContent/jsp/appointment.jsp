@@ -43,17 +43,17 @@ response.setDateHeader("Expires", -10);
 <!-- 			    <div class="inputtag"> -->
 <!-- 			    	<input id="appPhoneNo" name="appPhoneNo" type="text" placeholder="请输入电话" /><span>*</span> -->
 <!-- 			    </div> -->
-			    <div class="nametag">预约事务数量</div>
+			    <div class="nametag"><span style="color: #F00;margin-right: 10px;">*</span>预约事务数量</div>
 			    <div class="inputtag">
-			    	<input id="appAffair" name="appAffair" type="text" placeholder="请输入数量" /><span>*</span>
+			    	<input id="appAffair" name="appAffair" type="text" placeholder="请输入数量" />
 			    </div>
-			    <div class="nametag">预约日期</div>
+			    <div class="nametag"><span style="color: #F00;margin-right: 10px;">*</span>预约日期</div>
 			    <div class="inputtag">
-			    	<input name="appDate" id="appDate" value="${param.day }"/><span>*</span>
+			    	<input name="appDate" id="appDate" value="${param.day }" disabled="disabled"/>
 			    </div>
-			    <div class="nametag">预约时间</div>
+			    <div class="nametag"><span style="color: #F00;margin-right: 10px;">*</span>预约时间</div>
 			    <div class="inputtag">
-			    	<select name="appTimeSlotValue" id="appTimeSlotValue"><option value="0"></option></select><span>*</span>
+			    	<select name="appTimeSlotValue" id="appTimeSlotValue"><option value="0"></option></select>
 			    </div>
 			    <div class="inputtag">
 			    	<input name="appointmentSubmit" id="appointment_submit" type="text" class="submit" value="提交" 
@@ -84,7 +84,7 @@ response.setDateHeader("Expires", -10);
 <script type="text/javascript">
 $(function()
 {
-	$('#appDate').date();
+	//$('#appDate').date();
 	
 	Appointment.init(
     {

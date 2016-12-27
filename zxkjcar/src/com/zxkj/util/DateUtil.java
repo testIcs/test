@@ -76,4 +76,20 @@ public class DateUtil
         return cal.get(Calendar.DAY_OF_WEEK);
     }
 
+    /**
+     * 获取日期
+     * 
+     * @param date
+     * @param patten
+     * @return
+     * @throws ParseException
+     */
+    public static Date getDate(String date, String patten) throws ParseException
+    {
+        SimpleDateFormat format = new SimpleDateFormat(patten);
+        Date tmpDate = format.parse(date);
+
+        return tmpDate;
+    }
+
 }

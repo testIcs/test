@@ -21,6 +21,9 @@ window.AdminHomeModule = (function($, module)
 		$("#queryPeopleApp").on("click", function(){
 			window.location.href='../jsp/appoint_people.jsp';
 		});
+		$("#appointmentManager").on("click", function(){
+			window.location.href=baseUrl+'/jsp/admin/appointment_manager.jsp';
+		});
 
 	}
 	

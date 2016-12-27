@@ -63,7 +63,7 @@ public interface AppointMapper
      * @return
      */
     Integer queryAppointment(Map<String, Object> map);
-    
+
     /**
      * 查询登录用户在给定的日期内一周是否已经进行过申请，如果进行过申请返回1，否则返回0
      * 
@@ -71,4 +71,25 @@ public interface AppointMapper
      * @return
      */
     Integer queryUserIsAppHisThisWeek(Map<String, Object> map);
+
+    /**
+     * 分页查询数据
+     * 
+     * @return
+     */
+    List<Appointment> pageList(Map<String, Object> map);
+
+    /**
+     * 查询总数
+     * 
+     * @return
+     */
+    Integer queryTotal();
+
+    /**
+     * 删除预约
+     * 
+     * @param id
+     */
+    void deleteAppointment(Integer id);
 }

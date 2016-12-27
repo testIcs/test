@@ -28,7 +28,7 @@ response.setDateHeader("Expires", -10);
 	<ul class="linkblock">
     	<li id="loginphone" name="loginphone" class="a">会员登录</li>
     	<li id="register_index" name="register_index" class="b">会员注册</li>
-    	<li id="appointment" name="appointment" class="c">申请预约</li>
+    	<!--  li id="appointment" name="appointment" class="c">申请预约</li>-->
     	<li id="bookinghall" name="bookinghall" class="d">预约大厅</li>
     </ul>
 </div>

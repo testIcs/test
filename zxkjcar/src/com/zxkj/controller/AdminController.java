@@ -1,5 +1,9 @@
 package com.zxkj.controller;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,10 +15,13 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.zxkj.common.Constants;
+import com.zxkj.model.Appointment;
 import com.zxkj.model.User;
+import com.zxkj.service.IAppoint;
 import com.zxkj.service.NoticeService;
 import com.zxkj.service.UserService;
 import com.zxkj.util.MD5Util;
+import com.zxkj.util.PagerUtil;
 
 /**
  * 后台管理控制器
@@ -43,6 +50,12 @@ public class AdminController
      */
     @Autowired(required = true)
     private NoticeService noticeService;
+
+    /**
+     * 预约Service
+     */
+    @Autowired(required = true)
+    private IAppoint appointService;
 
     /**
      * 跳转到后台管理首页
@@ -192,4 +205,47 @@ public class AdminController
         return mv;
     }
 
+    /**
+     * 查询预约列表
+     * 
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/appointment/pageList.do", method = RequestMethod.POST)
+    public Object appointmentPageList(PagerUtil pu)
+    {
+        Map<String, Object> dataMaps = new HashMap<String, Object>();
+        // 查询数据
+        List<Appointment> appointmentList = appointService.pageList(pu);
+
+        dataMaps.put("dataList", appointmentList);
+        // 查询数据总数
+        Integer total = appointService.queryTotal();
+        pu.setTotalRecords(total);
+        pu.setTotalPage(pu.getTotalPage());
+        dataMaps.put("pager", pu);
+        return dataMaps;
+    }
+
+    /**
+     * 删除用户
+     * 
+     * @param request
+     * @param id
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/appointment/delete.do", method = RequestMethod.POST)
+    public Object deleteAppointment(HttpServletRequest request, Integer id)
+    {
+        try
+        {
+            appointService.deleteAppointment(id);
+            return "0";
+        }
+        catch (Exception e)
+        {
+            return "1";
+        }
+    }
 }

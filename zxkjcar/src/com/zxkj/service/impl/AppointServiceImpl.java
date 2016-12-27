@@ -18,6 +18,7 @@ import com.zxkj.dao.AppointMapper;
 import com.zxkj.dao.DicMapper;
 import com.zxkj.model.Appointment;
 import com.zxkj.service.IAppoint;
+import com.zxkj.util.PagerUtil;
 
 @Scope("prototype")
 @Service("appointService")
@@ -88,12 +89,34 @@ public class AppointServiceImpl implements IAppoint
         return appointMapper.queryAppointment(maps);
     }
 
-	@Override
-	public Integer queryUserIsAppHisThisWeek(String day, String userPhone) {
-		Map<String, Object> maps = new HashMap<String, Object>();
+    @Override
+    public Integer queryUserIsAppHisThisWeek(String day, String userPhone)
+    {
+        Map<String, Object> maps = new HashMap<String, Object>();
         maps.put("day", day);
         maps.put("userPhone", userPhone);
         return appointMapper.queryUserIsAppHisThisWeek(maps);
-	}
+    }
+
+    @Override
+    public List<Appointment> pageList(PagerUtil pager)
+    {
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        map.put("pageSize", pager.getPageSize());
+        return appointMapper.pageList(map);
+    }
+
+    @Override
+    public Integer queryTotal()
+    {
+        return appointMapper.queryTotal();
+    }
+
+    @Override
+    public void deleteAppointment(Integer id)
+    {
+        appointMapper.deleteAppointment(id);
+    }
 
 }

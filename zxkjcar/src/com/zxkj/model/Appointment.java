@@ -54,4 +54,9 @@ public class Appointment implements Serializable
 
     private Integer appStatus;
 
+    /**
+     * 申请时间
+     */
+    private Date applyTime;
+
 }

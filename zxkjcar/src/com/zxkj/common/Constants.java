@@ -58,6 +58,11 @@ public class Constants
      */
     public static final int REST_DAY = 9000;
 
+    /**
+     * 休息日
+     */
+    public static final int NEW_YEAR_DAY = 9001;
+
     /************* 用户状态常量 ***************/
     /**
      * 审核中
