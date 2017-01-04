@@ -78,13 +78,8 @@ public class AppointController
             // 所选时间是周几
             cal.setTime(appDate);
             int selDate = cal.get(Calendar.DAY_OF_WEEK);
-            // 如果是元旦(暂时加上)
-            if (judgeNewYearDay())
-            {
-                status = Constants.NEW_YEAR_DAY;
-            }
             // 如果选择了周六周日，提示不能预约
-            else if (selDate == Constants.WEEK_SUNDAY || selDate == Constants.WEEK_SATURDAY)
+            if (selDate == Constants.WEEK_SUNDAY || selDate == Constants.WEEK_SATURDAY)
             {
                 status = Constants.REST_DAY;
             }
@@ -102,7 +97,8 @@ public class AppointController
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
                 // 查询登录用户在给定的日期内一周是否已经进行过申请
                 User user = (User) request.getSession().getAttribute("user");
-                Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate), user.getPhoneNo());
+                Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate),
+                        user.getPhoneNo());
                 // 查询预约的时间所在的周是否已经有预约，即每周只能预约一次并且不能超过30个
                 if (null != weekNum && weekNum == 0)
                 {
@@ -142,26 +138,6 @@ public class AppointController
     }
 
     /**
-     * 判断元旦
-     * 
-     * @return
-     */
-    private boolean judgeNewYearDay()
-    {
-        // 当前时间
-        Calendar now = Calendar.getInstance();
-        now.setTime(new Date());
-
-        Calendar before = Calendar.getInstance();
-        before.set(2016, 11, 31);
-
-        Calendar after = Calendar.getInstance();
-        after.set(2017, 0, 2);
-
-        return now.compareTo(before) >= 0 && now.compareTo(before) <= 1;
-    }
-
-    /**
      * 预约大厅
      * 
      * @return
@@ -169,8 +145,8 @@ public class AppointController
      * @throws ParseException
      */
     @RequestMapping(value = "/listBookingHall.do", method = RequestMethod.POST)
-    public @ResponseBody Object listBookingHall(HttpServletRequest request, HttpServletResponse response)
-            throws IOException, ParseException
+    public @ResponseBody Object listBookingHall(HttpServletRequest request,
+            HttpServletResponse response) throws IOException, ParseException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         String dateStr = request.getParameter("dateStr");
@@ -178,13 +154,6 @@ public class AppointController
         if (week == Constants.WEEK_WEDNESDAY)
         {
             returnMap.put("forbid", "true");
-            return returnMap;
-        }
-
-        Date seleteDate = DateUtil.getDate(dateStr, "yyyy-MM-dd");
-        if (seleteDate.compareTo(DateUtil.getDate("2017-01-02", "yyyy-MM-dd")) == 0)
-        {
-            returnMap.put("newYear", "true");
             return returnMap;
         }
         Map<String, String> paramsMap = new HashMap<String, String>();
@@ -201,8 +170,8 @@ public class AppointController
      * @throws IOException
      */
     @RequestMapping(value = "/listAppointDetail.do", method = RequestMethod.POST)
-    public @ResponseBody Object listAppointDetail(HttpServletRequest request, HttpServletResponse response)
-            throws IOException
+    public @ResponseBody Object listAppointDetail(HttpServletRequest request,
+            HttpServletResponse response) throws IOException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         Map<String, String> paramsMap = new HashMap<String, String>();
@@ -214,8 +183,8 @@ public class AppointController
     }
 
     @RequestMapping(value = "/findEverySlotPeopleOneDay.do", method = RequestMethod.POST)
-    public @ResponseBody Object findEverySlotPeopleOneDay(HttpServletRequest request, HttpServletResponse response,
-            Date appDate) throws IOException
+    public @ResponseBody Object findEverySlotPeopleOneDay(HttpServletRequest request,
+            HttpServletResponse response, Date appDate) throws IOException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         List<Map<String, Object>> mapList = appointService.findEverySlotPeopleOneDay(appDate);
@@ -278,7 +247,8 @@ public class AppointController
      * @throws IOException
      */
     @RequestMapping(value = "/queryUserIsAppHisThisWeek.do", method = RequestMethod.POST)
-    public @ResponseBody Object queryUserIsAppHisThisWeek(HttpServletRequest request, String day) throws IOException
+    public @ResponseBody Object queryUserIsAppHisThisWeek(HttpServletRequest request, String day)
+            throws IOException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
         User user = (User) request.getSession().getAttribute("user");

@@ -24,12 +24,6 @@ window.BookingHall = (function($,module)
 					$("td[id$=_value]").html("周三不可申请");
 					return false;
 				}
-				if(data.newYear=='true')
-				{
-					$("img[id$=_img]").attr("src","../css/images/grey.png");
-					$("td[id$=_value]").html("元旦不可申请");
-					return false;
-				}
 				if (data.bookingHallList && data.bookingHallList.length!=0){
 					$.each(data.bookingHallList, function(index, key) {
 						var affairs = key["affairs"];
