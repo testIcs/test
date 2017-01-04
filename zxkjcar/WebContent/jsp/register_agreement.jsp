@@ -63,7 +63,7 @@ response.setDateHeader("Expires", -10);
 	<p>4.管理员审批通过后方可进行正常预约。</p>
 	<p>5.预约大厅可查看空白预约时段，每时段预约数量限定为：<span class="red">50</span>。</p>
 	<p>6.单人单次可预约数量：<span class="red">30</span>。</p>
-	<p>7.初步拟定<span class="red">每周四中午12:00</span>开放预约窗口。</p>
+	<p>7.初步拟定<span class="red">每周三中午12:00</span>开放预约窗口。</p>
 	<p>8.本产品如发现用户有任何违规操作行为，可删除其账号并不再提供使用权限</p>
 	<div style="font-size: .8em;width: 125px;margin: 0 auto;">
 		<input type="checkbox" checked="checked">我已阅读，并接受</input><br/>
