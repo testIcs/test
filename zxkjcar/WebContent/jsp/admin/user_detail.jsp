@@ -28,12 +28,7 @@ response.setDateHeader("Expires", -10);
 </style>
 </head>
 <body>
-	<div class="aspNetHidden">
-		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="">
-	</div>
-	<section id="login">
-		<div class="top">用户信息</div>
-	</section>
+	<div class="top">用户信息</div>
 	<div class="container-fluid">
 	  <div class="row lh40">
 		  <div class="col-xs-4 text-right">姓名：</div>
@@ -55,5 +50,6 @@ response.setDateHeader("Expires", -10);
 		  <div class="col-xs-12 text-center" style="padding:30px 0 0 0"><a href="${baseUrl}/jsp/admin/manageuser.jsp"><button type="button" class="btn btn-success">返回</button></a></div>
 	  </div>
 	</div>
+	<%@ include file="../include/footer.jsp" %>
 </body>
 </html>

@@ -15,6 +15,7 @@ import com.zxkj.common.Constants;
 import com.zxkj.dao.UserMapper;
 import com.zxkj.model.User;
 import com.zxkj.service.UserService;
+import com.zxkj.util.PagerUtil;
 
 /**
  * {@inheritDoc}
@@ -113,9 +114,13 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
-    public List<User> queryAuditedUser()
+    public List<User> queryAuditedUser(PagerUtil pager)
     {
-        return userMapper.queryAuditedUser();
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put("startRow", (pager.getPageNo() - 1) * pager.getPageSize());
+        map.put("pageSize", pager.getPageSize());
+
+        return userMapper.queryAuditedUser(map);
     }
 
     @Override
@@ -142,4 +147,9 @@ public class UserServiceImpl implements UserService
         return userMapper.queryUserById(userId);
     }
 
+    @Override
+    public int queryAuditedUserTotal()
+    {
+        return userMapper.queryAuditedUserTotal();
+    }
 }

@@ -27,14 +27,15 @@ window.RegisterIndex = (function($,module)
 				}).done(function(data){
 					if(!data)
 					{
-						alert("注册成功");
-						window.location.href='home.jsp';
+						alert("提示","注册成功",function(){
+							window.location.href='home.jsp';
+						},{type:"info",confirmButtonText:"确定"});
 						return;
 					}
-					alert("注册失败");
+					alert("提示","注册失败",null,{type:"error",confirmButtonText:"确定"});
 					
 				}).fail(function(){
-					alert("注册发生错误");
+					alert("提示","注册发生错误",null,{type:"error",confirmButtonText:"确定"});
 				});
 			}else{
 				$('form').data('bootstrapValidator').validate();

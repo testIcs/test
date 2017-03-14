@@ -80,9 +80,29 @@ public class Constants
     public static final int AFTER_APPOINTMENT_DAY = 3;
 
     /**
+     * 周一
+     */
+    public static final int WEEK_MONDAY = 2;
+
+    /**
+     * 周二
+     */
+    public static final int WEEK_TUESDAY = 3;
+
+    /**
      * 周三
      */
     public static final int WEEK_WEDNESDAY = 4;
+
+    /**
+     * 周四
+     */
+    public static final int WEEK_THURSDAY = 5;
+
+    /**
+     * 周五
+     */
+    public static final int WEEK_FRIDAY = 6;
 
     /**
      * 周六
@@ -93,5 +113,15 @@ public class Constants
      * 周日
      */
     public static final int WEEK_SUNDAY = 1;
+
+    /**
+     * 允许预约
+     */
+    public static final int APPOINTMENT_ALLOW = 2;
+
+    /**
+     * 禁止预约
+     */
+    public static final int APPOINTMENT_FORBID = 1;
 
 }

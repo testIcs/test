@@ -22,24 +22,25 @@ response.setDateHeader("Expires", -10);
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
-<div class="top">便民在线预约后台管理</div>
-<div class="main">
-	<ul class="linkblock">
-    	<li id="registerAudit" name="appointment" class="d">注册审核</li>
-    	<li id="userManager" name="loginphone" class="a">人员管理</li>
-    	<li id="queryPeopleApp" name="queryPeopleApp" class="a">预约信息</li>
-    	<li id="appointmentManager" name="appointmentManager" class="d">预约管理</li>
-    	<li id="addUser" name="bookinghall" class="c">新增用户</li>
-    	<li id="releaseNotice" name="register_index" class="b">发布公告</li>
-    </ul>
-</div>
+	<div class="top">便民在线预约后台管理</div>
+	<div class="container-fluid" id="test">
+		<ul class="mainmenu" style="padding:20px 0 0 0">
+			<li id="registerAudit" name="appointment"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb01.png" /></b><span>注册审核</span></a></li>
+			<li id="userManager" name="loginphone"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb02.png" /></b><span>人员管理</span></a></li>
+			<li id="queryPeopleApp" name="queryPeopleApp"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb03.png" /></b><span>预约信息</span></a></li>
+			<li id="appointmentManager" name="appointmentManager"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb04.png" /></b><span>预约管理</span></a></li>  
+			<li id="addUser" name="bookinghall" ><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb02.png" /></b><span>新增用户</span></a></li>
+			<li id="releaseNotice" name="register_index"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb08.png" /></b><span>发布公告</span></a></li>
+			<li id="appointSetting" name="appoint_setting"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb07.png" /></b><span>预约设置</span></a></li>  
+			 	 
+		</ul>
+	</div>
+	<%@ include file="../include/footer.jsp" %>
+	<script type="text/javascript" src="${baseUrl}/script/admin/home.js"></script>
+	<script type="text/javascript">
+	$(function(){
+		AdminHomeModule.init(baseUrl);
+	})
+	</script>
 </body>
-<%@ include file="../include/footer.jsp" %>
-<script type="text/javascript" src="${baseUrl}/script/admin/home.js"></script>
-<script type="text/javascript">
-$(function(){
-	var baseUrl= "${baseUrl}";
-	AdminHomeModule.init(baseUrl);
-})
-</script>
 </html>

@@ -24,14 +24,15 @@
 				}).done(function(data){
 					if(!data)
 					{
-						alert("增加成功");
-						window.location.href=baseUrl+'/jsp/admin/home.jsp';
+						alert("提示","增加成功",function(){
+							window.location.href=baseUrl+'/jsp/admin/home.jsp';
+						},{type:"success",confirmButtonText:"确定"});
 						return;
 					}
-					alert("增加失败");
+					alert("提示","增加失败",null,{type:"error",confirmButtonText:"确定"});
 					
 				}).fail(function(){
-					alert("增加发生错误");
+					alert("提示","增加发生错误",null,{type:"error",confirmButtonText:"确定"});
 				});
 			}else{
 				$('form').data('bootstrapValidator').validate();

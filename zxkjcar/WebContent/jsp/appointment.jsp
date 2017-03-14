@@ -21,76 +21,40 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<!-- <link rel="stylesheet" type="text/css" href="../css/global.css"> -->
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
-<link href="../css/datepicktercss/common.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../css/jquery.alerts.css">
+<%@ include file="include/header.jsp" %>
 <body>
-	<form id="appointMentCommit"  method="post">
-		<header id="title">
-			<div class="back"></div>预约
-		</header>
-		<div id="bugCue" class="cue"></div>
-		<section id="bugCommit">
-			<div class="content">
-				<div class="title"><span>申请预约</span></div>
-			    <div id="user_status_prompt" class="tips"></div>
-<!-- 			    <div class="nametag">预约人姓名</div> -->
-<!-- 			    <div class="inputtag"> -->
-<!-- 			    	<input id="appUserName" name="appUserName" type="text" placeholder="请输入姓名" /><span>*</span> -->
-<!-- 			    </div> -->
-<!-- 			    <div class="nametag">预约人电话</div> -->
-<!-- 			    <div class="inputtag"> -->
-<!-- 			    	<input id="appPhoneNo" name="appPhoneNo" type="text" placeholder="请输入电话" /><span>*</span> -->
-<!-- 			    </div> -->
-			    <div class="nametag"><span style="color: #F00;margin-right: 10px;">*</span>预约事务数量</div>
-			    <div class="inputtag">
-			    	<input id="appAffair" name="appAffair" type="text" placeholder="请输入数量" />
-			    </div>
-			    <div class="nametag"><span style="color: #F00;margin-right: 10px;">*</span>预约日期</div>
-			    <div class="inputtag">
-			    	<input name="appDate" id="appDate" value="${param.day }" disabled="disabled"/>
-			    </div>
-			    <div class="nametag"><span style="color: #F00;margin-right: 10px;">*</span>预约时间</div>
-			    <div class="inputtag">
-			    	<select name="appTimeSlotValue" id="appTimeSlotValue"><option value="0"></option></select>
-			    </div>
-			    <div class="inputtag">
-			    	<input name="appointmentSubmit" id="appointment_submit" type="text" class="submit" value="提交" 
-			    			style="cursor:pointer;"/>
-			    </div>
-			</div>
-		</section>
-	</form>
+	<div class="top">申请预约</div>
+	<div class="container-fluid" style="padding-top:20px;">
+		<form>
+			<div class="form-group">
+		    	<label for="appAffair"><span style="color: #F00;margin-right: 10px;">*</span>预约事务数量</label>
+		    	<input type="number" class="form-control" id="appAffair" placeholder="预约事务数量">
+		    </div>
+		    <div class="form-group">
+		    	<label for="appDate"><span style="color: #F00;margin-right: 10px;">*</span>预约日期</label>
+		    	<input type="datetime" id="appDate" value="${param.day }" class="form-control" id="appdate" disabled>
+		    </div>
+		    <div class="form-group">
+		    	<label for="appTimeSlotValue"><span style="color: #F00;margin-right: 10px;">*</span>预约时间</label>
+		    	<select class="form-control" name="appTimeSlotValue" id="appTimeSlotValue"><option value="0"></option></select>
+		    </div>
+		    <div class="form-group">
+		    	<button type="button" id="appointment_submit" class="btn btn-primary" style="width:100%">提交</button>
+		    </div>
+		</form>
 	</div>
-	<div id="datePlugin"></div>
-	<footer>
-<!-- 		<p> -->
-<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
-<!-- 		</p> -->
-		<p></p>
-		<p>Copyright © 2014-2015 智与行科技</p>
-	</footer>
+	<%@ include file="include/footer.jsp" %>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/appointment.js"></script>
+	<script type="text/javascript">
+	$(function()
+	{
+		Appointment.init(
+	    {
+	    	'status':'${param.status}',
+	    	'selectsort' : "${param.sort}"//从预约大厅选择的时间段
+	    });
+	});
+	</script>
 </body>
-<script type="text/javascript" src="../3th/jquery.min.js"></script>
-<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-<script type="text/javascript" src="../3th/datepickter/date.js" ></script>
-<script type="text/javascript" src="../3th/datepickter/iscroll.js" ></script>
-<script type="text/javascript" src="../script/util_manage/validateUtil.js" ></script>
-<script type="text/javascript" src="../script/appointment.js"></script>
-<script type="text/javascript" src="../script/common.js"></script>
-</head>
-<script type="text/javascript">
-$(function()
-{
-	//$('#appDate').date();
-	
-	Appointment.init(
-    {
-    	'status':'${param.status}',
-    	'selectsort' : "${param.sort}"//从预约大厅选择的时间段
-    });
-});
-</script>
 </html>

@@ -19,7 +19,7 @@ window.ReleaseNoticeModule = (function($, module)
 		var noticeContext = $("textarea").val();
 		if(noticeContext == '')
 		{
-			jAlert("请输入公告内容","提示");
+			alert("提示","请输入公告内容",null,{type:"warning",confirmButtonText:"确定"});
 			return;
 		}
 		
@@ -35,13 +35,13 @@ window.ReleaseNoticeModule = (function($, module)
 		    success: function (data) {
 				if(data && data.result && data.result=='success')
 				{
-					jAlert("公告发布成功","提示",function(){
+					alert("提示","公告发布成功",function(){
 						window.location.href=baseUrl+'/admin/index.do';
-					});
+					},{type:"success",confirmButtonText:"确定"});
 				}
 				else
 				{
-					jAlert("公告发布失败","提示")
+					alert("提示","公告发布失败",null,{type:"error",confirmButtonText:"确定"});
 				}
 		    },
 		    complete: function () {

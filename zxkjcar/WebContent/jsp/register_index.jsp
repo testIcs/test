@@ -20,19 +20,13 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../css/bootstrapValidator.min.css">
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
-<style type="text/css">
-</style>
+<%@ include file="include/header.jsp" %>
 </head>
 <body>
 	<div class="aspNetHidden">
 		<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="">
 	</div>
-	<section id="login">
-		<div class="top">会员注册</div>
-	</section>
+	<div class="top">会员注册</div>
 	<div class="container-fluid">
 	  	<form class="form-horizontal" role="form">
 	  		 <div class="form-group">
@@ -77,18 +71,8 @@ response.setDateHeader("Expires", -10);
 			    </div>
 			  </div>
 		</form>
+		<%@ include file="include/footer.jsp" %>
+		<script type="text/javascript" src="../script/register_index.js"></script>
 	</div>
-	<footer>
-<!-- 		<p> -->
-<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
-<!-- 		</p> -->
-<!-- 		<p></p> -->
-		<p>Copyright © 2014-2015 智与行科技</p>
-	</footer>
 </body>
-<script type="text/javascript" src="../3th/jquery.min.js"></script>
-<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-<script type="text/javascript" src="../3th/bootstrap.min.js"></script>
-<script type="text/javascript" src="../3th/bootstrapValidator.min.js"></script>
-<script type="text/javascript" src="../script/register_index.js"></script>
 </html>

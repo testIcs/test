@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.zxkj.dao.SystemConfigMapper">
+	<!-- 获取预约设置 -->
+	<select id="getAppointSetting" resultType="appointSetting">
+		select 
+		id as id,
+		value as value,
+		appoint_show as appointShow,
+		operate_appoint as operateAppoint,
+		allow_appoint as allowAppoint
+		from tbl_appoint_setting
+	</select>
+	
+	<select id="queryById" resultType="appointSetting">
+		select 
+		id as id,
+		value as value,
+		appoint_show as appointShow,
+		operate_appoint as operateAppoint,
+		allow_appoint as allowAppoint
+		from tbl_appoint_setting
+		where id=#{id}
+	</select>
+
+	<!-- 更改预约配置 -->
+	<update id="updateAppointSetting" parameterType="appointSetting">
+		update tbl_appoint_setting
+		set update_time=now()
+			<if test="appointShow!=0">
+				,appoint_show=#{appointShow}
+			</if>
+			<if test="operateAppoint!=0">
+				,operate_appoint=#{operateAppoint}
+			</if>
+			<if test="allowAppoint!=0">
+				,allow_appoint=#{allowAppoint}
+			</if>
+		where id=#{id}
+	</update>
+</mapper>

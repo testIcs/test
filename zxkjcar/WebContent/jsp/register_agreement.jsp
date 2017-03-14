@@ -19,13 +19,9 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
+<%@ include file="include/header.jsp" %>
 <style type="text/css">
-	.main{
-		    position: static;
-		    margin: -14px 0 0 0;
-	}
-	.main p{
+	.container-fluid p{
 		font-size: .9em;
 		text-indent: 26px;
 		line-height: 25px;
@@ -55,7 +51,7 @@ response.setDateHeader("Expires", -10);
 </head>
 <body>
 <div class="top">使用说明</div>
-<div class="main">
+<div class="container-fluid">
 	<p>本产品为减少排队带来的时间损耗、路途损耗、精力损耗为基础的前提下开发而成。个人使用需按照使用说明要求进行注册使用，否则后台有权删除其账号。</p>
 	<p class="red">1.注册账号名称必须为本人姓名。</p>
 	<p>2.身份证号码、联系电话真实有效。</p>
@@ -69,6 +65,7 @@ response.setDateHeader("Expires", -10);
 		<input type="checkbox" checked="checked">我已阅读，并接受</input><br/>
 		<a href="register_index.jsp" class="btn">去注册</a>
 	</div>
+	<div class="footer"><p class="text-center">Copyright © 2014-2017 智与行科技</p></div>
 </div>
 </body>
 </html>

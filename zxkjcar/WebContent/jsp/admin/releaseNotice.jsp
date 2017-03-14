@@ -23,20 +23,20 @@ response.setDateHeader("Expires", -10);
 <%@ include file="../include/header.jsp" %>
 </head>
 <body>
-<div class="top">发布公告</div>
-<div class="main" style="padding:50px 0 0 0">
-	<textarea class="form-control" rows="10" placeholder="输入公告内容"></textarea>
-	<div style="text-align: right;padding: 10px 20px 0 0;">
-		<button id="releaseNotice" type="button" class="btn btn-default">立即发布</button>
+	<div class="top">发布公告</div>
+	<div class="container-fluid pt20">
+		<textarea class="form-control" rows="10" placeholder="输入公告内容"></textarea>
+		<div style="text-align: right;padding: 10px 20px 0 0;">
+			<button id="releaseNotice" type="button" class="btn btn-primary">立即发布</button>
+		</div>
 	</div>
-</div>
+	<%@ include file="../include/footer.jsp" %>
+	<script type="text/javascript">
+	var baseUrl= "${baseUrl}";
+		$(function(){
+			ReleaseNoticeModule.init();
+		})
+	</script>
+	<script type="text/javascript" src="${baseUrl}/script/admin/releaseNotice.js"></script>
 </body>
-<%@ include file="../include/footer.jsp" %>
-<script type="text/javascript">
-var baseUrl= "${baseUrl}";
-	$(function(){
-		ReleaseNoticeModule.init();
-	})
-</script>
-<script type="text/javascript" src="${baseUrl}/script/admin/releaseNotice.js"></script>
 </html>

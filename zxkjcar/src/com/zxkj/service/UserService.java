@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.zxkj.model.User;
+import com.zxkj.util.PagerUtil;
 
 /**
  * 用户操作SERVICE
@@ -56,7 +57,7 @@ public interface UserService
      * 
      * @return
      */
-    List<User> queryAuditedUser();
+    List<User> queryAuditedUser(PagerUtil pu);
 
     /**
      * 删除用户
@@ -81,4 +82,11 @@ public interface UserService
      * @return
      */
     User queryUserById(Integer userId);
+
+    /**
+     * 查询已审核的人员总数
+     * 
+     * @return
+     */
+    int queryAuditedUserTotal();
 }

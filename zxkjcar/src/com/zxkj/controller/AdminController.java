@@ -85,7 +85,7 @@ public class AdminController
     }
 
     /**
-     * 跳转到公告发布页面
+     * 发布公告
      * 
      * @return
      */
@@ -124,9 +124,20 @@ public class AdminController
      */
     @ResponseBody
     @RequestMapping(value = "/queryAuditedUser.do", method = RequestMethod.POST)
-    public Object queryAuditedUser()
+    public Object queryAuditedUser(PagerUtil pu)
     {
-        return userService.queryAuditedUser();
+        Map<String, Object> dataMaps = new HashMap<String, Object>();
+
+        // 查询数据
+        List<User> userList = userService.queryAuditedUser(pu);
+
+        dataMaps.put("dataList", userList);
+        // 查询数据总数
+        Integer total = userService.queryAuditedUserTotal();
+        pu.setTotalRecords(total);
+        pu.setTotalPage(pu.getTotalPage());
+        dataMaps.put("pager", pu);
+        return dataMaps;
     }
 
     /**
@@ -228,7 +239,7 @@ public class AdminController
     }
 
     /**
-     * 删除用户
+     * 删除预约
      * 
      * @param request
      * @param id
@@ -241,6 +252,28 @@ public class AdminController
         try
         {
             appointService.deleteAppointment(id);
+            return "0";
+        }
+        catch (Exception e)
+        {
+            return "1";
+        }
+    }
+
+    /**
+     * 重置密码
+     * 
+     * @param user
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "/resetPassword.do", method = RequestMethod.POST)
+    public Object resetPassword(User user)
+    {
+        try
+        {
+            user.setPassword(MD5Util.generatePassword(user.getPassword()));
+            userService.updateUser(user);
             return "0";
         }
         catch (Exception e)

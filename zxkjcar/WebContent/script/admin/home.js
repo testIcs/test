@@ -24,7 +24,9 @@ window.AdminHomeModule = (function($, module)
 		$("#appointmentManager").on("click", function(){
 			window.location.href=baseUrl+'/jsp/admin/appointment_manager.jsp';
 		});
-
+		$("#appointSetting").on("click", function(){
+			window.location.href=baseUrl+'/admin/config/index.do';
+		});
 	}
 	
 	function init(baseUrl)

@@ -1,5 +1,7 @@
 package com.zxkj.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.transaction.Transactional;
 
@@ -7,6 +9,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 
 import com.zxkj.dao.NoticeMapper;
+import com.zxkj.model.Notice;
 import com.zxkj.service.NoticeService;
 
 /**
@@ -45,4 +48,15 @@ public class NoticeServiceImpl implements NoticeService
         return noticeMapper.findLastNotice();
     }
 
+    @Override
+    public List<Notice> getAllNotice()
+    {
+        return noticeMapper.getAllNotice();
+    }
+
+    @Override
+    public Notice queryById(Integer id)
+    {
+        return noticeMapper.queryById(id);
+    }
 }

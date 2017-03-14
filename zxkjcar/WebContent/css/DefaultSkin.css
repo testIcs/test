@@ -7,13 +7,13 @@ a{
 
 
 .top{
-	width:100%; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background:#900000;
+	width:100%; height:50px; line-height:50px; text-align:center; font-size:20px; color:#fff; background:#2365c4;
 }
 .content{
 	margin:5px; background:#fff; padding-bottom:10px;
 }
 .title{
-	width:100%; border-bottom:2px #900000 solid; height:40px; line-height:40px; color:#900000;
+	width:100%; border-bottom:2px #900000 solid; height:40px; line-height:40px; color:#000;
 }
 .title span{
 	margin-left:15px;
@@ -67,21 +67,17 @@ a{
 	float:right; margin:80px 30px 0px 0px; color:#fff; font-size:18px;
 }
 
-
-.table{
-	margin-top:10px;
-}
 ul.days{
 	height:60px; list-style:none; border-top:1px #ccc solid; margin:0px; padding:0px;
 }
 ul.days li.day-block{
-	width:20%; height:40px; float:left; display:block; text-align:center; line-height:20px; font-size:14px; padding:10px 0px; cursor:pointer;
+	width:20%; height:auto; float:left; display:block; text-align:center; line-height:20px; font-size:14px; padding:10px 0px; cursor:pointer;
 }
 ul.days li.day-block span{
 	font-size:12px; color:#666;
 }
 ul.days li.sel{
-	background:#900000; color:#fff;
+	background:#2365c4; color:#fff;
 }
 ul.days li.sel span{
 	color:#fff;
@@ -92,10 +88,6 @@ ul.days li.sel span{
 .table table{
 	border-bottom:1px #ccc solid; border-left:1px #ccc solid;
 }
-
-
-
-
 
 .main{
 	background:url(../css/images/bg.gif) no-repeat; background-size:cover; bottom:0; width:100%; height:100%; position:absolute; z-index:-999;
@@ -121,15 +113,6 @@ ul.linkblock li.d{
 ul.linkblock li:hover{
 	border:2px #C30 solid;
 }
-
-#appDatePeo{
-	width: 50%;
-}
-
-#serach{
-	width: 30%;
-}
-
 .margin-top-80{
 	margin-top:80px;
 }
@@ -138,6 +121,36 @@ ul.linkblock li:hover{
 	list-style:none;
 }
 
+.mainmenu{padding: 80px 0 0 0;}
+.mainmenu:after { clear: both; content: " "; display: block; }
 
+.mainmenu li{ float:left;margin-left: 2.5%;
+margin-top: 2.5%;
+width: 46%;  border-radius:3px; overflow:hidden;}
 
+.mainmenu li a{ display:block;  color:#FFF;   text-align:center }
+.mainmenu li a b{ display:block; height:80px;}
+.mainmenu li a img{ margin: 15px auto 15px;
+width: 50px;
+height: 50px;}
+.mainmenu li a span{ display:block; height:30px; line-height:30px;background-color:#FFF; color: #999; font-size:14px; }
+
+.mainmenu li:nth-child(8n+1) {background-color:#36A1DB}
+.mainmenu li:nth-child(8n+2) {background-color:#678ce1}
+.mainmenu li:nth-child(8n+3) {background-color:#8c67df}
+.mainmenu li:nth-child(8n+4) {background-color:#84d018}
+.mainmenu li:nth-child(8n+5) {background-color:#14c760}
+.mainmenu li:nth-child(8n+6) {background-color:#f3b613}
+.mainmenu li:nth-child(8n+7) {background-color:#ff8a4a}
+.mainmenu li:nth-child(8n+8) {background-color:#fc5366}
+
+.w-all{width: 100%}
+.mh400{min-height: 400px;}
+.h34{height: 34px;line-height: 34px;}
+.mt10{margin-top: 10px}
+.pt20{padding-top:20px;}
+.pr0{padding-right:0px;}
+.pb10{padding-bottom:10px;}
+
+.footer{font-size:12px}
 

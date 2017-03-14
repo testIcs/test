@@ -63,12 +63,11 @@
 		}).done(function(flag){
 			if(flag=='0')
 			{
-				jAlert("审核成功","提示");
-				initData();
+				alert("提示","审核成功",initData(),{type:"success",confirmButtonText:"确定"});
 			}
 			else
 			{
-				jAlertError("审核失败","提示");
+				alert("提示","审核失败",null,{type:"error",confirmButtonText:"确定"});
 			}
 		}).fail(function(){
 
@@ -77,7 +76,7 @@
 	
 	//审核通过
 	function deleteUser(id){
-		jConfirm("确认删除吗？","提示",function(r){
+		confirm("确认删除吗？","",function(r){
 			if(!r)
 			{
 				return;
@@ -91,12 +90,12 @@
 				success:function(flag){
 					if(flag=='0')
 					{
-						jAlert("删除成功","提示");
+						alert("提示","删除成功",initData(),{type:"success",confirmButtonText:"确定"});
 						initData();
 					}
 					else
 					{
-						jAlertError("删除失败","提示");
+						alert("提示","删除失败",null,{type:"error",confirmButtonText:"确定"});
 					}
 				},
 				error: function (data) {

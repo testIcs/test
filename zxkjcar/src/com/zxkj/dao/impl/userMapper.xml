@@ -51,7 +51,12 @@
 	<update id="updateUser" parameterType="user">
 		update tbl_user_info
 		set
-			state = #{state}
+			<if test="password!='' and password!=null">
+				password=#{password}
+			</if>
+			<if test="state!=null and state!=0">
+				state = #{state}
+			</if>
 		where id = #{id}
 	</update>
 	
@@ -75,6 +80,7 @@
 			id_number idNumber
 		from tbl_user_info
 		where state=1 and role=0
+		LIMIT #{startRow}, #{pageSize}
 	</select>
 	
 	<delete id="deleteUser" parameterType="Integer">
@@ -98,4 +104,11 @@
 		where id=#{userId}
 	</select>
 	
+	<!-- 查询已审核的人员总数 -->
+	<select id="queryAuditedUserTotal" resultType="Integer">
+		select 
+			count(id)
+		from tbl_user_info
+		where state=1 and role=0
+	</select>
 </mapper>

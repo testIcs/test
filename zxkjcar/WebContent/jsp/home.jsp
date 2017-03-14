@@ -19,33 +19,30 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
+<%@ include file="include/header.jsp" %>
 </head>
 <body>
-<div class="top">便民在线预约系统</div>
-<div class="main">
-	<ul class="linkblock">
-    	<li id="loginphone" name="loginphone" class="a">会员登录</li>
-    	<li id="register_index" name="register_index" class="b">会员注册</li>
-    	<!--  li id="appointment" name="appointment" class="c">申请预约</li>-->
-    	<li id="bookinghall" name="bookinghall" class="d">预约大厅</li>
-    </ul>
-</div>
+	<div class="top">便民在线预约系统</div>
+	<div class="container-fluid">
+		<ul class="mainmenu mh400">
+			<li id="loginphone" name="loginphone"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb01.png" /></b><span>会员登录</span></a></li>
+			<li id="register_index" name="register_index"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb02.png" /></b><span>会员注册</span></a></li>
+			<li id="bookinghall" name="bookinghall"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb03.png" /></b><span>预约大厅</span></a></li>
+			<li id="noticeHistory" name="noticeHistory"><a href="javaScript:void('0')" ><b><img src="${baseUrl}/css/images/tb04.png" /></b><span>往期公告</span></a></li>   	 
+		</ul>
+	</div>
+	<%@ include file="include/footer.jsp" %>
+	<script type="text/javascript" src="../script/common.js"></script>
+	<script type="text/javascript" src="../script/home.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			var baseUrl= "${baseUrl}";
+			HomeModule.init(
+		    {
+		    	'status':'${param.status}',
+		    	'baseUrl':baseUrl
+		    });
+		});
+	</script>
 </body>
-<script type="text/javascript" src="../3th/jquery.min.js"></script>
-<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-
-<script type="text/javascript" src="../script/common.js"></script>
-<script type="text/javascript" src="../script/home.js"></script>
-<script type="text/javascript">
-	$(function()
-	{
-		HomeModule.init(
-	    {
-	    	'status':'${param.status}'
-	    });
-	});
-</script>
 </html>

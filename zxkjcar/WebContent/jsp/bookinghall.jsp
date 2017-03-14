@@ -21,9 +21,8 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
+<%@ include file="include/header.jsp" %>
 <link href="../css/datepicktercss/common.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../css/jquery.alerts.css">
 <style type="text/css">
 	.notice{
 		position: fixed;
@@ -35,14 +34,21 @@ response.setDateHeader("Expires", -10);
 		height: 40px;
     	line-height: 40px;
 	}
+	.modal{
+		top: 30%;
+	}
+	#noticeModalBody{
+		text-indent: 25px;
+		line-height: 25px;
+	}
 </style>
 </head>
 <body>
 	<form id="bookingHall"  method="post">
 		<section id="bookingHall">
-			<div class="top">便民在线预约系统</div>
+			<div class="top">预约大厅</div>
 				<div class="content">
-					<div class="title"><span>预约大厅</span><span id="appointment_detail" style="cursor:pointer;">查看预约</span></div>
+					<div class="title"><span id="appointment_detail" style="color:#2365c4;text-decoration: underline;">查看预约</span></div>
 				    <div class="table">
 				    	<ul id="main-menus" class="days"></ul>
 				        <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -105,19 +111,22 @@ response.setDateHeader("Expires", -10);
 				    </div>
 				</div>
 		</section>
-	</form>
-	<footer>
-<!-- 		<p> -->
-<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
-<!-- 		</p> -->
-		<p></p>
-		<p>Copyright © 2014-2015 智与行科技</p>
-	</footer>
+	</form>	
+	<!-- 消息通知模态框 -->
+	<div class="modal fade" id="noticeModal" tabindex="-1" role="dialog" aria-labelledby="noticeModalLabel">
+	  <div class="modal-dialog" role="document">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h4 class="modal-title text-center" id="noticeModalLabel"><strong>公告通知</strong></h4>
+	      </div>
+	      <div class="modal-body" id="noticeModalBody"></div>
+	      <div class="modal-footer" style="text-align:center">
+	        <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+	      </div>
+	    </div>
+  	 </div>
+    </div>
+	<%@ include file="include/footer.jsp" %>
+	<script type="text/javascript" src="../script/bookinghall.js"></script>
 </body>
-<script type="text/javascript" src="../3th/jquery.min.js"></script>
-<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-
-<script type="text/javascript" src="../script/common.js"></script>
-<script type="text/javascript" src="../script/bookinghall.js"></script>
 </html>

@@ -7,11 +7,14 @@
 		<typeAlias alias="user" type="com.zxkj.model.User"/>
 		<typeAlias alias="addAppointment" type="com.zxkj.model.Appointment"/>
 		<typeAlias alias="Map" type="java.util.Map"/>
+		<typeAlias alias="appointSetting" type="com.zxkj.model.AppointSetting"/>
+		<typeAlias alias="notice" type="com.zxkj.model.Notice"/>
 	</typeAliases>
 	<mappers>	
 		<mapper resource="com/zxkj/dao/impl/userMapper.xml" />	
 		<mapper resource="com/zxkj/dao/impl/appointMapper.xml" />
 		<mapper resource="com/zxkj/dao/impl/dicMapper.xml" />	
-		<mapper resource="com/zxkj/dao/impl/NoticeMapper.xml" />	
+		<mapper resource="com/zxkj/dao/impl/NoticeMapper.xml" />
+		<mapper resource="com/zxkj/dao/impl/SystemConfigMapper.xml" />	
 	</mappers>
 </configuration> 

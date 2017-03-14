@@ -14,6 +14,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import net.sf.json.JSONObject;
+
 import org.apache.commons.lang.time.DateFormatUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,10 +30,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.zxkj.common.Constants;
+import com.zxkj.model.AppointSetting;
 import com.zxkj.model.Appointment;
 import com.zxkj.model.User;
 import com.zxkj.service.IAppoint;
-import com.zxkj.service.NoticeService;
+import com.zxkj.service.SystemConfigService;
 import com.zxkj.util.DateUtil;
 
 @Scope("prototype")
@@ -48,10 +51,10 @@ public class AppointController
     private IAppoint appointService;
 
     /**
-     * 公告Service
+     * 系统配置接口
      */
     @Autowired(required = true)
-    private NoticeService noticeService;
+    private SystemConfigService systemConfigService;
 
     /**
      * 添加预约事件
@@ -63,78 +66,157 @@ public class AppointController
     @RequestMapping(value = "/addAppointment.do", method = RequestMethod.POST)
     public Object addAppointment(HttpServletRequest request, Appointment appointment, Date appDate)
     {
-        Integer status = Constants.DATA_INCORRECT;
-        Map<String, Object> returnMap = new HashMap<String, Object>();
-        Integer checkNum = 0;
-        Integer total = 60;// 每个时间段默认可预约的总数
-        if (null != appointment)
+        JSONObject result = new JSONObject();
+        /**
+         * 1、判断当前是否能进行预约操作
+         */
+        // 如果不能预约
+        if (!checkAppointOperate())
         {
-            // 得到系统当前时间是周几
-            Calendar cal = Calendar.getInstance();
-            cal.setTime(new Date());
-            int w = cal.get(Calendar.DAY_OF_WEEK);
-            int h = cal.get(Calendar.HOUR_OF_DAY);// 当前小时数字
-
-            // 所选时间是周几
-            cal.setTime(appDate);
-            int selDate = cal.get(Calendar.DAY_OF_WEEK);
-            // 如果选择了周六周日，提示不能预约
-            if (selDate == Constants.WEEK_SUNDAY || selDate == Constants.WEEK_SATURDAY)
+            // 获取每周哪天都可以进行预约操作，前台页面提示
+            List<AppointSetting> setttingList = systemConfigService.getAppointSetting();
+            StringBuilder sb = new StringBuilder();
+            if (null != setttingList && setttingList.size() > 0)
             {
-                status = Constants.REST_DAY;
-            }
-            else if (!(Constants.WEEK_WEDNESDAY == w && h >= 12 && h < 17))
-            {// 每周的周三的12：00-17:00才能进行预约
-                status = Constants.VALIDATE_EXPIRES;
-            }
-            else if (selDate == Constants.WEEK_WEDNESDAY)
-            {// 只能预约每周的周一、周二、周四和周五
-                status = Constants.STATUS_ERROR;
-            }
-            else
-            {
-                // 格式化日期
-                SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-                // 查询登录用户在给定的日期内一周是否已经进行过申请
-                User user = (User) request.getSession().getAttribute("user");
-                Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate),
-                        user.getPhoneNo());
-                // 查询预约的时间所在的周是否已经有预约，即每周只能预约一次并且不能超过30个
-                if (null != weekNum && weekNum == 0)
+                for (AppointSetting appointSetting : setttingList)
                 {
-                    // 查询某一个时间段内已经预约了多少事务
-                    checkNum = appointService.queryAppointment(format.format(appDate),
-                            appointment.getAppTimeSlotValue());
-                    if (null == checkNum)
-                        checkNum = 0;
-                    // 11：30-12:00为30个，其他为60个，超过不能预约
-                    if (appointment.getAppTimeSlotValue().intValue() == 5)
+                    if (appointSetting.getOperateAppoint() == Constants.APPOINTMENT_ALLOW)
                     {
-                        total = 30;
-                    }
-
-                    if ((total - checkNum) >= appointment.getAppAffair())
-                    {
-
-                        appointment.setAppDate(appDate);
-                        appointment.setAppPhoneNo(user.getPhoneNo());
-                        appointment.setAppUserName(user.getUserName());
-                        status = appointService.addAppointment(appointment);
-                    }
-                    else
-                    {
-                        status = Constants.DATA_NOT_COMPLETE;
+                        sb.append(" ").append(appointSetting.getValue()).append("，");
                     }
                 }
-                else
-                {
-                    status = Constants.DATA_ALREADY_EXIST;
-                }
             }
+            result.put("result", "fail");
+            result.put("msg", "每周的" + sb.toString() + "12:00~17:00进行预约");
+            return result;
         }
-        returnMap.put("status", status);
-        returnMap.put("num", (total - checkNum));
-        return returnMap;
+
+        /**
+         * 2、判断所选日期是否能预约
+         */
+        if (!checkAllowAppoint(appDate))
+        {
+            result.put("result", "fail");
+            result.put("msg", "所选日期不能预约");
+            return result;
+        }
+
+        /**
+         * 3、判断是否已预约
+         */
+        // 格式化日期
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        // 查询登录用户在给定的日期内一周是否已经进行过申请
+        User user = (User) request.getSession().getAttribute("user");
+        Integer weekNum = appointService.queryUserIsAppHisThisWeek(format.format(appDate),
+                user.getPhoneNo());
+        if ((null != weekNum && weekNum > 0))
+        {
+            result.put("result", "fail");
+            result.put("msg", "一周只能申请一次，所选日期所在周已经进行过申请，请选择其他时间段（周）进行申请");
+            return result;
+        }
+
+        Integer total = 60;// 每个时间段默认可预约的总数
+        // 查询预约的时间所在的周是否已经有预约，即每周只能预约一次并且不能超过30个
+        // 查询某一个时间段内已经预约了多少事务
+        Integer checkNum = appointService.queryAppointment(format.format(appDate),
+                appointment.getAppTimeSlotValue());
+        if (null == checkNum)
+        {
+            checkNum = 0;
+        }
+        // 11：30-12:00为30个，其他为60个，超过不能预约
+        if (appointment.getAppTimeSlotValue().intValue() == 5)
+        {
+            total = 30;
+        }
+
+        if ((total - checkNum) >= appointment.getAppAffair())
+        {
+
+            appointment.setAppDate(appDate);
+            appointment.setAppPhoneNo(user.getPhoneNo());
+            appointment.setAppUserName(user.getUserName());
+            appointService.addAppointment(appointment);
+            result.put("result", "success");
+            return result;
+        }
+        else
+        {
+            result.put("result", "fail");
+            result.put("msg", "该时间段已经预约满");
+            return result;
+        }
+    }
+
+    /**
+     * 判断预约操作
+     * 
+     * @return
+     */
+    private boolean checkAppointOperate()
+    {
+        // 得到系统当前时间是周几
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(new Date());
+        int w = cal.get(Calendar.DAY_OF_WEEK);
+        int h = cal.get(Calendar.HOUR_OF_DAY);// 当前小时数字
+        AppointSetting operateSetting = systemConfigService.queryById(w);
+        // 当天不允许预约，并且不是12~17点，禁止预约操作
+        if (!(operateSetting.getOperateAppoint() == Constants.APPOINTMENT_ALLOW && h >= 12 && h < 17))
+        {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * 判断所选日期是否允许预约
+     * 
+     * @param appDate
+     * @return
+     */
+    private boolean checkAllowAppoint(Date appDate)
+    {
+        /**
+         * 1、所选日期是否在预约范围之内，防止自己构造数据
+         */
+        // 预约开始时间(三天之后)
+        Date startDate = DateUtil.getDateAfter(new Date(), Constants.AFTER_APPOINTMENT_DAY);
+        // 预约结束时间(开始时间起一周时间)
+        Date endDate = DateUtil.getDateAfter(new Date(), Constants.AFTER_APPOINTMENT_DAY + 6);
+        // 从页面传递过来的时间没有时分秒，所以与起始时间同一天时，因为时分秒的关系会判定在其实时间之前，所以忽略其实时间的时分秒
+        Calendar start = Calendar.getInstance();
+        start.setTime(startDate);
+        start.set(Calendar.HOUR_OF_DAY, 0);
+        start.set(Calendar.MINUTE, 0);
+        start.set(Calendar.SECOND, 0);
+        start.set(Calendar.MILLISECOND, 0);
+
+        Calendar app = Calendar.getInstance();
+        app.setTime(appDate);
+
+        if (app.before(start) || appDate.after(endDate))
+        {
+            return false;
+        }
+
+        /**
+         * 2、所选时间是周几，周几是否允许预约
+         */
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(appDate);
+        int week = cal.get(Calendar.DAY_OF_WEEK);
+        AppointSetting allowSetting = systemConfigService.queryById(week);
+        // 所选日期不允许预约
+        if (allowSetting.getAllowAppoint() == Constants.APPOINTMENT_FORBID)
+        {
+            return false;
+        }
+
+        return true;
     }
 
     /**
@@ -146,12 +228,12 @@ public class AppointController
      */
     @RequestMapping(value = "/listBookingHall.do", method = RequestMethod.POST)
     public @ResponseBody Object listBookingHall(HttpServletRequest request,
-            HttpServletResponse response) throws IOException, ParseException
+            HttpServletResponse response, String dateStr) throws IOException, ParseException
     {
         Map<String, Object> returnMap = new HashMap<String, Object>();
-        String dateStr = request.getParameter("dateStr");
         int week = DateUtil.dayForWeek(dateStr);
-        if (week == Constants.WEEK_WEDNESDAY)
+        AppointSetting allowSetting = systemConfigService.queryById(week);
+        if (allowSetting.getAllowAppoint() == Constants.APPOINTMENT_FORBID)
         {
             returnMap.put("forbid", "true");
             return returnMap;
@@ -202,21 +284,6 @@ public class AppointController
     }
 
     /**
-     * 加载公告
-     * 
-     * @return
-     * @throws IOException
-     */
-    @RequestMapping(value = "/getNotice.do", method = RequestMethod.POST)
-    public @ResponseBody Object getNotice() throws IOException
-    {
-        Map<String, Object> returnMap = new HashMap<String, Object>();
-        String notice = noticeService.getLastNotice();
-        returnMap.put("notice", notice);
-        return returnMap;
-    }
-
-    /**
      * 申请检查 查询某一个时间段内已经预约了多少事务
      * 
      * @return
@@ -260,7 +327,7 @@ public class AppointController
     }
 
     /**
-     * 获取可预约的日期
+     * 显示可预约的日期
      * 
      * @return
      */
@@ -268,18 +335,20 @@ public class AppointController
     public @ResponseBody Object getAppointmentDate()
     {
         List<String> dateList = new ArrayList<String>();
-
-        // 两天后开始预约
+        // 获取预约大厅中展示的预约日期
+        Map<Integer, Integer> result = systemConfigService.getAppointShow();
+        // 三天后开始预约
         int afterDay = Constants.AFTER_APPOINTMENT_DAY;
-        while (dateList.size() < 5)
+        // 循环计数器，只取一周的数据
+        int count = 0;
+        while (count < 7)
         {
             Date date = DateUtil.getDateAfter(new Date(), afterDay);
             Calendar c = Calendar.getInstance();
             c.setTime(date);
 
-            // 排除周六周日
-            if (c.get(Calendar.DAY_OF_WEEK) != Constants.WEEK_SATURDAY
-                    && c.get(Calendar.DAY_OF_WEEK) != Constants.WEEK_SUNDAY)
+            // 展示的预约日期
+            if (result.get(c.get(Calendar.DAY_OF_WEEK)).intValue() == Constants.APPOINTMENT_ALLOW)
             {
 
                 dateList.add(DateUtil.getWeekByDateStr(c.get(Calendar.DAY_OF_WEEK)) + "_"
@@ -287,6 +356,7 @@ public class AppointController
             }
 
             afterDay++;
+            count++;
         }
         return dateList;
     }

@@ -1,6 +1,7 @@
 package com.zxkj.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.zxkj.model.User;
 
@@ -44,7 +45,7 @@ public interface UserMapper
      * 
      * @return
      */
-    List<User> queryAuditedUser();
+    List<User> queryAuditedUser(Map<String, Object> map);
 
     /**
      * 删除用户
@@ -69,4 +70,11 @@ public interface UserMapper
      * @return
      */
     User queryUserById(Integer userId);
+
+    /**
+     * 查询已审核的人员总数
+     * 
+     * @return
+     */
+    int queryAuditedUserTotal();
 }

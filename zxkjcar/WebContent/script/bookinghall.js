@@ -11,7 +11,6 @@ window.BookingHall = (function($,module)
 		{    
 			url:"/zxkjcar/appoint/listBookingHall.do",   
 			type:'post',    
-			//cache:false, 
 			dataType:'json',
 			data: {
 				dateStr : selDate
@@ -21,7 +20,7 @@ window.BookingHall = (function($,module)
 				if(data.forbid=='true')
 				{
 					$("img[id$=_img]").attr("src","../css/images/grey.png");
-					$("td[id$=_value]").html("周三不可申请");
+					$("td[id$=_value]").html("不可申请");
 					return false;
 				}
 				if (data.bookingHallList && data.bookingHallList.length!=0){
@@ -95,14 +94,18 @@ window.BookingHall = (function($,module)
 	//加载通知消息
 	function loadNotice(){
 		$.ajax({    
-			url:"/zxkjcar/appoint/getNotice.do",   
+			url:"/zxkjcar/notice/getLastNotice.do",   
 			type:'post',    
 			dataType:'json',
 			success:function(data) 
 			{
 				if(data&&data.notice&&data.notice!=""){
+					//已弹出层的形式展现公告
+					$("#noticeModalBody").append(data.notice)
+					$('#noticeModal').modal("show")
+					//底部滚动方式展示公告
 					var noticeHtml="<div class=\"notice\">";
-					noticeHtml+="<marquee direction=\"left\" behavior=\"scroll\" align=\"bottom\" height=\"40\" width=\"100%\" onmouseout=\"this.start()\" onmouseover=\"this.stop()\" scrollamount=\"2\" scrolldelay=\"1\">"+data.notice+"</marquee>";
+					noticeHtml+="<marquee direction=\"left\" behavior=\"scroll\" align=\"bottom\" height=\"40\" width=\"100%\" style=\"font-size:16px;\" onmouseout=\"this.start()\" onmouseover=\"this.stop()\" scrollamount=\"2\" scrolldelay=\"1\">"+data.notice+"</marquee>";
 					noticeHtml+"</div>"
 					$("body").append(noticeHtml);
 				}
@@ -151,7 +154,7 @@ window.BookingHall = (function($,module)
 		//获取预约日期
 		getAppointmentDate();
 		
-		//加载通知消息
+		//加载底部通知消息
 		loadNotice();
 		
 		bintEvtForBtn();
@@ -170,11 +173,11 @@ window.BookingHall = (function($,module)
 					success:function(data) 
 					{
 						if(data.num>0){
-							jAlert("该时间段还剩"+data.num+"可预约","提示",function(){
-								window.location.href="/zxkjcar/jsp/appointment.jsp?day="+day+"&sort="+sort
-							})
+							alert("提示","该时间段还剩"+data.num+"可预约",function(){
+									window.location.href="/zxkjcar/jsp/appointment.jsp?day="+day+"&sort="+sort
+								},{type:"info",confirmButtonText:"我知道了"});
 						}else{
-							jAlert("该时间段还剩"+data.num+"可预约","提示")
+							alert("提示","该时间段还剩"+data.num+"可预约",null,{type:"warning",confirmButtonText:"我知道了"});
 						}
 						
 					}

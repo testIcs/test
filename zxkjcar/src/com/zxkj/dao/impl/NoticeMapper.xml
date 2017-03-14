@@ -17,5 +17,26 @@
 	<select id="findLastNotice" resultType="String">
 		select notice_context from tbl_notice where state=0
 	</select>
-
+	
+	<select id="getAllNotice" resultType="notice">
+		select 
+			id,
+			case when LENGTH(notice_context)>15 then
+		   		concat(left(notice_context,15),'...') 
+     		else
+     			notice_context
+     		end as context,
+			release_time as releaseTime
+		 from tbl_notice
+		  order by release_time desc
+	</select>
+	
+	<select id="queryById" parameterType="Integer" resultType="notice">
+			select 
+			id,
+			notice_context as context,
+			release_time as releaseTime
+		 from tbl_notice
+		 where id=#{id}
+	</select>
 </mapper>

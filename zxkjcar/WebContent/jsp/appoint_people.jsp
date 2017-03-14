@@ -21,48 +21,39 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
+<%@ include file="include/header.jsp" %>
 <link href="../css/datepicktercss/common.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../css/jquery.alerts.css">
 </head>
 <body>
-	<form id="bookingHall"  method="post">
-		<section id="bookingHall">
-			<div class="top">便民在线预约系统</div>
-				<div class="content">
-					<div class="title"><span>预约人信息</span></div>
-					 <div class="nametag">查询日期</div>
-				     <div class="inputtag">
-				    	<span>*</span><input name="appDatePeo" id="appDatePeo" />
-				    	<input type="button" id="serach" value="查询">
-				     </div>
-				    <div class="table">
-				        <table id="appoint_people_table" width="100%" border="0" cellspacing="0" cellpadding="0"></table>
-				    </div>
-				</div>
-		</section>
-	</form>
-	<div id="datePlugin"></div>
-	<footer>
-		<p></p>
-		<p>Copyright © 2014-2015 智与行科技</p>
-	</footer>
+	<div class="top">预约人信息查询</div>
+	<div class="container-fluid pt20 pb10">
+		<div class="row">
+			<div class="col-xs-3 h34 pr0 text-right">查询日期</div>
+			<div class="col-xs-6 pr0">
+				<input type="text" class="form-control" name="appDatePeo" id="appDatePeo" placeholder="选择日期">
+			</div>
+			<div class="col-xs-3">
+				<button type="button" id="serach" class="btn btn-primary">查询</button>
+			</div>
+		</div>
+		<div class="table-responsive">
+		  <table id="appoint_people_table" class="table"></table>
+		</div>
+		<div id="datePlugin"></div>
+	</div>
+	<%@ include file="include/footer.jsp" %>
+	<script type="text/javascript" src="../script/appoint_people.js"></script>
+	<script type="text/javascript" src="../3th/datepickter/date.js" ></script>
+	<script type="text/javascript" src="../3th/datepickter/iscroll.js" ></script>
+	<script type="text/javascript">
+	$(function()
+	{
+		$('#appDatePeo').date();
+		AppointPeople.init(
+	    {
+	    	'appDatePeo':'${param.appDate}'
+	    });
+	});
+	</script>
 </body>
-<script type="text/javascript" src="../3th/jquery.min.js"></script>
-<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-<script type="text/javascript" src="../script/appoint_people.js"></script>
-<script type="text/javascript" src="../3th/datepickter/date.js" ></script>
-<script type="text/javascript" src="../3th/datepickter/iscroll.js" ></script>
-<script type="text/javascript">
-$(function()
-{
-	$('#appDatePeo').date();
-	
-	AppointPeople.init(
-    {
-    	'appDatePeo':'${param.appDate}'
-    });
-});
-</script>
 </html>

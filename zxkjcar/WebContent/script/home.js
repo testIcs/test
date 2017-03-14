@@ -1,7 +1,7 @@
 ﻿window.HomeModule = (function($, module)
 {
 	var _status_;
-	
+	var baseUrl;
 	function bindEvtForBtn()
 	{
 		$("#loginphone").on("click", function(){
@@ -10,17 +10,18 @@
 		$("#register_index").on("click", function(){
 			window.location.href='register_agreement.jsp';
 		});
-		$("#appointment").on("click", function(){
-			window.location.href='appointment.jsp?status='+_status_;
-		});
 		$("#bookinghall").on("click", function(){
 			window.location.href='bookinghall.jsp';
+		});
+		$("#noticeHistory").on("click", function(){
+			window.location.href=baseUrl+"/notice/list.do";
 		});
 	}
 	
 	function init(param)
 	{
 		_status_ = param.status;
+		baseUrl = param.baseUrl;
 		
 		bindEvtForBtn();
 	}

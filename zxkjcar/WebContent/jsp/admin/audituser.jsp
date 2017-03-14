@@ -33,28 +33,28 @@ response.setDateHeader("Expires", -10);
 </style>
 </head>
 <body>
-<div class="top">注册人员审核</div>
-<div class="container-fluid">
-  <table class="table">
-    <thead>
-        <tr>
-          <th>姓名</th>
-  	      <th>手机号</th>
-  	      <th>操作</th>
-        </tr>
-    </thead>
-    <tbody>
-  	  
-    </tbody>
-  </table>
-</div>
+	<div class="top">注册人员审核</div>
+	<div class="container-fluid">
+	  <table class="table">
+	    <thead>
+	        <tr>
+	          <th>姓名</th>
+	  	      <th>手机号</th>
+	  	      <th>操作</th>
+	        </tr>
+	    </thead>
+	    <tbody>
+	  	  
+	    </tbody>
+	  </table>
+	</div>
+	<%@ include file="../include/footer.jsp" %>
+	<script type="text/javascript" src="${baseUrl}/script/admin/audituser.js"></script>
+	<script type="text/javascript">
+		var baseUrl= "${baseUrl}";
+		$(function(){
+			AuditUserModule.init();
+		})
+	</script>
 </body>
-<%@ include file="../include/footer.jsp" %>
-<script type="text/javascript" src="${baseUrl}/script/admin/audituser.js"></script>
-<script type="text/javascript">
-	var baseUrl= "${baseUrl}";
-	$(function(){
-		AuditUserModule.init();
-	})
-</script>
 </html>

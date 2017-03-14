@@ -25,69 +25,61 @@ response.setDateHeader("Expires", -10);
 </style>
 </head>
 <body>
-		<div class="aspNetHidden">
-			<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="">
-		</div>
-		<section id="login">
-			<div class="top">新增用户</div>
-		</section>
-		<div class="container-fluid">
-	  	  <form class="form-horizontal" role="form">
-	  		 <div class="form-group">
-			    <label for="phoneNo" class="col-sm-2 control-label">手机号</label>
-			    <div class="col-sm-6">
-			    	<input type="text" class="form-control" id="phoneNo" name="phoneNo" data-bv-remote-name="phoneNo" placeholder="请输入手机号">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="txtpwd" class="col-sm-2 control-label">密码</label>
-			    <div class="col-sm-10">
-			    	<input type="password" class="form-control" id="txtpwd" name="txtpwd" placeholder="请输入密码">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
-			    <div class="col-sm-10">
-			    	<input type="password" class="form-control" id="txtpwd1" name="txtpwd1" placeholder="请输入确认密码">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="userName" class="col-sm-2 control-label">姓名</label>
-			    <div class="col-sm-10">
-			    	<input type="text" class="form-control" id="userName" name="userName" data-bv-remote-name="userName"  placeholder="请输入姓名" >
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="idNumber" class="col-sm-2 control-label">身份号</label>
-			    <div class="col-sm-6">
-			    	<input type="text" class="form-control" id="idNumber" name="idNumber" data-bv-remote-name="phoneNo" placeholder="请输身份号">
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label for="descrip" class="col-sm-2 control-label">备注</label>
-			    <div class="col-sm-6">
-			    	<textarea class="form-control" rows="3" id="descrip" name="descrip"></textarea>
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
-			     	<button type="submit" id="addbtn" class="btn btn-primary">提交</button>
-			    </div>
-			  </div>
+	<section id="login">
+		<div class="top">新增用户</div>
+	</section>
+	<div class="container-fluid">
+  	  <form class="form-horizontal" role="form">
+  		 <div class="form-group">
+		    <label for="phoneNo" class="col-sm-2 control-label">手机号</label>
+		    <div class="col-sm-6">
+		    	<input type="text" class="form-control" id="phoneNo" name="phoneNo" data-bv-remote-name="phoneNo" placeholder="请输入手机号">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="txtpwd" class="col-sm-2 control-label">密码</label>
+		    <div class="col-sm-10">
+		    	<input type="password" class="form-control" id="txtpwd" name="txtpwd" placeholder="请输入密码">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="confirmPassword" class="col-sm-2 control-label">确认密码</label>
+		    <div class="col-sm-10">
+		    	<input type="password" class="form-control" id="txtpwd1" name="txtpwd1" placeholder="请输入确认密码">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="userName" class="col-sm-2 control-label">姓名</label>
+		    <div class="col-sm-10">
+		    	<input type="text" class="form-control" id="userName" name="userName" data-bv-remote-name="userName"  placeholder="请输入姓名" >
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="idNumber" class="col-sm-2 control-label">身份号</label>
+		    <div class="col-sm-6">
+		    	<input type="text" class="form-control" id="idNumber" name="idNumber" data-bv-remote-name="phoneNo" placeholder="请输身份号">
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <label for="descrip" class="col-sm-2 control-label">备注</label>
+		    <div class="col-sm-6">
+		    	<textarea class="form-control" rows="3" id="descrip" name="descrip"></textarea>
+		    </div>
+		  </div>
+		  <div class="form-group">
+		    <div class="col-sm-offset-2 col-sm-10" style="text-align: center;">
+		     	<button type="submit" id="addbtn" class="btn btn-primary w-all">提交</button>
+		    </div>
+		  </div>
 		</form>
 	</div>
-	<footer>
-		<p>Copyright © 2014-2016 智与行科技</p>
-	</footer>
-
+	<%@ include file="../include/footer.jsp" %>
+	<script type="text/javascript" src="${baseUrl}/script/admin/adduser.js"></script>
+	<script type="text/javascript">
+		var baseUrl= "${baseUrl}";	
+		$(function(){
+			AddUserModule.init();
+		})
+	</script>
 </body>
-<%@ include file="../include/footer.jsp" %>
-<script type="text/javascript" src="${baseUrl}/3th/bootstrapValidator.min.js"></script>
-<script type="text/javascript" src="${baseUrl}/script/admin/adduser.js"></script>
-<script type="text/javascript">
-	var baseUrl= "${baseUrl}";	
-	$(function(){
-		AddUserModule.init();
-	})
-</script>
 </html>

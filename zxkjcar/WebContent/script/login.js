@@ -1,52 +1,80 @@
 ﻿window.LoginModule = (function($, module){
-	
 	/**
 	 * 用户登录
 	 */
 	function doLogin()
     {
-		var _phoneNo = $('#phoneNo').val(),
-	    	_pass = $('#password').val()
-		if(!(_phoneNo && _pass)){
-			jAlert("密码不能为空");
+		$("#errorMsg").empty();
+		$(".errorMsg").hide();
+		var _phoneNo = $("#phoneNo").val();
+		var _password = $("#password").val();
+		if(_phoneNo==''){
+			$("#errorMsg").empty().append("手机号不能为空");
+			$(".errorMsg").show();
 			return;
 		}
 		
-		$.ajax( {    
-			url:'/zxkjcar/user/login.do',// 跳转到 action        
+		if(_password==''){
+			$("#errorMsg").empty().append("密码不能为空");
+			$(".errorMsg").show();
+			return;
+		}
+		
+		$.ajax({    
+			url:baseUrl+'/user/login.do',       
 			type:'post',    
 			cache:false,  			
-			dataType:'json', 
+			dataType:'json',
 			data:{
 				phoneNo:_phoneNo,
-				password:_pass
-			}
-		}).done(function(data){
-			if(data)
-			{
-				if("0" == data.status)
+				password:_password
+			},
+			beforeSend: function () {
+				$("#btnLogin").attr("disabled",true);
+				$("#btnLogin").text("登录中")
+		    },
+		    success: function (data) {
+		    	if(data)
 				{
-					jAlert("登录成功","提示");
-					if("-1"==data.role)
+					if("0" == data.status)
 					{
-						window.location.href='/zxkjcar/admin/index.do';
+						if("-1"==data.role)
+						{
+							window.location.href='/zxkjcar/admin/index.do';
+						}
+						else
+						{
+							window.location.href='home.jsp?status='+data.status;
+						}
+						return;
 					}
-					else
+					else if("8000"==data.status)
 					{
-						window.location.href='home.jsp?status='+data.status;
+						$("#errorMsg").empty().append("账号审核中，暂时无法登陆");
+						$(".errorMsg").show();
+						
+						$("#btnLogin").attr("disabled",false);
+						$("#btnLogin").text("登录")
+						
+						return;
 					}
-					return;
 				}
-				else if("8000"==data.status)
-				{
-					jAlertError("账号审核中，暂时无法登陆","提示");
-					return;
-				}
-			}
-			
-			jAlert("手机号或密码错误","提示");
-		}).fail(function(){
-			jAlert("登录发生错误","提示");
+		    	$("#errorMsg").empty().append("手机号或密码错误");
+				$(".errorMsg").show();
+				
+				$("#btnLogin").attr("disabled",false);
+				$("#btnLogin").text("登录")
+		    },
+		    error: function (data) {
+		    	$("#errorMsg").empty().append("登录发生错误");
+				$(".errorMsg").show();
+				
+				$("#btnLogin").attr("disabled",false);
+				$("#btnLogin").text("登录")
+				
+		        console.info("error: " + data.responseText);
+		    }
+
 		});
 	}
 	

@@ -35,7 +35,8 @@
 		$(".table tbody").empty()
 		if(data.dataList.length==0)
 		{
-			$(".table tbody").append("<tr><td colspan='3' style='text-align:center'>暂时无数据</td></tr>");
+			$(".table tbody").append("<tr><td colspan='5' style='text-align:center'>暂时无数据</td></tr>");
+			$('.pagination').hide();
 			return;
 		}
 		$datahtml = "";
@@ -63,7 +64,7 @@
 
 	//审核通过
 	function deleteAppointment(id){
-		jConfirm("确认删除吗？","提示",function(r){
+		confirm("确认删除吗？","",function(r){
 			if(!r)
 			{
 				return;
@@ -77,12 +78,11 @@
 				success:function(flag){
 					if(flag=='0')
 					{
-						jAlert("删除成功","提示");
-						initData(1);
+						alert("删除成功","提示",initData(1),{type: 'success', confirmButtonText: '确定'});
 					}
 					else
 					{
-						jAlertError("删除失败","提示");
+						alert("删除成功","提示",null,{type: 'error', confirmButtonText: '确定'});
 					}
 				},
 				error: function (data) {

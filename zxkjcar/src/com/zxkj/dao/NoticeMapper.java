@@ -1,5 +1,9 @@
 package com.zxkj.dao;
 
+import java.util.List;
+
+import com.zxkj.model.Notice;
+
 /**
  * 公告发布dao
  * 
@@ -25,5 +29,25 @@ public interface NoticeMapper
      */
     void updateNotice();
 
+    /**
+     * 查找最新公告
+     * 
+     * @return
+     */
     String findLastNotice();
+
+    /**
+     * 获取历史公告
+     * 
+     * @return
+     */
+    List<Notice> getAllNotice();
+
+    /**
+     * 根据id查询
+     * 
+     * @param id
+     * @return
+     */
+    Notice queryById(Integer id);
 }

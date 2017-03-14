@@ -21,9 +21,8 @@ response.setDateHeader("Expires", -10);
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<link href="../css/DefaultSkin.css" rel="stylesheet" type="text/css">
+<%@ include file="include/header.jsp" %>
 <link href="../css/datepicktercss/common.css" rel="stylesheet" type="text/css">
-<link rel="stylesheet" type="text/css" href="../css/jquery.alerts.css">
 </head>
 <body>
 	<form id="bookingHall"  method="post">
@@ -89,17 +88,7 @@ response.setDateHeader("Expires", -10);
 				</div>
 		</section>
 	</form>
-	<footer>
-<!-- 		<p> -->
-<!-- 			<a href="#">电脑版</a> |<a href="#" target="_blank">客户端</a> |<a href="#">Test</a> -->
-<!-- 		</p> -->
-		<p></p>
-		<p>Copyright © 2014-2015 智与行科技</p>	
-	</footer>
+	<%@ include file="include/footer.jsp" %>
+	<script type="text/javascript" src="../script/appointdetail.js"></script>
 </body>
-<script type="text/javascript" src="../3th/jquery.min.js"></script>
-<script type="text/javascript" src="../3th/jquery-migrate-1.2.1.min.js"></script>
-<script type="text/javascript" src="../3th/jquery.alerts.js"></script>
-
-<script type="text/javascript" src="../script/appointdetail.js"></script>
 </html>

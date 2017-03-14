@@ -35,7 +35,7 @@ window.BookingHall = (function($,module){
 		$.ajax( {    
 			url:"/zxkjcar/appoint/listAppointDetail.do",   
 			type:'post',    
-			//cache:false, 
+			cache:false, 
 			dataType:'json',
 			data: {
 				dateStr : selDate
@@ -45,8 +45,6 @@ window.BookingHall = (function($,module){
 					$.each(data.appointDetail, function(index, key) {
 						var affairs = key["affairs"];
 						var timeslotid = key["timeslotid"];
-//						$("#td_"+parseInt(timeslotid)+"_img img").removeAttr("src");
-//						$("#td_"+parseInt(timeslotid)+"_img img").attr("src","../css/images/yellow.png");
 						$("#td_"+parseInt(timeslotid)+"_value").html(parseInt(affairs));
 					});
 				}   
